@@ -18,22 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 try{
 
-$basedir = str_ireplace("service", "whitepapers", __DIR__);
-
-$dir_iterator = new RecursiveDirectoryIterator($basedir . DIRECTORY_SEPARATOR);
+$dir_iterator = new RecursiveDirectoryIterator(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "whitepapers" . DIRECTORY_SEPARATOR . "*.pdf");
 $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
 $list = array();
 
 foreach ($iterator as $file) {
     if ($file->isFile()) {
-    	$fileName = $file->getFilename();
-		$start = strpos($fileName, "(");
-		$end = strpos($fileName, ")");
-		
-		if( $start !== false && $end !== false ){
-			$lang = substr( $fileName, $start+1, $end - $start -1);
-			$list[] = array("lang"=> $lang, "url"=> "whitepapers/" .$fileName, "date"=> date("mdY", $file->getMTime()) );
-		}
+
+    	$fileName = substr( $file->getPathname(), $file->getPathname().lastIndexOf(DIRECTORY_SEPARATOR)+1 );
+    	$lang = $fileName.substr( $fileName, $fileName.indexOf("(")+1, $fileName.indexOf(")") - $fileName.indexOf("(") -1);
+
+    	$list[] = array("lang"=> $lang, "url"=> "whitepapers/". "date"=> date("mdY", $file->getMTime()) )
     }
 }
 
