@@ -13,7 +13,7 @@ declare var jQuery;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-	
+
     date = "02-08-2018 12:00:00";
     dateStr = moment(this.date, "MM-DD-YYYY hh:mm:ss").format("MMMM Do");
 
@@ -37,14 +37,14 @@ export class HomeComponent implements OnInit {
       this.trackForm = this.fb.group({
         address: ['', Validators.required ]
       });
-            
+
       this.modalService.open(content).result
       .then((result) => {
         //this.closeResult = `Closed with: ${result}`;
         //this.onTrackCoinSubmit();
       }, (reason) => {
         //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });      
+      });
     }
 
     public onTrackCoinSubmit(){
