@@ -1,0 +1,29 @@
+.countdown-timer{
+	width: 110px;
+    height: 110px;
+    background-color: transparent;
+    background-image: linear-gradient(190deg, #23a455 0%, #0a3315 100%);
+    padding: 15px 00px 00px 00px;
+    border-style: solid;
+    border-width: 5px 5px 5px 5px;
+    border-color: #86f473;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 0px 17px 7px rgba(0,0,0,0.5) inset;	
+    margin: 10px;
+
+    label{
+	    color: #faff77;
+	    display: block;
+	    font-size: 12px;
+	    font-family: "Source Sans Pro", Sans-serif;
+	    font-weight: 700;
+	    text-transform: uppercase;
+	    border-radius: 0px 0px 0px 0px;
+    }
+}
+
+.countdown-timer-digits{
+	color: #ffff35;
+    font-size: 35px;
+    font-weight: 700;
+}

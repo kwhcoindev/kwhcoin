@@ -1,0 +1,174 @@
+<section class="content-section">
+	<div class="section1001 pt-10 content-animation">
+		<div class="container pb-5 mb-5 text-white">
+			<div class="row">
+				<div class="col-12">
+					<h2>Join Our Blockchain</h2>
+				</div>
+			</div>
+			<div class="row pb-3">
+				<div class="col-md-6">
+					<img class="w-100" src="/assets/images/Copy-of-KWHCoin-Mission-Vision.jpg" alt="" srcset="/assets/images/Copy-of-KWHCoin-Mission-Vision.jpg 960w, /assets/images/Copy-of-KWHCoin-Mission-Vision-300x225.jpg 300w, /assets/images/Copy-of-KWHCoin-Mission-Vision-768x576.jpg 768w, /assets/images/Copy-of-KWHCoin-Mission-Vision-536x402.jpg 536w" sizes="(max-width: 710px) 100vw, 710px">
+				</div>
+				<div class="col-md-6">
+					<div class="rounded-image-wrapper">
+						<h4 class="text-white">We Want You!</h4>
+						<p>Have you put up solar panels at your house? Do you drive an electric vehicle? Do you run a wind farm in your community?</p>
+						<p>Then we want you to join our Blockchain!</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<p>
+						What separates KWHCoin from other cryptocurrency projects in the renewable energy sector is that our focus is on the "edges" of the energy economy: smaller distributed energy resources such as solar panels in the residential market, electric vehicles, microgrids, wind farms and demand response technologies.
+					</p>
+					<p>
+						All of these elements are part of a new two-way generational model of energy distribution. KWHCoin is connecting individuals and local communities together to directly participate in a new 21st century renewable energy economy.
+					</p>
+					<p>Tell us who you are and all about your project. We'll help you unlock its true value!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="section1002 content-animation">
+		<div class="container pb-5 pt-2 mb-5 max-stretch">
+			<div class="row">
+				<div class="col-12">			
+					<h2>Join Now!</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="alert alert-success text-white mb-5 text-center" *ngIf="status==200">
+						Thank you for your message. It has been sent.
+					</div>
+					<div class="alert alert-danger text-danger mb-5 text-center" *ngIf="status==500">
+						Your message was not sent. Please try again later
+					</div>
+
+					<form [formGroup]="joinusForm" name="joinusForm" novalidate action="#joinus" autocomplete="off" (ngSubmit)="onSubmit()" >
+						<div class="container-fluid pt-3">
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="name" maxlength="200" formControlName="name" placeholder="Name" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.name.dirty || joinusForm.controls.name.touched) && joinusForm.controls.name.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.name.errors.required">
+									    Name is required.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="email" maxlength="200" formControlName="email" placeholder="Email" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.email.dirty || joinusForm.controls.email.touched) && joinusForm.controls.email.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.email.errors.required">
+									    Email is required.
+									  </div>
+									  <div *ngIf="joinusForm.controls.email.errors.email">
+									    Invalid email id.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="city_state" maxlength="200" formControlName="city_state" placeholder="City and State/Province" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.city_state.dirty || joinusForm.controls.city_state.touched) && joinusForm.controls.city_state.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.city_state.errors.required">
+									    City and State/Province is required.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="country" maxlength="200" formControlName="country" placeholder="Country" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.country.dirty || joinusForm.controls.country.touched) && joinusForm.controls.country.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.country.errors.required">
+									    Country is required.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="type_of_project" maxlength="200" formControlName="type_of_project" placeholder="Type of Project (Ex. Residential, Commercial, non-profit, etc.)" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.type_of_project.dirty || joinusForm.controls.type_of_project.touched) && joinusForm.controls.type_of_project.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.type_of_project.errors.required">
+									    Type of Project is required.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="project_desc" maxlength="500" formControlName="project_desc" placeholder="Brief Project Description" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.project_desc.dirty || joinusForm.controls.project_desc.touched) && joinusForm.controls.project_desc.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.project_desc.errors.required">
+									    Project Description is required.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mb-3">
+									<div class="form-group mb-0">
+										<input type="text" required name="how_did_you_hear_about_us" maxlength="500" formControlName="how_did_you_hear_about_us" placeholder="How Did You Hear About KWHCoin?" class="form-control" />
+									</div>
+									<div *ngIf="(submitted || joinusForm.controls.how_did_you_hear_about_us.dirty || joinusForm.controls.how_did_you_hear_about_us.touched) && joinusForm.controls.how_did_you_hear_about_us.invalid" class="text-danger f-md">
+									  <div *ngIf="joinusForm.controls.how_did_you_hear_about_us.errors.required">
+									    How Did You Hear About KWHCoin is required.
+									  </div>
+									</div>							
+								</div>
+							</div>
+							<div class="row f16">
+								<div class="col-12 text-center">
+									Would you be interested in organizing a meetup in your local community with other alternative energy enthusiasts and participants?
+								</div>
+							</div>
+							<div class="row f16 pt-4">
+								<div class="col-6 text-right">
+									<div class="form-group">
+										<div>Yes</div>
+										<input type="radio" name="organized_meet_up" formControlName="organized_meet_up" value="Yes" />
+									</div>
+								</div>
+								<div class="col-6 text-left">
+									<div class="form-group">
+										<div>No</div>
+										<input type="radio" name="organized_meet_up" formControlName="organized_meet_up" value="No" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 text-center mb-3">
+									<button type="submit" class="btn btn-lightgreen px-4 py-3 bold f-sm">SEND</button>
+								</div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
