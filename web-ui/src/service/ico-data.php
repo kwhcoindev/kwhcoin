@@ -47,7 +47,7 @@ try{
 	#here is my way 
 	$placeholder = substr(str_repeat('?,',count($keys)),0,-1); 
 
-	$sql = "SELECT cmw_ticker as cmwTicker, coin_address as coinAddress, coin_constant as coinConstant, coin_current as coinCurrent, coin_name as coinName, coin_platform_ticker as coinPlatformTicker, coin_ticker as coinTicker, coin_total as coinTotal, date, id, insert_date as insertDate, updateby  from `tbl_ico_master`";
+	$sql = "SELECT cmw_ticker as cmwTicker, coin_address as coinAddress, coin_const as coinConstant, coin_current as coinCurrent, coin_name as coinName, coin_platform_ticker as coinPlatformTicker, coin_ticker as coinTicker, (coin_const+coin_current) as coinTotal, updated_datetime as date, ico_id as id, insert_datetime as insertDate, updated_by updateBy from `tbl_ico_master`";
 	
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();
@@ -63,6 +63,6 @@ try{
 }
 unset($pdo); 
 
-echo json_encode(array("status"=> $status, "message"=> $msg, "list"=> $list));
+echo json_encode(array("status"=> $status, "message"=> $msg, "data"=> $list));
 
 ?>

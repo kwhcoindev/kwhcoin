@@ -157,7 +157,7 @@
 				removeEvent({elem: self._options.element});
 				self._options = null;
 			});
-			var server = "";
+			var server = "https://api.kwhcoin.com/";
 
 			ajax(server + 'service/ico-data.php?ticker='+ this._options.attrs["ticker"], function(respText){
 
@@ -166,19 +166,19 @@
 					var coin = resp.data[0]||{};
 					var container = '<div class="cmw-widget-container" style="border: 1px solid #e5e5e5; -webkit-box-shadow: 0 1px 4px #999; box-shadow: 0 1px 4px #999; border-radius: 10px; font-size:1em; line-height:1.7em; overflow: hidden;">';
 
-					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #d5d5d5;"><img style="height:30px;margin-right:7px;" src="'+ server +'/images/'+ coin.cmwTicker.toLowerCase() +'.png" /><a href="'+ server +'/#/cryptocoin/'+ coin.cmwTicker +'">'+ coin.coinName +' ('+ coin.coinTicker +')'+ '</a></div>';
+					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #d5d5d5;"><img style="height:30px;margin-right:7px;" src="/assets/images/'+ coin.cmwTicker.toLowerCase() +'.png" /><a href="/#/cryptocoin/'+ coin.cmwTicker +'">'+ coin.coinName +' ('+ coin.coinTicker +')'+ '</a></div>';
 
-					var platform = '<div class="cmw-coin-platform" style="float:left;width:50%; text-align:center; padding: 15px; border-right: 1px solid #d5d5d5; margin-right:-1px;">'+ coin.coinPlatformTicker +' Raised</div>';
+					var platform = '<div class="cmw-coin-platform" style="float:left;width:50%; text-align:center; padding: 15px; border-right: 1px solid #d5d5d5; margin-right:-1px;">'+ coin.coinPlatformTicker +' Raised <br />(In Pre-sale)</div>';
 
 					var count = '<div class="cmw-coin-platform" style="float:left;width:50%; text-align:center; padding: 15px;">'+ coin.coinTotal +'</div>';
 
-					var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
+					//var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
 
-					var html = container + header + platform + count + '<div style="clear: both"></div>'+ footer +'</div>';
+					var html = container + header + platform + count + '<div style="clear: both"></div>'+'</div>';
 
 					self._options.element.innerHTML = html;
 				}
-			});
+			}, {});
 		}
 	}
 
