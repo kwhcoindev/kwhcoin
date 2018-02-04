@@ -1,23 +1,7 @@
-.section601{
-	background-image: url(/assets/images/renewable-energy-hand-leaf.jpg);
-    background-position: center center;
-    background-size: cover;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
-}
-
-.section602{
-    background-color: #fff; /*#494949;*/
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 80px 0px 80px 0px;	
-}
-
-.section603{
-    background-color: #494949;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 80px 0px 80px 0px;	
-}
-
-.mw-35{
+.mw-35 {
 	max-width: 35%;
+}
+
+img.rounded-circle {
+  max-width: 100%;
 }

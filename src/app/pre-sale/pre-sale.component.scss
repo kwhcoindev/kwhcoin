@@ -1,23 +1,23 @@
 
 .section201{
     background-color: #000000;
-    background-image: url(/assets/images/ico-info-background-images.png);
+    background-image: url(./~assets/images/ico-info-background-images.png);
     background-position: center center;
     background-size: cover;
     transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 100px 0px 50px 0px;	
+    padding: 100px 0px 50px 0px;
 }
 
 .section202{
     background-color: #494949;
     transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
+    padding: 50px 0px 50px 0px;
 }
 
 .section203{
     background-color: #848484;
     transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
+    padding: 50px 0px 50px 0px;
 }
 
 #mc_embed_signup h2 {
@@ -32,8 +32,8 @@
     transition-property: transform;
 }
 
-.animation-grow:active, 
-.animation-grow:focus, 
+.animation-grow:active,
+.animation-grow:focus,
 .animation-grow:hover {
     transform: scale(1.1);
 }

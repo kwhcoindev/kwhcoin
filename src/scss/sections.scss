@@ -1,0 +1,45 @@
+@import '~scss/variables';
+
+@-webkit-keyframes expand{
+  0%{top: -100px; opacity: 0;}
+  100%{top: 0;  opacity: 1;}
+}
+@-moz-keyframes expand{
+  0%{top: -100px; opacity: 0;}
+  100%{top: 0;  opacity: 1;}
+}
+@-o-keyframes expand{
+  0%{top: -100px; opacity: 0;}
+  100%{top: 0;  opacity: 1;}
+}
+@keyframes expand{
+  0%{top: -100px; opacity: 0;}
+  100%{top: 0;  opacity: 1;}
+}
+
+.content-section {
+  position: relative;
+  &:first-child {
+    padding-top: 5.5rem;
+  }
+  >.content-animation{
+    position: relative;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 50px 0px;
+    animation: expand 1s;
+  }
+}
+
+.green-section {
+  background-color: $green;
+  color: #fff;
+  text-shadow: $text-shadow;
+  background: linear-gradient(top, $darker-green 0%, $green 10%, $green 90%, $darker-green 100%);
+}
+
+.striped-bg-gradient {
+  background-color: $grey;
+  border-bottom: 1px solid $grey;
+  border-top: 1px solid $grey;
+  background: repeating-linear-gradient(45deg, $grey 0%, $grey 10%, $lighter-grey 0%, $lighter-grey 50%) 0 / 15px 15px;
+}

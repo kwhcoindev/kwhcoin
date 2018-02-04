@@ -1,5 +1,9 @@
 @import '~scss/variables';
 
+.content-section {
+  padding-top: 0;
+}
+
 .home-logo {
   position: relative;
   height: 200px;
@@ -43,7 +47,7 @@
 
 .section1 {
 	background-color: #000000;
-  background-image: url(/assets/images/41546701_l.jpg);
+  background-image: url(./~assets/images/41546701_l.jpg);
   transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
   padding-top: 3rem;
   text-shadow: $text-shadow;
@@ -119,7 +123,11 @@
 .section3 {
   background-color: #fff;
   transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-  padding: 0px 0px 0px 0px;
+  padding: 0;
+  .container-fluid {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
   h3, h4 {
     margin: 1.2rem 0;
   }

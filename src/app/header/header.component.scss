@@ -6,6 +6,7 @@
   padding: 1rem;
   font-family: 'Roboto Condensed', sans-serif;
   transition: .3s all ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   .social-links .social-btn {
     text-align: center;
     color: #fff;
@@ -23,21 +24,10 @@
 	  }
   }
   .navbar-brand {
-    margin-right: 0;
-  }
-  #siteNavigation {
-    flex: 1;
-  }
-  #header-icon {
-    background-image: url("/assets/images/kwh-coin-final-symbol-1-nfsc67km3jv7zaesp3nqrymiwl6p29ptko7zcp0ma8.png");
-    background-size: 200px 200px;
-    height: 55px;
-    width: 55px;
-    flex: 1;
+    margin-right: 10px;
   }
   &.navbar-stuck {
     background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 	  #navbarResponsive {
 		  z-index: 1030;
 	  }
@@ -64,7 +54,8 @@
     color: $black;
     padding: 0.4rem 1.2rem;
     font-size: 1em;
-    &:hover {
+    &:hover, &:active {
+      background: #fff;
       color: $green;
     }
   }
@@ -148,10 +139,13 @@
     .navbar-nav>li {
       width: auto;
     }
+    #siteNavigation {
+      flex: 1;
+    }
 	}
 
-	.main-menu{
-		padding: 3rem 0.8rem !important;
+	.main-menu {
+		padding: 3rem 0.7rem;
     font-size: 18px;
 	}
 

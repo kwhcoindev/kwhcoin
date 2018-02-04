@@ -3,6 +3,8 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '~scss/variables';
 @import '~scss/buttons';
+@import '~scss/preloader';
+@import '~scss/sections';
 
 a:hover {
   color: initial;
@@ -21,7 +23,7 @@ a:hover {
   color: #000;
 }
 
-body{
+body {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -45,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 18px;
   margin-bottom: 1.2rem;
 }
 
@@ -213,33 +215,25 @@ input[type='text'], input[type='email'], input[type='url'], input[type='password
   position: relative;
 }
 
-ol.counter{
-  margin-left: 0;
-  counter-reset: item;
-}
-
-ol.counter,
-ul.counter{
+ol.counter, ul.counter {
+  margin: 1rem 0;
   list-style: none;
-}
-
-ol.counter>li,
-ul.counter>li{
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-ol.counter>li:before,
-ul.counter>li:before{
-  color: $green;
-  position: absolute;
-  top: 0;
-  left: -30px;
-}
-
-ol.counter>li:before{
-  content: counter(item, decimal-leading-zero) ". ";
-  counter-increment: item;
+  counter-reset: item;
+  padding-left: 20px;
+  &>li{
+    position: relative;
+    margin-bottom: 1.5rem;
+    &:before {
+      color: $green;
+      position: absolute;
+      top: 0;
+      left: -20px;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-weight: 700;
+      content: counter(item, decimal) ". ";
+      counter-increment: item;
+    }
+  }
 }
 
 ul.default,
@@ -269,43 +263,6 @@ ul.default li:before {
   margin-right: 10px;
 }
 
-.striped-bg-gradient {
-  background-color: $grey;
-  border-bottom: 1px solid $grey;
-  border-top: 1px solid $grey;
-  background: repeating-linear-gradient(45deg, $grey 0%, $grey 10%, $lighter-grey 0%, $lighter-grey 50%) 0 / 15px 15px;
-}
-
-.content-section{
-  position: relative;
-
-  >.content-animation{
-    position: relative;
-    -webkit-animation: expand 1s;
-    -webkit-animation: expand 1s;
-    -moz-animation:    expand 1s;
-    -o-animation:      expand 1s;
-    animation:         expand 1s;
-  }
-}
-
-@-webkit-keyframes expand{
-  0%{top: -100px; opacity: 0;}
-  100%{top: 0;  opacity: 1;}
-}
-@-moz-keyframes expand{
-  0%{top: -100px; opacity: 0;}
-  100%{top: 0;  opacity: 1;}
-}
-@-o-keyframes expand{
-  0%{top: -100px; opacity: 0;}
-  100%{top: 0;  opacity: 1;}
-}
-@keyframes expand{
-  0%{top: -100px; opacity: 0;}
-  100%{top: 0;  opacity: 1;}
-}
-
 h2, .h2 {
   font-size: 2.7rem;
 }
@@ -319,16 +276,19 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   line-height: 1.2;
 }
 
 h6,.h6 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   line-height: 1.2;
 }
 
 @media (max-width: 767.99px) {
+  p {
+    font-size: 16px;
+  }
   h2, .h2 {
     font-size: 2.1rem;
   }
@@ -370,8 +330,6 @@ h6,.h6 {
   }
 }
 
-@import 'scss/preloader';
-
 .header-footer-logo {
   font-size: 2rem;
   margin-right: 2rem;
@@ -388,6 +346,7 @@ h6,.h6 {
 @media (min-width: 768px) {
   body.home {
     .site-header:not(.navbar-stuck) {
+      box-shadow: none;
       background-color: rgba(255, 255, 255, 0);
       .main-menu {
         color: #fff;

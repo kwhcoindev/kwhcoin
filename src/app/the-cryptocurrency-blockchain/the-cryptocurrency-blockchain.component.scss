@@ -1,4 +1,11 @@
-.section101, .section102, .section103 {
-  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-  padding: 50px 0px 50px 0px;
+@import '~scss/variables';
+
+.icon-block {
+  // background-color: #fff;
+  border-radius: $roundness;
+  // padding: 1rem;
+  margin: 2rem 0;
+  svg {
+    stroke: $yellow;
+  }
 }

@@ -1,51 +1,50 @@
+@import '~scss/variables';
 
-.section201{
-    background-color: #000000;
-    background-image: url(/assets/images/ico-info-background-images.png);
-    background-position: center center;
-    background-size: cover;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 100px 0px 50px 0px;	
+#mc-embedded-subscribe-form {
+  background: #fff;
+  color: $black;
+  text-shadow: none;
+  border-radius: $roundness;
+  box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.4);
 }
 
-.section202{
-    background-color: #494949;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
+.section201 {
+  h6 a {
+    color: #fff;
+    &:hover {
+      color: $yellow;
+    }
+  }
 }
 
-.section203{
-    background-color: #848484;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
-}
-
-#mc_embed_signup h2 {
+#mc_embed_signup  {
+  h2 {
     font-weight: 500;
     font-size: 1.4em;
     padding: 0px;
     margin: 15px 0px;
+  }
 }
 
 .animation-grow {
-    transition-duration: .3s;
-    transition-property: transform;
+  transition-duration: .3s;
+  transition-property: transform;
 }
 
-.animation-grow:active, 
-.animation-grow:focus, 
+.animation-grow:active,
+.animation-grow:focus,
 .animation-grow:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .image-shadow-box img {
-    max-width: 100%;
-    opacity: 1;
-    box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.84);
+  max-width: 100%;
+  opacity: 1;
+  box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.84);
 }
 
 @media (max-width: 1199.99px){
-    .section201 .container {
-        max-width: 100%;
-    }
+  .section201 .container {
+    max-width: 100%;
+  }
 }
