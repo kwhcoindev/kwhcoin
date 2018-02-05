@@ -1,44 +1,64 @@
-.section701{
-	background-color: #08a343;
-	/*background-image: url(http://192.168.9.174/2017/august/64672/wp-content/uploads/2016/08/blog-2.jpg);*/
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 115px 0px 90px 0px;
+@import '~scss/variables';
 
-    .alert{
-    	border-width: 0;
-    	border-radius: 0;
-    	-webkit-border-radius: 0;
-    	-moz-border-radius: 0;
+.section701 {
+  .alert {
+    border-width: 0;
+    border-radius: 0;
+  }
+	.alert-danger {
+	  font-size: 14px;
+	  font-size: 0.875rem;
+	}
+
+	.alert-success {
+		background: $green;
+	}
+  a {
+    color: $yellow;
+    border-bottom: 1px dashed #fff;
+    &:hover {
+      border-bottom: 1px dashed rgba(255, 255, 255, 0);
     }
-	.alert-danger{
-	    font-size: 14px;
-	    font-size: 0.875rem;	
-	}
-
-	.alert-success{
-		background: #03d91d;
-	}
-
+  }
+  form {
+    background: #fff;
+    color: $black;
+    text-shadow: none;
+    border-radius: $roundness;
+    box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.4);
+    padding: 10px;
+    input, textarea {
+      padding: 8px 0;
+      text-indent: 2%;
+      border: 1px solid #ABB0B2;
+      border-radius: 3px;
+    }
+  }
 }
 
-.section702{
-    background-color: #c6c6c6;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 80px 50px 80px 50px;
-
-    .iframe{
-    	height: 400px;
-    	pointer-events: none;
-    	max-width: 100%;
+.section702 {
+  padding: 0;
+  .iframe {
+    display: block;
+    height: 350px;
+    pointer-events: none;
+    max-width: 100%;
 		width: 100%;
-	    margin: 0;
-	    line-height: 1;
-	    border: none;    	
-    }	
+	  margin: 0;
+	  line-height: 1;
+	  border: none;
+  }
 }
 
-
-
+@media (max-width: 767.99px) {
+  .section701 {
+    form {
+      margin-top: 1rem;
+    }
+  }
+  .section702 {
+    .iframe {
+      height: 250px;
+    }
+  }
+}

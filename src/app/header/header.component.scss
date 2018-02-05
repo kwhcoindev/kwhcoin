@@ -110,6 +110,7 @@
 		width: 100%;
 	}
 	.navbar-toggler {
+    z-index: 9999;
     text-align: right;
 		transition: .3s all ease;
     position: absolute;

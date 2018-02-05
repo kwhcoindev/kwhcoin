@@ -1,0 +1,22 @@
+.section401 {
+  background-image: url("./~assets/images/nasa-53884.jpg");
+}
+
+svg {
+  fill: #fff;
+  stroke: #fff;
+}
+
+@media (min-width: 768px) {
+  svg {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 767.99px) {
+  svg {
+    max-width: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+}

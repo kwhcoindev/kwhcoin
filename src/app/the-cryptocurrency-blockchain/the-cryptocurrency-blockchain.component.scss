@@ -1,11 +1,75 @@
 @import '~scss/variables';
 
-.icon-block {
-  // background-color: #fff;
-  border-radius: $roundness;
-  // padding: 1rem;
-  margin: 2rem 0;
+.section101 {
+  background-image: url("./~assets/images/nasa-53884.jpg");
+}
+
+.section102, .section103 {
   svg {
-    stroke: $yellow;
+    display: block;
+    margin: 0 auto;
+    stroke: $green;
+    fill: $green;
+  }
+}
+
+.blockchain-parts-section {
+  padding-top: 15px;
+}
+
+.blockchain-part {
+  text-shadow: none;
+  svg {
+    display: block;
+    stroke: $green;
+    max-width: 85%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767.99px) {
+  .order-sm-1 {
+    order: 1;
+  }
+  .order-sm-2 {
+    order: 2;
+  }
+  .section102, .section103 {
+    svg {
+      max-width: 50%;
+      margin-bottom: 1rem;
+    }
+  }
+  .blockchain-part {
+    padding: 0 1rem;
+    svg {
+      max-width: 50%;
+      margin: 0.5rem auto;
+      &.cryptography {
+        margin: 0 auto;
+        max-width: 60%;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .order-sm-1 {
+    order: 2;
+  }
+  .order-sm-2 {
+    order: 1;
+  }
+  .section102, .section103 {
+    svg {
+      max-width: 90%;
+    }
+  }
+  .blockchain-part {
+    min-height: 230px;
+    display: flex;
+    svg.cryptography {
+      max-width: 100%;
+    }
   }
 }

@@ -35,6 +35,7 @@ export class AppComponent {
         this.renderer.addClass(document.body, className);
         this.previousUrl = className;
         jQuery('.dropdown-menu.show, .collapse.show').removeClass('show')
+        jQuery(window).scrollTop(0)
       }
 
       if (event instanceof NavigationEnd) {

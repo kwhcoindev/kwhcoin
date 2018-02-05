@@ -19,7 +19,7 @@
     margin: 0;
     padding: 0;
     li {
-      margin: 0 0 1rem;
+      margin: 0 0 0.8rem;
       position: relative;
       i {
         position: absolute;
@@ -69,6 +69,9 @@
     h5 {
       margin: 1.5rem 0 1rem;
     }
+  }
+  .footer-menu li {
+    font-size: 12px;
   }
   .col-xs-6 {
     width: auto;

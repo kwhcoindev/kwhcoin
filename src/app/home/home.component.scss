@@ -51,18 +51,8 @@
   transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
   padding-top: 3rem;
   text-shadow: $text-shadow;
-  .section-background-overlay{
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    background: linear-gradient(
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.15) 13%,
-      rgba(0, 0, 0, 0.15) 73%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
+  h1 {
+    line-height: 1;
   }
   .btn {
     margin: 0.5rem 0;
@@ -73,6 +63,7 @@
   }
   h6 {
     margin: 0;
+    line-height: 1.5;
     a {
       border-bottom: 1px dashed #fff;
       transition: .3s all ease;
@@ -84,6 +75,18 @@
   }
 }
 
+.section2 {
+  svg {
+    max-width: 200px;
+    stroke: $green;
+    stroke-width: 1px;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-left: -100px;
+  }
+}
+
 @media (max-width: 767.99px) {
   .section1 {
     h1 {
@@ -91,6 +94,9 @@
     }
   }
   .section2 {
+    svg {
+      display: none;
+    }
     .btn {
       margin: 0.5rem 0;
     }
@@ -106,12 +112,12 @@
   .section1 {
     padding-top: 10rem;
     h1 {
-      font-size: 5rem;
+      font-size: 4rem;
     }
   }
   .section2 {
     .button-row {
-      margin: 1rem 0;
+      margin: 1.2rem 0;
     }
   }
 }
@@ -121,12 +127,8 @@
 }
 
 .section3 {
-  background-color: #fff;
-  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-  padding: 0;
   .container-fluid {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
   }
   h3, h4 {
     margin: 1.2rem 0;
@@ -134,12 +136,6 @@
   h5 {
     margin: 0.5rem 0;
   }
-}
-
-.section4{
-  background-color: $grey;
-  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-  padding: 50px 0px 50px 0px;
 }
 
 #coin_widget {
