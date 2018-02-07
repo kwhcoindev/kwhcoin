@@ -1,3 +1,3 @@
 export class AppConstants {
-		public API_URL: string = 'https://api.kwhcoin.com/';
+		public static API_URL: string = 'https://api.kwhcoin.com/';
 }
