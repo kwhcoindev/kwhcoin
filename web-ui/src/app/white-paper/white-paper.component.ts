@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { AppConstants } from '../app.constants';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class WhitePaperComponent implements OnInit {
   	constructor(private http: Http, private modalService: NgbModal) { }
 
   	ngOnInit() {
-  		let baseUrl = '//api.kwhcoin.com/';
+  		let baseUrl = AppConstants.API_URL;
           this.http.post( baseUrl + 'service/white-paper-list.php', {})
           .subscribe((resp)=>{
             let data = resp.json();

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { NgbDatepickerConfig, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { AppConstants } from '../app.constants';
+
 import * as moment from 'moment';
 
 
@@ -44,7 +46,7 @@ export class KnowYourCustomerComponent implements OnInit {
   	onSubmit() {
   		if(!this.kycForm.pristine && !this.kycForm.invalid){
 
-  			this.http.post('//api.kwhcoin.com/service/kyc-form.php', {
+  			this.http.post(AppConstants.API_URL + 'service/kyc-form.php', {
   				first_name: this.kycForm.value.first_name,
   				last_name: this.kycForm.value.last_name,
   				dob_day: this.kycForm.value.dob.day,

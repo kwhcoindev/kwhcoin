@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { NgbDatepickerConfig, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { AppConstants } from '../app.constants';
+
 import * as moment from 'moment';
 
 
@@ -44,7 +46,7 @@ export class JoinUsComponent implements OnInit {
 		if( this.joinusForm.pristine || this.joinusForm.invalid )
 			return;
 
-		this.http.post('//api.kwhcoin.com/service/join-us.php', this.joinusForm.value)
+		this.http.post(AppConstants.API_URL + 'service/join-us.php', this.joinusForm.value)
 		.subscribe((resp)=>{
 			let data = resp.json();
 			this.status = data.status;
