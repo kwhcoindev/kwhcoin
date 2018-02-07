@@ -1,30 +1,30 @@
 <section class="content-section">
-	<div class="section701 pt-10 content-animation">
-		<div class="container pb-5">
+	<div class="section701 green-section content-animation">
+		<div class="container">
 			<div class="row">
-				<div class="col-6">
-					<h5 class="text-black">Our customer support representatives are ready to help you 24/7, 365 days a year!</h5>
-					<p class="pb-3"><strong>Address:</strong><br> 3031 Tisch Way, 110 Plaza West<br> San Jose, California, 95128</p>				
-					<p class="pb-3"><strong>Phone:</strong><br> No calls at this time. We are busy with the ICO Pre-Sale. If you have a question, please send us an email. THANK YOU!</p>
-					<p><strong>Email:</strong><br> <a class="text-lightgreen" href="mailto:girardnewkirk@icloud.com">contact@KWHCoin.com</a></p>
+				<div class="col-md-6">
+					<h5>Our customer support representatives are ready to help you 24/7, 365 days a year!</h5>
+					<p><strong>Address:</strong><br> 3031 Tisch Way, 110 Plaza West<br> San Jose, California, 95128</p>
+					<p><strong>Phone:</strong><br> No calls at this time. We are busy with the ICO Pre-Sale. If you have a question, please send us an email. THANK YOU!</p>
+					<p><strong>Email:</strong><br> <a href="mailto:contact@kwhcoin.com">contact@KWHCoin.com</a></p>
 				</div>
-				<div class="col-6">
-					<div class="alert alert-success text-white mb-5 text-center" *ngIf="status==200">
+				<div class="col-md-6">
+					<div class="alert alert-success mb-5 text-center" *ngIf="status==200">
 						Thank you for your message. It has been sent.
 					</div>
 					<div class="alert alert-danger text-danger mb-5 text-center" *ngIf="status==500">
 						Your message was not sent. Please try again later
 					</div>
 					<form [formGroup]="contactusForm" name="contactusForm" novalidate action="//api.kwhcoin.com/service/contact-us.php" method="post" autocomplete="off" (ngSubmit)="onSubmit()" >
-						<div class="form-group input-group mb-0">
+						<div class="form-group input-group">
 							<input type="text" class="form-control" maxlength="100" required name="name" formControlName="name" placeholder="Your Name" />
 						</div>
 						<div *ngIf="(submitted || contactusForm.controls.name.dirty || contactusForm.controls.name.touched) && contactusForm.controls.name.invalid" class="text-danger f-md">
 						  <div *ngIf="contactusForm.controls.name.errors.required">
 						    Name is required.
 						  </div>
-						</div>							
-						<div class="form-group input-group mb-0 mt-3">
+						</div>
+						<div class="form-group input-group">
 							<input type="email" class="form-control" maxlength="200" required name="email" formControlName="email" placeholder="Your Email" />
 						</div>
 						<div *ngIf="(submitted || contactusForm.controls.email.dirty || contactusForm.controls.email.touched) && contactusForm.controls.email.invalid" class="text-danger f-md">
@@ -35,20 +35,20 @@
 						    Invalid email address.
 						  </div>
 
-						</div>							
-						<div class="mb-5 mt-3">
-							<div class="form-group input-group mb-0">
+						</div>
+						<div>
+							<div class="form-group input-group">
 								<textarea class="form-control w-100" required  maxlength="4000" style="min-height:120px" name="message" formControlName="message" placeholder="Your Message" ></textarea>
 							</div>
 							<div *ngIf="(submitted || contactusForm.controls.message.dirty || contactusForm.controls.message.touched) && contactusForm.controls.message.invalid" class="text-danger f-md">
 							  <div *ngIf="contactusForm.controls.message.errors.required">
 							    Message is required.
 							  </div>
-							</div>							
-							<div class="text-white f-sm text-right mb-3">Characters left {{4000-contactusForm.value.message.length}}</div>
+							</div>
+							<div class="f-sm text-right">Characters left {{4000-contactusForm.value.message.length}}</div>
 						</div>
-						<div class="text-center">
-							<button class="btn btn-lightgreen px-4 py-2 bold" type="submit">SEND</button>
+						<div>
+							<button class="btn btn-lightgreen" type="submit">SEND</button>
 						</div>
 					</form>
 				</div>
@@ -58,13 +58,7 @@
 </section>
 
 <section class="content-section section702">
-	<div class="section702 content-animation">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<iframe class="w-100 iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=3031%20Tisch%20Way%20Plaza%20West%2C%20San%20Jose%2C%20California%2C%2095128&amp;t=m&amp;z=13&amp;output=embed&amp;iwloc=near"></iframe>				
-				</div>
-			</div>
-		</div>
+	<div class="section702 striped-bg-gradient content-animation">
+		<iframe class="w-100 iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=3031%20Tisch%20Way%20Plaza%20West%2C%20San%20Jose%2C%20California%2C%2095128&amp;t=m&amp;z=13&amp;output=embed&amp;iwloc=near"></iframe>
 	</div>
 </section>

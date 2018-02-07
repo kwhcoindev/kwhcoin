@@ -18,12 +18,10 @@ import { FooterComponent } from './footer/footer.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { TheCryptocurrencyBlockchainComponent } from './the-cryptocurrency-blockchain/the-cryptocurrency-blockchain.component';
 import { IcoInformationComponent } from './ico-information/ico-information.component';
-import { BreakingKwhDownComponent } from './breaking-kwh-down/breaking-kwh-down.component';
 import { OurMissionComponent } from './our-mission/our-mission.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TheKwhTeamComponent } from './the-kwh-team/the-kwh-team.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { PreSaleComponent } from './pre-sale/pre-sale.component';
 import { KnowYourCustomerComponent } from './know-your-customer/know-your-customer.component';
 import { TokenComponent } from './token/token.component';
 
@@ -45,8 +43,8 @@ export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
         if (date === null) {
             return '';
         }
-        let d = moment({ year: date.year, 
-                         month: date.month - 1, 
+        let d = moment({ year: date.year,
+                         month: date.month - 1,
                          date: date.day });
         return d.isValid() ? d.format(this.momentFormat) : '';
     }
@@ -56,8 +54,8 @@ export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
             return null;
         }
         let d = moment(value, this.momentFormat);
-        return d.isValid() ? { year: d.year(), 
-                               month: d.month() + 1, 
+        return d.isValid() ? { year: d.year(),
+                               month: d.month() + 1,
                                day: d.date() } : null;
     }
 }
@@ -66,12 +64,10 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'the-cryptocurrency-blockchain', component: TheCryptocurrencyBlockchainComponent},
   { path: 'ico-information', component: IcoInformationComponent},
-  { path: 'breaking-kwh-down', component: BreakingKwhDownComponent},
   { path: 'our-mission', component: OurMissionComponent},
   { path: 'about-us', component: AboutUsComponent},
   { path: 'the-kwh-team', component: TheKwhTeamComponent},
   { path: 'contact-us', component: ContactUsComponent},
-  { path: 'pre-sale', component: PreSaleComponent},
   { path: 'join-us', component: JoinUsComponent},
   { path: 'faq', component: FaqComponent}
   //,
@@ -96,12 +92,10 @@ const appRoutes: Routes = [
     CountdownTimerComponent,
     TheCryptocurrencyBlockchainComponent,
     IcoInformationComponent,
-    BreakingKwhDownComponent,
     OurMissionComponent,
     AboutUsComponent,
     TheKwhTeamComponent,
     ContactUsComponent,
-    PreSaleComponent,
     KnowYourCustomerComponent,
     TokenComponent,
     TrackCoinComponent,

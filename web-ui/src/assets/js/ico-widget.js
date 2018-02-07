@@ -164,9 +164,9 @@
 				var resp = JSON.parse(respText);
 				if(resp.data && resp.data.length > 0){
 					var coin = resp.data[0]||{};
-					var container = '<div class="cmw-widget-container" style="border: 1px solid #e5e5e5; -webkit-box-shadow: 0 1px 4px #999; box-shadow: 0 1px 4px #999; border-radius: 10px; font-size:1em; line-height:1.7em; overflow: hidden;">';
+					var container = '<div class="cmw-widget-container" style="background-color: #f6f6e8;color: #518D4B; -webkit-box-shadow: 0 1px 4px #999; box-shadow: 0 1px 4px #999; border-radius: 10px; font-size:1em; line-height:1.7em; overflow: hidden;">';
 
-					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #d5d5d5; color: #ffff35; text-align:center;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" /><a name="kwhcoin">'+ coin.coinName +' ('+ coin.coinTicker +')'+ '</a></div>';
+					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 600; border-bottom: 1px solid #d5d5d5; color: #fff; text-align:center;background-color: #518d4b;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" /><a name="kwhcoin">'+ coin.coinName +' ('+ coin.coinTicker +')'+ '</a></div>';
 
 					var platform = '<div class="cmw-coin-platform" style="float:left;width:50%; text-align:center; padding: 15px; border-right: 1px solid #d5d5d5; margin-right:-1px; line-height:18px;">'+ coin.coinPlatformTicker +' Raised <br /><small class="">(In Pre-sale)</small></div>';
 

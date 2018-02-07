@@ -1,15 +1,18 @@
-.section501{
-    background-color: #000000;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
+@import '~scss/variables';
+
+.section501 {
+  background-image: url("./~assets/images/gabriel-pangilinan-18321.jpg");
+  color: $black;
+  text-shadow: none;
 }
 
-.section502{
-    background-color: #494949;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;	
+.home-logo {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  display: block;
 }
 
-.section503{
-    padding: 50px 0px 50px 0px;		
+h4 {
+  margin-top: 1rem;
 }

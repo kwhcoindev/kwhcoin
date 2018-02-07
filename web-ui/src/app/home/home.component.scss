@@ -1,73 +1,144 @@
+@import '~scss/variables';
 
-.section1{
+.content-section {
+  padding-top: 0;
+}
+
+.home-logo {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin: 0 auto;
+  &:before,
+  &:after,
+  span {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255, 255, 119, 0.37), inset 0 0 10px rgba(255, 255, 119, 0.37);
+    animation: glow-grow 6s ease-out infinite;
+  }
+  &:after {
+    animation-delay: 2s;
+  }
+  span {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes glow-grow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.6);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.section1 {
 	background-color: #000000;
-    background-image: url(/assets/images/41546701_l.jpg);
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 0px 0px 0px 0px;
-
-    .section-background-overlay{
-		background-color: rgba(0,0,0,0.6);
-	    opacity: 0.5;
-	    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;	
+  background-image: url(./~assets/images/41546701_l.jpg);
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+  padding-top: 3rem;
+  text-shadow: $text-shadow;
+  h1 {
+    line-height: 1;
+  }
+  .btn {
+    margin: 0.5rem 0;
+    width: 255px;
+  }
+  h2 {
+    margin-top: 1.5rem;
+  }
+  h6 {
+    margin: 0;
+    line-height: 1.5;
+    a {
+      border-bottom: 1px dashed #fff;
+      transition: .3s all ease;
+      &:hover {
+        color: #fff;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0);
+      }
     }
+  }
 }
 
-.section2{
-    background-color: transparent;
-    background-image: linear-gradient(180deg, #000000 0%, #43a522 100%);
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 0px 0px 0px 0px;    
+.section2 {
+  svg {
+    max-width: 200px;
+    stroke: $green;
+    stroke-width: 1px;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-left: -100px;
+  }
 }
 
-.section3{
-    background-color: #000000;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 0px 0px 0px 0px; 
-}
-.section4{
-    background-color: #efeeda;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 50px 0px 50px 0px;    
-}
-.section5{
-    background-color: #000000;
-    background-image: url(/assets/images/solar-panel-background-images.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
-    padding: 95px 0px 30px 0px;    
-}
-
-#coin_widget{
-    margin: auto;
-    width: 310px;
-}
-
-.animation-pulse:active, 
-.animation-pulse:focus, 
-.animation-pulse:hover {
-    animation-name: animation-pulse;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes animation-pulse{
-    25%{
-        transform:scale(1.1)
+@media (max-width: 767.99px) {
+  .section1 {
+    h1 {
+      margin-bottom: 1rem;
     }
-    75%{
-        transform:scale(0.9)
+  }
+  .section2 {
+    svg {
+      display: none;
     }
+    .btn {
+      margin: 0.5rem 0;
+    }
+  }
+  .section4 {
+    img {
+      margin-bottom: 1.5rem;
+    }
+  }
 }
 
-@media (max-width: 1199.99px){
-    .testimonial blockquote>p:before{
-        position: relative;
-        left: auto;
+@media (min-width: 768px) {
+  .section1 {
+    padding-top: 10rem;
+    h1 {
+      font-size: 4rem;
     }
-    .testimonial .container {
-        max-width: 100%;
+  }
+  .section2 {
+    .button-row {
+      margin: 1.2rem 0;
     }
+  }
+}
+
+.section2 {
+  padding: 0;
+}
+
+.section3 {
+  .container-fluid {
+    padding: 1rem 0;
+  }
+  h3, h4 {
+    margin: 1.2rem 0;
+  }
+  h5 {
+    margin: 0.5rem 0;
+  }
+}
+
+#coin_widget {
+  margin: 2rem auto;
+  width: 310px;
 }
