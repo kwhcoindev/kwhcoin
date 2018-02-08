@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import { AppConstants } from '../app.constants';
 
 declare var document;
 
@@ -16,6 +17,7 @@ export class ContactUsComponent implements OnInit {
     status: number;
     message: string;
     submitted: boolean = true;
+    apiUrl: string = AppConstants.API_URL;
 
   	constructor(private fb: FormBuilder, private route: ActivatedRoute, private http: Http) { }
 
@@ -37,7 +39,7 @@ export class ContactUsComponent implements OnInit {
   		if(!this.contactusForm.pristine && !this.contactusForm.invalid){
   			if(this.contactusForm.value.message.length <= 4000){
 
-          this.http.post('//api.kwhcoin.com/service/contact-us.php', {
+          this.http.post(this.apiUrl + 'service/contact-us.php', {
             name: this.contactusForm.value.name,
             email: this.contactusForm.value.email,
             message: this.contactusForm.value.message
