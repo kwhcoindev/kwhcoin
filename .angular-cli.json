@@ -24,9 +24,6 @@
         "styles.scss"
       ],
       "scripts": [
-        "./assets/js/jquery.js",
-        "./assets/js/script.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

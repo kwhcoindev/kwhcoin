@@ -1,4 +1,4 @@
-<div class="text-center countdown-timer-wrap">
+<div class="text-center countdown-timer-wrap" *ngIf="diff>0">
 	<div class="countdown-timer countdown-days d-inline-block">
 		<span class="countdown-timer-digits" *ngFor="let d of days">{{d}}</span>
 		<label>DAYS</label>

@@ -10,3 +10,9 @@
 input[type="text"], select, input[readonly]{
 	background-color: #fff;
 }
+
+select.form-control, select.form-control:focus{
+    padding: 5px 20px;
+    height: 55px!important;
+	background-color: #fff;
+}
