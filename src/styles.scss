@@ -400,3 +400,11 @@ h6,.h6 {
     display: none;
   }
 }
+
+a.slack-link {
+  color: $green;
+  border-bottom: 1px dashed $green;
+  &:hover {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0);
+  }
+}
