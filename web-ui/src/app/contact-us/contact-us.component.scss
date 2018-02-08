@@ -16,6 +16,9 @@
   a {
     color: $yellow;
     border-bottom: 1px dashed #fff;
+    i {
+      color: #fff;
+    }
     &:hover {
       border-bottom: 1px dashed rgba(255, 255, 255, 0);
     }

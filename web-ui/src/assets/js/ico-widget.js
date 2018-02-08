@@ -168,9 +168,9 @@
 
 					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 600; border-bottom: 1px solid #d5d5d5; color: #fff; text-align:center;background-color: #518d4b;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" /><a name="kwhcoin">'+ coin.coinName +' ('+ coin.coinTicker +')'+ '</a></div>';
 
-					var platform = '<div class="cmw-coin-platform" style="float:left;width:50%; text-align:center; padding: 15px; border-right: 1px solid #d5d5d5; margin-right:-1px; line-height:18px;">'+ coin.coinPlatformTicker +' Raised <br /><small class="">(In Pre-sale)</small></div>';
+					var platform = '<div class="cmw-coin-platform" style="float:left;width:60%; text-align:center; padding: 15px; border-right: 1px solid #d5d5d5; margin-right:-1px; line-height:18px;">'+ coin.coinPlatformTicker +' Raised <br /><small class="">(In Pre-sale)</small></div>';
 
-					var count = '<div class="cmw-coin-platform" style="font-size:1.8em;float:left;width:50%; text-align:center; padding: 15px;">'+ coin.coinTotal +'</div>';
+					var count = '<div class="cmw-coin-platform" style="font-size:1.8em;float:left;width:40%; text-align:center; padding: 15px;">'+ coin.coinTotal +'</div>';
 
 					//var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
 

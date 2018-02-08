@@ -29,12 +29,9 @@ img.w-100 {
   margin-bottom: 1rem;
 }
 
-a.slack-link {
-  color: $green;
-  border-bottom: 1px dashed $green;
-  &:hover {
-    border-bottom: 1px dashed rgba(255, 255, 255, 0);
-  }
+p.audit-report {
+  padding-left: 1.2rem;
+  font-size: 14px;
 }
 
 #mc_embed_signup  {
