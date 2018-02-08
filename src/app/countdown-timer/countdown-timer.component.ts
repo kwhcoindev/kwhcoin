@@ -23,7 +23,7 @@ export class CountdownTimerComponent implements OnInit {
 
 	ngOnInit() {
 		
-		this.releaseDate = moment(this.date, "MM-DD-YYYY hh:mm:ss");
+		this.releaseDate = moment(this.date);
 		
 		this.calculate();
 
@@ -37,7 +37,7 @@ export class CountdownTimerComponent implements OnInit {
 	}
 
 	calculate() {
-		let now = moment();
+		let now = moment().utc();
 		let t = 0, part = 0;
 
 		this.diff = this.releaseDate.diff( now, 's');

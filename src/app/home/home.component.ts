@@ -14,8 +14,8 @@ declare var jQuery;
 })
 export class HomeComponent implements OnInit {
 
-    date = "02-08-2018 12:00:00";
-    dateStr = moment(this.date, "MM-DD-YYYY hh:mm:ss").utc().format("MMMM Do");
+    date = "02-08-2018 20:00:00+00:00";
+    dateStr = moment(this.date, "MM-DD-YYYY hh:mm:ssZ").format("MMMM Do");
 
     status: number;
     message: string;
