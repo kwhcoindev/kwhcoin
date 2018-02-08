@@ -1,5 +1,5 @@
 <section class="content-section">
-	<div class="section1 pt-10 content-animation">
+	<div class="section1 striped-bg-gradient content-animation">
 		<div class="container" *ngIf="!tokens||tokens.length==0">
 			<div class="row">
 				<div class="col-12 text-center py-4">
@@ -288,7 +288,7 @@
 		<div class="container text-center" *ngIf="tokens && tokens.length>0">
 			<div class="row" *ngIf="status==200">
 				<div class="col-12 pt-5">
-					<h4><strong>Thank you for your interest in KWHCoin! Below is the Pre-Sale Token address. If you have questions on how to use the address, please review our Pre-Sale ICO Instructions.</strong></h4>
+					<h4><strong>Thank you for your interest in KWHCoin! Below is the ICO Token address. If you have questions on how to use the address, please review our ICO Instructions.</strong></h4>
 				</div>
 			</div>
 			<div class="row" *ngIf="status!=200">
@@ -304,7 +304,7 @@
 			</div>
 			<div class="row">
 				<div class="col-12 pt-3">
-					<button class="btn btn-lightgreen px-5 py-3">VIEW PURCHASE GUIDE USING MYETHERWALLET</button>
+					<a href="javascript:;" target="_blank" class="btn btn-lightgreen px-5 py-3">VIEW PURCHASE GUIDE USING MYETHERWALLET</a>
 				</div>
 			</div>
 

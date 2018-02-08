@@ -23,7 +23,6 @@
 }
 
 (function($) {
-    $ = window.jQuery;
 "use strict";
 
 /*
