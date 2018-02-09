@@ -61,7 +61,8 @@
       "spec": false
     },
     "serve":{
-      "proxyConf": "proxy.conf.json"
+      "proxyConf": "proxy.conf.json",
+      "port": 80
     }
   }
 }
