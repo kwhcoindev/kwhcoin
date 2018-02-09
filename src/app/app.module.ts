@@ -74,8 +74,8 @@ const appRoutes: Routes = [
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'join-us', component: JoinUsComponent},
   { path: 'faq', component: FaqComponent},
-  //{ path: 'know-your-customer', component: KnowYourCustomerComponent},
-  { path: 'know-your-customer', component: KycForm2Component},
+  { path: 'know-your-customer', component: KnowYourCustomerComponent},
+  { path: 'kyc', component: KycForm2Component},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent}
 ];
 
