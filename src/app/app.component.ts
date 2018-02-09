@@ -10,7 +10,8 @@ import {map} from 'rxjs/operator/map';
 import {debounceTime} from 'rxjs/operator/debounceTime';
 import {distinctUntilChanged} from 'rxjs/operator/distinctUntilChanged';
 
-declare var jQuery;
+//declare var jQuery;
+declare var document;
 
 @Component({
   selector: '[app-root]',
@@ -20,6 +21,7 @@ declare var jQuery;
 export class AppComponent {
   previousUrl: string;
 	loading: boolean = false;
+  navIsFixed: boolean = false; 
 
   constructor(private renderer: Renderer2, private router: Router) {
     router.events.subscribe( (event: Event) => {
@@ -34,8 +36,8 @@ export class AppComponent {
         let className = currentUrlSlug || 'home'
         this.renderer.addClass(document.body, className);
         this.previousUrl = className;
-        jQuery('.dropdown-menu.show, .collapse.show').removeClass('show')
-        jQuery(window).scrollTop(0)
+        //jQuery('.dropdown-menu.show, .collapse.show').removeClass('show')
+        //jQuery(window).scrollTop(0)
       }
 
       if (event instanceof NavigationEnd) {
@@ -53,5 +55,23 @@ export class AppComponent {
         }, 0);
       }
     });
+  }
+
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (number > 80) {
+      this.navIsFixed = true;
+    } else if (this.navIsFixed && number < 10) {
+      this.navIsFixed = false;
+    }
+  }  
+
+  scrollTop(): void {
+    if(document.documentElement) {
+      document.documentElement.scrollTop = 0;
+    }else {
+      document.body.scrollTop = 0;
+    }
   }
 }

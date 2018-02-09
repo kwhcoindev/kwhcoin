@@ -1,27 +1,41 @@
+/*(function (factory) {
+    "use strict";
+    if (typeof define === 'function' && define.amd) {
+        // using AMD; register as anon module
+        console.log("Hellow");
+        define(['jquery'], factory);
+    } else {
+        // no AMD; invoke directly
+        console.log("No amd Hellow");
+        factory( (typeof(jQuery) != 'undefined') ? jQuery : window.Zepto );
+    }
+}
 (function($){
 
-  jQuery(document).ready(function(){
+  $(document).ready(function(){
     
     function checkScrollTop(){
-      if (jQuery(window).scrollTop()< 80){
-        jQuery('#mainNav').removeClass('navbar-stuck');
-        jQuery('#toTop').hide();
+      if ($(window).scrollTop()< 80){
+        $('#mainNav').removeClass('navbar-stuck');
+        $('#toTop').hide();
       }
       else{
-        jQuery('#mainNav').addClass('navbar-stuck');
-        jQuery('#toTop').show();
+        $('#mainNav').addClass('navbar-stuck');
+        $('#toTop').show();
       }
     }
 
-    jQuery('#toTop').on('click', function(){
-      jQuery('html,body').animate({'scrollTop':0});
+    $('#toTop').on('click', function(){
+      $('html,body').animate({'scrollTop':0});
     });
 
     checkScrollTop();
     
-    jQuery(window).scroll(function(){
+    $(window).scroll(function(){
       checkScrollTop();
     });
 
   });
-})();
+
+}));
+*/
