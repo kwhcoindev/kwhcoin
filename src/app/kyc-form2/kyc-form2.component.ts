@@ -25,7 +25,7 @@ export class KycForm2Component implements OnInit {
 
 //        const options = {headers: headers};
 
-		this.http.get(AppConstants.API_URL + "service/kyc-service.php")
+		this.http.get(AppConstants.API_URL + "service/kyc-service.php?getToken")
 		.subscribe((resp: any)=>{
 			this.token = resp.token;
 			this.jsLib = resp.jsLib;
@@ -45,7 +45,7 @@ export class KycForm2Component implements OnInit {
                 const response = JSON.parse(atob(array[1]));
                 const signature = array[2];
                 const xhr = new XMLHttpRequest();
-                const url = "/kycresponse";
+                const url = AppConstants.API_URL + "service/kyc-service.php?validate";
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = ()=> {

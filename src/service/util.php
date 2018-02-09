@@ -3,7 +3,7 @@
 function cors() {
 
     // Allow from any origin
-    if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] == "https://kwhcoin.com") {
+    if (isset($_SERVER['HTTP_ORIGIN']) && ($_SERVER['HTTP_ORIGIN'] == "https://kwhcoin.com" || $_SERVER['HTTP_ORIGIN'] == "http://localhost" )) {
         // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
         // you want to allow, and if so:
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
