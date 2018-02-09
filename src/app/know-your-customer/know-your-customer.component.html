@@ -290,7 +290,15 @@
 		<div class="container text-center" *ngIf="tokens && tokens.length>0">
 			<div class="row" *ngIf="status==200">
 				<div class="col-12 pt-5">
-					<h4><strong>Thank you for your interest in KWHCoin! Below is the ICO Token address. If you have questions on how to use the address, please review our ICO Instructions.</strong></h4>
+					<h4><strong>Thank you for your interest in KWHCoin! Please complete this two-step process.</strong></h4>
+					<p class="mb-1 mt-4"><strong>IMPORTANT NOTE:</strong></p>
+					<p class="text-danger"><strong>YOU MUST ENTER BOTH THE TOKEN ADDRESS AND THE ADVANCED DATA FIELD, OR YOUR TRANSACTION WILL NOT EXECUTE.</strong></p>
+					<p class="mb-1 mt-5"><strong>STEP 1</strong></p>
+					<p class="mb-1">Please copy and paste this ICO Token Address into your wallet.</p>
+					<h5 ><strong>{{tokens[0].code_value}}</strong></h5>
+					<p class="mb-1 mt-5"><strong>STEP 2</strong></p>
+					<p class="mb-1">Please copy and paste this Advanced Data Field if you’re using MyEtherWallet.</p>
+					<h5><strong>{{tokens[1].code_value}}</strong></h5>
 				</div>
 			</div>
 			<div class="row" *ngIf="status!=200">
@@ -298,17 +306,19 @@
 					<p>Oops! failed to submit your details, please try later. If you seeing this issue persistently please email to <a class="text-lightgreen" href="mailto:contact@kwhcoin.com">contact@KWHCoin.com</a></p>
 				</div>
 			</div>
-			<div class="row" *ngFor="let token of tokens">
-				<div class="col-12 pt-3">
-					<p><strong>{{token.code_desc}}</strong></p>
-					<h5><strong>{{token.code_value}}</strong></h5>
-				</div>
-			</div>
 			<div class="row">
+				<p class="offset-md-2 col-md-8 pt-3 pb-4">
+					<img src="assets/images/know-your-customer-token.png" class="w-100" />
+				</p>
+				<p class="col-12">Need help?</p>
+				<p class="col-12">Please see our <a href="assets/KWHCoin-Token-Sale-How-To-Participate.pdf" target="_blank">ICO Participation</a> Guide or <a routerLink="/contact-us" target="_blank">Contact Us</a>.</p>
+			</div>
+
+			<!--div class="row">
 				<div class="col-12 pt-3">
 					<a href="assets/KWHCoin-Token-Sale-How-To-Participate.pdf" target="_blank" class="btn btn-lightgreen px-5 py-3">VIEW PURCHASE GUIDE USING MYETHERWALLET</a>
 				</div>
-			</div>
+			</div-->
 
 		</div>
 	</div>
