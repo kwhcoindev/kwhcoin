@@ -15,9 +15,9 @@ import * as moment from 'moment';
 export class KnowYourCustomerComponent implements OnInit {
 
     kycForm: FormGroup;
-    status: number = 200;
+    status: number;
     message: string;
-    tokens: Array<any> = [{code_desc:"ICO Token Address", code_value:"0xebc7cd2684dd96619841c7994343c5a8bda94b10"}, {code_desc:"Advanced Data Field for My EtherWallet", code_value:"0xb4427263"}];
+    tokens: Array<any> = [];
 
 	constructor(private fb: FormBuilder, private http: Http, private config: NgbDatepickerConfig ) { }
 
