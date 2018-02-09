@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule }    from '@angular/common/http';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
@@ -32,6 +34,7 @@ import { JoinUsComponent } from './join-us/join-us.component';
 import { FaqComponent } from './faq/faq.component';
 import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { IcoParticipationGuideComponent } from './ico-participation-guide/ico-participation-guide.component';
+import { KycForm2Component } from './kyc-form2/kyc-form2.component';
 
 
 export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
@@ -71,7 +74,8 @@ const appRoutes: Routes = [
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'join-us', component: JoinUsComponent},
   { path: 'faq', component: FaqComponent},
-  { path: 'know-your-customer', component: KnowYourCustomerComponent},
+  //{ path: 'know-your-customer', component: KnowYourCustomerComponent},
+  { path: 'know-your-customer', component: KycForm2Component},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent}
 ];
 
@@ -103,12 +107,14 @@ const appRoutes: Routes = [
     JoinUsComponent,
     FaqComponent,
     WhitePaperComponent,
-    IcoParticipationGuideComponent
+    IcoParticipationGuideComponent,
+    KycForm2Component
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     JsonpModule,
     FormsModule,
     RouterModule.forRoot(
