@@ -15,15 +15,18 @@ $env = "sandbox";
 $config = array(
 		"sandbox"=> array(
 			"endpoint"=> "https://pluginst.identitymind.com/sandbox/auth",
-			"jsLib"=> "https://cd1st.identitymind.com/sandbox/idm.min.js"
+			"jsLib"=> "https://cd1st.identitymind.com/sandbox/idm.min.js",
+			"apiKey"=> "QbtE36WyI791R4SvjjylA8e7n5gmLdSX68xft93S"
 		),
 		"staging"=> array(
 			"endpoint"=> "https://pluginst.identitymind.com/api/auth",
-			"jsLib"=> "https://cd1st.identitymind.com/idm.min.js"
+			"jsLib"=> "https://cd1st.identitymind.com/idm.min.js",
+			"apiKey"=> "11GctO12uL9QeEtgFkcSe50BbuGwtFVY41GyZJpg"
 		),
 		"production"=> array(
 			"endpoint"=> "https://plugin.identitymind.com/api/auth",
-			"jsLib"=> "https://cdn1.identitymind.com/idm.min.js"
+			"jsLib"=> "https://cdn1.identitymind.com/idm.min.js",
+			"apiKey"=> "11GctO12uL9QeEtgFkcSe50BbuGwtFVY41GyZJpg"
 		)
 	);
 
@@ -36,7 +39,7 @@ if( isset($_GET["getToken"]) ){
 	    CURLOPT_RETURNTRANSFER => 1,
 	    CURLOPT_URL => $config[$env]["endpoint"],
 		CURLOPT_HTTPHEADER=> array(
-			'x-api-key: 11GctO12uL9QeEtgFkcSe50BbuGwtFVY41GyZJpg',
+			"x-api-key: ". $config[$env]["apiKey"],
 	    )
 	));
 
