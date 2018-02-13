@@ -157,28 +157,37 @@
 				removeEvent({elem: self._options.element});
 				self._options = null;
 			});
+
+			var container = '<div class="cmw-widget-container" style="background-color: #f6f6e8;color: #444; -webkit-box-shadow: 0 1px 4px #999; box-shadow: 0 1px 4px #999; border-radius: 10px; font-size:1em; line-height:1.7em; overflow: hidden;">';
+
+			var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 600; border-bottom: 1px solid #d5d5d5; color: #fff; text-align:center;background-color: #518d4b;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" />KWHCoin (KWH)</div>';
+
+			var subHeader = '<div class="" style="text-align:center; line-height:18px;">Ethereum Raised</div>';
+
+			var count = '<div class="cmw-coin-count">'+ (1162).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 8}) +'<div style="font-size:0.5em"><small class="cmw-coin-label">(IN PRE-SALE)</small></div></div>';
+
+			var preICOCount = '<div class="cmw-coin-platform" id="pre-ico-total-count" style="font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;">'+ count +'</div>';
+
+			var icoRaisedCount = '<div class="cmw-coin-platform" id="ico-total-count" style="font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;"></div>';
+			//var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
+
+			var html = container + header + preICOCount + icoRaisedCount + '<div style="clear: both"></div>' +'</div>';
+
+			self._options.element.innerHTML = html;
+
+
 			var server = "https://api.kwhcoin.com/";
+			ajax(server + 'service/ico-data.php?ticker='+ this._options.attrs["ticker"], function(respText){
 
-			//ajax(server + 'service/ico-data.php?ticker='+ this._options.attrs["ticker"], function(respText){
+				var resp = JSON.parse(respText);
+				if(resp.data && resp.data.length > 0){
+					var coin = resp.data[0]||{};
 
-				//var resp = JSON.parse(respText);
-				//if(resp.data && resp.data.length > 0){
-					//var coin = resp.data[0]||{};
-					var container = '<div class="cmw-widget-container" style="background-color: #f6f6e8;color: #518D4B; -webkit-box-shadow: 0 1px 4px #999; box-shadow: 0 1px 4px #999; border-radius: 10px; font-size:1em; line-height:1.7em; overflow: hidden;">';
+					var count = '<div class="cmw-coin-platform" style="">'+ (coin.coinCurrent + coin.coinConstant).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 8}) +'<div style="font-size:0.5em"><small class="">(IN ICO SO FAR)</small></div></div>';
 
-					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 600; border-bottom: 1px solid #d5d5d5; color: #fff; text-align:center;background-color: #518d4b;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" />KWHCoin (KWH)</div>';
-
-					var platform = '<div class="cmw-coin-platform" style="float:left;width:60%; text-align:center; padding: 15px; border-right: 1px solid #d5d5d5; margin-right:-1px; line-height:18px;">Ethereum Raised <br /><small class="">(In Pre-sale)</small></div>';
-
-					var count = '<div class="cmw-coin-platform" style="font-size:1.8em;float:left;width:40%; text-align:center; padding: 15px;">1162</div>';
-
-					//var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
-
-					var html = container + header + platform + count + '<div style="clear: both"></div>'+'</div>';
-
-					self._options.element.innerHTML = html;
-				//}
-			//}, {});
+					document.getElementById("ico-total-count").innerHTML = count;
+				}
+			}, {});
 		}
 	}
 

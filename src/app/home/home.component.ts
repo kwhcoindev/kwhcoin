@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   	constructor(private fb: FormBuilder, private http: Http, private modalService: NgbModal) { }
 
   	ngOnInit() {
-	  	jQuery('#coin_widget').html('<div class="cmw-widget-icocoin" data-ticker="KWH" style="font-size:18px;max-width:320px;min-width:320px"></div><script type="text/javascript" src="/assets/js/ico-widget.js?_'+ (new Date()).getTime() +'"></script>');
+	  	jQuery('#coin_widget').html('<div class="cmw-widget-icocoin" data-ticker="KWH" style="font-size:18px;max-width:320px;min-width:320px"></div><script type="text/javascript" src="assets/js/ico-widget.js?_'+ (new Date()).getTime() +'"></script>');
 
       this.trackForm = this.fb.group({
         address: ['', Validators.required ]
