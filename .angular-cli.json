@@ -9,6 +9,7 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "kyc.html",
         "favicon.ico",
         "whitepapers",
         "popper.js"

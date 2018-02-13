@@ -166,7 +166,7 @@
 
 			var count = '<div class="cmw-coin-count">'+ (1162).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 8}) +'<div style="font-size:0.5em"><small class="cmw-coin-label">(IN PRE-SALE)</small></div></div>';
 
-			var preICOCount = '<div class="cmw-coin-platform" id="pre-ico-total-count" style="font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;">'+ count +'</div>';
+			var preICOCount = '<div class="cmw-coin-platform" id="pre-ico-total-count" style="border-right: 1px solid #ccc; font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;">'+ count +'</div>';
 
 			var icoRaisedCount = '<div class="cmw-coin-platform" id="ico-total-count" style="font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;"></div>';
 			//var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
