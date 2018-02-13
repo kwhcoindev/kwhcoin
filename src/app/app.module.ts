@@ -130,6 +130,6 @@ const appRoutes: Routes = [
               {provide: NgbDateParserFormatter, useClass: NgbDateMomentParserFormatter }
 
   ],
-  bootstrap: [AppComponent, KycForm2Component]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
