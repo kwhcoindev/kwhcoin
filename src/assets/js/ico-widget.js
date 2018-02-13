@@ -159,11 +159,11 @@
 			});
 			var server = "https://api.kwhcoin.com/";
 
-			ajax(server + 'service/ico-data.php?ticker='+ this._options.attrs["ticker"], function(respText){
+			//ajax(server + 'service/ico-data.php?ticker='+ this._options.attrs["ticker"], function(respText){
 
-				var resp = JSON.parse(respText);
-				if(resp.data && resp.data.length > 0){
-					var coin = resp.data[0]||{};
+				//var resp = JSON.parse(respText);
+				//if(resp.data && resp.data.length > 0){
+					//var coin = resp.data[0]||{};
 					var container = '<div class="cmw-widget-container" style="background-color: #f6f6e8;color: #518D4B; -webkit-box-shadow: 0 1px 4px #999; box-shadow: 0 1px 4px #999; border-radius: 10px; font-size:1em; line-height:1.7em; overflow: hidden;">';
 
 					var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 600; border-bottom: 1px solid #d5d5d5; color: #fff; text-align:center;background-color: #518d4b;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" />KWHCoin (KWH)</div>';
@@ -177,8 +177,8 @@
 					var html = container + header + platform + count + '<div style="clear: both"></div>'+'</div>';
 
 					self._options.element.innerHTML = html;
-				}
-			}, {});
+				//}
+			//}, {});
 		}
 	}
 
