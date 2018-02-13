@@ -162,16 +162,16 @@
 
 			var header = '<div class="" style="font-size: 1.3em; line-height:1.5em; padding: 10px 20px; font-weight: 600; border-bottom: 1px solid #d5d5d5; color: #fff; text-align:center;background-color: #518d4b;"><img style="height:30px;margin-right:7px;" src="/assets/images/icons/cropped-favicon-32x32.png" />KWHCoin (KWH)</div>';
 
-			var subHeader = '<div class="" style="text-align:center; line-height:18px;">Ethereum Raised</div>';
+			var subHeader = '<div class="" style="text-align:center; line-height:18px;padding: 7px 15px;border-bottom: 1px solid #ccc">Ethereum Raised</div>';
 
 			var count = '<div class="cmw-coin-count">'+ (1162).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 8}) +'<div style="font-size:0.5em"><small class="cmw-coin-label">(IN PRE-SALE)</small></div></div>';
 
-			var preICOCount = '<div class="cmw-coin-platform" id="pre-ico-total-count" style="border-right: 1px solid #ccc; font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;">'+ count +'</div>';
+			var preICOCount = '<div class="cmw-coin-platform" id="pre-ico-total-count" style="border-right: 1px solid #ccc; font-size:1.5em;float:left;width:50%; text-align:center; padding: 7px 15px;">'+ count +'</div>';
 
-			var icoRaisedCount = '<div class="cmw-coin-platform" id="ico-total-count" style="font-size:1.5em;float:left;width:50%; text-align:center; padding: 15px;"></div>';
+			var icoRaisedCount = '<div class="cmw-coin-platform" id="ico-total-count" style="font-size:1.5em;float:left;width:50%; text-align:center; padding: 7px 15px;"></div>';
 			//var footer = '<div class="" style="text-align:center; border-top: 1px solid #d5d5d5; font-family:verdana; font-style: italic; font-size: 11px; padding: 1px 15px;"><a href="'+ server +'">Powered by www.coinmarketwatch.com</a></div>';
 
-			var html = container + header + preICOCount + icoRaisedCount + '<div style="clear: both"></div>' +'</div>';
+			var html = container + header + subHeader + preICOCount + icoRaisedCount + '<div style="clear: both"></div>' +'</div>';
 
 			self._options.element.innerHTML = html;
 
