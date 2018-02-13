@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AppConstants } from "../app.constants";
+
+import { AppComponent } from "../app.component";
 
 declare var window;
 
@@ -10,15 +13,16 @@ declare var window;
   templateUrl: './kyc-form2.component.html',
   styleUrls: ['./kyc-form2.component.scss']
 })
-export class KycForm2Component implements OnInit {
+export class KycForm2Component extends AppComponent implements OnInit {
 
 	token: string;
 	jsLib: string;
 
-  	constructor(private http: HttpClient) { }
+  	constructor(private http: HttpClient, protected renderer: Renderer2, protected router: Router) {
+        super(renderer, router);
+    }
 
 	ngOnInit() {
-
 //        const headers = new HttpHeaders({"x-api-key": "11GctO12uL9QeEtgFkcSe50BbuGwtFVY41GyZJpg"});
 		//headers.append('x-api-key', this.config.apiKey);
 		//headers.append('X-Frame-Options', 'SAMEORIGIN');

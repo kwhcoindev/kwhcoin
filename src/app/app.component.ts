@@ -19,11 +19,11 @@ declare var document;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  previousUrl: string;
-	loading: boolean = false;
-  navIsFixed: boolean = false; 
+  public previousUrl: string;
+	public loading: boolean = false;
+  public navIsFixed: boolean = false; 
 
-  constructor(private renderer: Renderer2, private router: Router) {
+  constructor(protected renderer: Renderer2, protected router: Router) {
     router.events.subscribe( (event: Event) => {
 
       if (event instanceof NavigationStart) {
