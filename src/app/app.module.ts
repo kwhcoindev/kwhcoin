@@ -65,7 +65,7 @@ export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
 }
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: 'the-cryptocurrency-blockchain', component: TheCryptocurrencyBlockchainComponent},
   { path: 'ico-information', component: IcoInformationComponent},
   { path: 'our-mission', component: OurMissionComponent},
