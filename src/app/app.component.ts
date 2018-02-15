@@ -21,9 +21,13 @@ declare var document;
 export class AppComponent {
   public previousUrl: string;
 	public loading: boolean = false;
-  public navIsFixed: boolean = false; 
+  public navIsFixed: boolean = false;
+  isKycForm: boolean = false;
 
   constructor(protected renderer: Renderer2, protected router: Router) {
+
+    this.isKycForm = document.location.href.indexOf('kyc.html') != -1;
+
     router.events.subscribe( (event: Event) => {
 
       if (event instanceof NavigationStart) {

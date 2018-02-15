@@ -4,8 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AppConstants } from "../app.constants";
 
-import { AppComponent } from "../app.component";
-
 declare var window;
 
 @Component({
@@ -13,13 +11,12 @@ declare var window;
   templateUrl: './kyc-form2.component.html',
   styleUrls: ['./kyc-form2.component.scss']
 })
-export class KycForm2Component extends AppComponent implements OnInit {
+export class KycForm2Component implements OnInit {
 
 	token: string;
 	jsLib: string;
 
-  	constructor(private http: HttpClient, protected renderer: Renderer2, protected router: Router) {
-        super(renderer, router);
+  	constructor(private http: HttpClient) {
     }
 
 	ngOnInit() {

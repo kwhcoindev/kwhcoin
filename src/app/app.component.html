@@ -1,8 +1,13 @@
 <app-header [navIsFixed]="navIsFixed"></app-header>
 
-<div id="content">
+<div id="content" *ngIf="!isKycForm">
 	<router-outlet></router-outlet>
 </div>
+
+<div id="content" *ngIf="isKycForm===true">
+	<app-kyc-form2></app-kyc-form2>
+</div>
+
 <app-footer></app-footer>
 
 <div class="page-preloader-cover" [class.show]="loading===true">
