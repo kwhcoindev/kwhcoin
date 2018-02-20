@@ -85,7 +85,8 @@ export class HomeComponent implements OnInit {
                 map: 'custom/world',
                 borderWidth: 0,
                 margin: [0,0,0,0],
-                padding:[0,0,0,0]
+                padding:[0,0,0,0],
+                colors: ['#518D4B', '#0d233a', '#8bbc21', '#910000', '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a']
             },
 
             title: {
@@ -106,6 +107,7 @@ export class HomeComponent implements OnInit {
             },
             series: [{
                 name: 'Country',
+                color: '#518D4B',
                 data: [
                     ['ke', 1],
                     ['dk', 1],
