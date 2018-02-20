@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 
 import * as moment from 'moment';
 
+declare var Highcharts;
 declare var jQuery;
 
 @Component({
@@ -30,6 +31,10 @@ export class HomeComponent implements OnInit {
       this.trackForm = this.fb.group({
         address: ['', Validators.required ]
       });
+
+      //this.getChartData();
+      this.renderChart();
+
   	}
 
     openTrackModal(content){
@@ -60,6 +65,95 @@ export class HomeComponent implements OnInit {
           this.message = "Failed to submit the information, please try after sometime";
         })
       }
+    }
+
+/*    public getChartData(){
+        this.http.get('assets/world.js')
+        .subscribe((resp)=>{
+          Highcharts.maps["custom/world"] = resp;
+          this.renderChart();
+        },()=>{
+          console.log("Chart data error");
+        })    
+    }*/
+
+    public renderChart(){
+        // Instantiate the map
+        Highcharts.mapChart('world_map_container', {
+            chart: {
+                type: 'map',
+                map: 'custom/world',
+                borderWidth: 0,
+                margin: [0,0,0,0],
+                padding:[0,0,0,0]
+            },
+
+            title: {
+                text: ''
+            },
+
+            subtitle: {
+                text: ''
+            },
+            exporting:{
+              enabled: false
+            },
+            legend: {
+                enabled: false
+            },
+            credits:{
+              enabled: false
+            },
+            series: [{
+                name: 'Country',
+                data: [
+                    ['ke', 1],
+                    ['dk', 1],
+                    ['au', 1],
+                    ['br', 1],
+                    ['in', 1],
+                    ['KH', 1],
+                    ['ru', 1],
+                    ['us', 1],
+                    ['bz', 1],
+                    ['fr', 1],
+                    ['ph', 1],
+                    ['kr', 1],
+                    ['vn', 1],
+                    ['ng', 1],
+                    ['eg', 1],
+                    ['za', 1],
+                    ['ch', 1],
+                    ['de', 1],
+                    ['uz', 1],
+                    ['gr', 1],
+                    ['th', 1],
+                    ['cn', 1],
+                    ['dk', 1],
+                    ['co', 1],
+                    ['ng', 1],
+                    ['si', 1],
+                    ['tr', 1],
+                    ['mx', 1]
+                ],
+                dataLabels: {
+                    allowOverlap: true,
+                    overflow: false,
+                    enabled: true,
+                    color: '#000000',
+                    formatter: function () {
+                        if (this.point.value) {
+                            return this.point.name;
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '{point.name}'
+                }
+            }]
+        });
+
     }
 
 }
