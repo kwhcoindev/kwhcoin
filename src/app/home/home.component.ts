@@ -141,7 +141,7 @@ export class HomeComponent implements OnInit {
                 dataLabels: {
                     allowOverlap: true,
                     overflow: false,
-                    enabled: true,
+                    enabled: false,
                     color: '#000000',
                     formatter: function () {
                         if (this.point.value) {
