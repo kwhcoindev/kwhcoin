@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
                     ['si', 1],
                     ['tr', 1],
                     ['mx', 1]
-                ],
+                      ],
                 dataLabels: {
                     allowOverlap: true,
                     overflow: false,
