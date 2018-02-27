@@ -41,6 +41,7 @@ export class KycForm2Component implements OnInit {
             container_id: "idm_container",
             plugin_token: this.token,
             on_response: (jwtresponse)=>{
+            console.log(jwtresponse)
                 const array = jwtresponse.split('.');
                 const header = JSON.parse(atob(array[0]));
                 const response = JSON.parse(atob(array[1]));
