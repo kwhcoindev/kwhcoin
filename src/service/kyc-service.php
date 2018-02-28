@@ -1,17 +1,22 @@
 <?php
 
+session_start();
+
+require("dbproperties.php");
+
 require("util.php");
 require_once('vendor/autoload.php');
 
 use \Firebase\JWT\JWT;
-use Zend\Config\Config;
-use Zend\Config\Factory;
-use Zend\Http\PhpEnvironment\Request;
 
+class codeset {
+    public $code_desc;
+    public $code_value;
+}
 
 $output = null;
 
-$env = "sandbox";
+$env = "staging";
 
 $config = array(
 		"sandbox"=> array(
@@ -67,53 +72,86 @@ if( isset($_GET["getToken"]) ){
 else if( isset($_GET["validate"]) ) {
 	$cert = file_get_contents("/apps/.idm_key");
 
-	/*
-	 * Get all headers from the HTTP request
-	 */
-	$request = new Request();
+	if ( isset($_POST["data"]) ) {
+		try {
 
-	if ($request->isPost()) {
+			$jwt = $_POST["data"];
 
-        $jwt = $request->getContent();
+			//$config = Factory::fromFile('config/config.php', true);
 
-        if ($jwt) {
-            try {
-                //$config = Factory::fromFile('config/config.php', true);
+			/*
+			 * decode the jwt using the key from config
+			 */
+			//$secretKey = base64_decode($config->get('jwtKey'));
+			$decoded = JWT::decode($jwt, $cert, array('RS256'));
 
-                /*
-                 * decode the jwt using the key from config
-                 */
-                //$secretKey = base64_decode($config->get('jwtKey'));
-                
-                $token = JWT::decode($jwt, $cert, array('RS256'));
+			$decoded_array = (array) $decoded;
+			#$asset = base64_encode(file_get_contents('http://lorempixel.com/200/300/cats/'));
 
-                #$asset = base64_encode(file_get_contents('http://lorempixel.com/200/300/cats/'));
+			$msg = "Thank you for your interest in KWHCoin! Below is the Pre-Sale Token address. If you have questions on how to use the address, please review our Pre-Sale ICO Instructions.";
+			$status = 200;
 
-                /*
-                 * return protected asset
-                 */
-                header('Content-type: application/json');
-                echo json_encode(array("status"=>200,"data"=> $token));
+			/*
+			 * return protected asset
+			 */
+			if( $decoded_array["kyc_result"] == "ACCEPT" ){
+				
+				$pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
 
-            } catch (Exception $e) {
-                /*
-                 * the token was not able to be decoded.
-                 * this is likely because the signature was not able to be verified (tampered token)
-                 */
-                header('HTTP/1.0 401 Unauthorized');
-                echo json_encode(array("status"=>401, "error"=>"HTTP/1.0 401 Unauthorized"));
-            }
-        } else {
-            /*
-             * No token was able to be extracted from the authorization header
-             */
-            header('HTTP/1.0 400 Bad Request');
-            echo json_encode(array("status"=>400, "error"=>"HTTP/1.0 400 Bad Request"));
-        }
+				/*$pdo->beginTransaction();
+
+				$keys = array_keys($data);
+				$fields = '`'.implode('`, `',$keys).'`';
+
+				#here is my way
+				$placeholder = substr(str_repeat('?,',count($keys)),0,-1);
+
+				$stmt = $pdo->prepare("INSERT INTO `kyc_details`($fields) VALUES($placeholder)");
+				$stmt->execute(array_values($data));
+
+				$stmt->closeCursor();
+				unset($stmt);
+
+				$pdo->commit();*/
+
+				$sql = "SELECT code_desc, code_value FROM codeset where code_type = 'token' ORDER BY seq";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute();
+				$tokens = $stmt->fetchAll(PDO::FETCH_CLASS, "codeset");
+
+				$stmt->closeCursor();
+				unset($stmt);
+
+				unset($pdo);
+				
+				header('Content-type: application/json');
+				echo json_encode(array("status"=> $status, "message"=> $msg, "tokens"=> $tokens));
+
+			} else {
+				header('Content-type: application/json');
+				echo json_encode(array("status"=> 403, "message"=> "Thank you for your interest in KWHCoin! Unfortunately we are unable to identify your details. If you have questions, please reach us out at contact@kwhcoin.com."));				
+			}
+			//header('Content-type: application/json');
+			//echo json_encode(array("status"=>200,"data"=> $decoded->kyc_result));
+			//echo json_encode(array("status"=>200,"data"=> $decoded));
+
+		} catch (Exception $e) {
+			/*
+			 * the token was not able to be decoded.
+			 * this is likely because the signature was not able to be verified (tampered token)
+			 */
+			//echo $e; 
+			header('Content-type: application/json');
+			echo json_encode(array("status"=>500, "error"=>$e->message));
+		}
 	} else {
-	    header('HTTP/1.0 405 Method Not Allowed');
-	    echo json_encode(array("status"=>405, "error"=>"HTTP/1.0 405 Method Not Allowed"));
-	}	
+		/*
+		 * No token was able to be extracted from the authorization header
+		 */
+		//header('HTTP/1.0 400 Bad Request');
+		header('Content-type: application/json');		
+		echo json_encode(array("status"=>400, "error"=>"HTTP/1.0 400 Bad Request"));
+	}
 
 }
 

@@ -16,6 +16,10 @@ export class KycForm2Component implements OnInit {
 	token: string;
 	jsLib: string;
 
+    status: number;
+    message: string;
+    tokens: Array<any> = [];    
+
   	constructor(private http: HttpClient) {
     }
 
@@ -41,22 +45,30 @@ export class KycForm2Component implements OnInit {
             container_id: "idm_container",
             plugin_token: this.token,
             on_response: (jwtresponse)=>{
-            console.log(jwtresponse)
+                //console.log(jwtresponse)
                 const array = jwtresponse.split('.');
                 const header = JSON.parse(atob(array[0]));
                 const response = JSON.parse(atob(array[1]));
                 const signature = array[2];
-                const xhr = new XMLHttpRequest();
-                const url = AppConstants.API_URL + "service/kyc-service.php?validate";
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = ()=> {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        // response validated
-                        alert("Response from Identitymind is valid.  Result: " + response.kyc_result);
-                   }
-                };
-                xhr.send(jwtresponse);
+
+                let params = new HttpParams();
+                params.set('data', jwtresponse);
+
+                var headers = new HttpHeaders();
+                headers.append('Content-Type', 'application/x-www-form-urlencoded');                
+
+                this.http.post(AppConstants.API_URL + "service/kyc-service.php?validate", params, {headers: headers})
+                .subscribe((resp)=>{
+                    if( resp.status == 200 ){
+                        this.tokens = resp.tokens;
+                        this.status = resp.status;
+                        this.message = resp.message;
+                    } else {
+                        this.tokens = null;
+                        this.status = null;
+                        this.message = null;
+                    }
+                });
             }
         };
 
