@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { AppConstants } from "../app.constants";
 
@@ -58,7 +58,7 @@ export class KycForm2Component implements OnInit {
                 headers.append('Content-Type', 'application/x-www-form-urlencoded');                
 
                 this.http.post(AppConstants.API_URL + "service/kyc-service.php?validate", params, {headers: headers})
-                .subscribe((resp)=>{
+                .subscribe((resp: any)=>{
                     if( resp.status == 200 ){
                         this.tokens = resp.tokens;
                         this.status = resp.status;
