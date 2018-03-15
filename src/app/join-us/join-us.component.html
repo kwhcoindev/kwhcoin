@@ -118,7 +118,7 @@
 							<div class="row">
 								<div class="col-12 mb-3">
 									<div class="form-group mb-0">
-										<input type="text" required name="project_desc" maxlength="500" formControlName="project_desc" placeholder="Brief Project Description" class="form-control" />
+										<input type="text" required name="project_desc" maxlength="500" formControlName="project_desc" placeholder="What is the value of your energy (GB, KWH or MW)?" class="form-control" />
 									</div>
 									<div *ngIf="(submitted || joinusForm.controls.project_desc.dirty || joinusForm.controls.project_desc.touched) && joinusForm.controls.project_desc.invalid" class="text-danger f-md">
 									  <div *ngIf="joinusForm.controls.project_desc.errors.required">
