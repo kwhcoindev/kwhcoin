@@ -1,0 +1,30 @@
+<section class="content-section">
+	<div class="section101 content-animation background-image-fill">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 pt-5 pb-4">
+					<h2 class="bolder text-center">Events</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="section502 content-animation">
+		<div class="container max-stretch">
+			<div class="row pt-2 pb-2 border border-top-0 border-left-0 border-right-0" *ngFor="let ev of list; let i = index" [class.striped-bg]="i%2==1">
+				<div class="col-12 col-sm-3 col-md-2">
+					<div class="f20 bolder text-uppercase text-sm-center">{{getDate(ev.start_date).toLowerCase()}} <div class="d-none d-sm-block d-md-none"></div>&nbsp;{{getDay(ev.start_date).toLowerCase()}}&nbsp;</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-7">
+					<div class="f20 bolder text-uppercase">{{ev.title}}</div>
+					<div>{{ev.description}}</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="text-sm-center">{{ev.city}}, {{ev.state}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
