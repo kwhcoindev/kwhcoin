@@ -1,0 +1,21 @@
+<ng-template #whitePaperContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h6 class="modal-title">Download Whitepaper</h6>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Select your preferred language below:</p>
+    <ul class="row">
+    	<li class="col-6" *ngFor="let doc of whitePaperList">
+    		<a [href]="doc.url" target="_blank" rel="noopener" class="text-capitalize">{{ doc.lang }}</a>
+    	</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lightgreen py-3 mx-2" (click)="openModal(whitePaperContent)"><span class="boldest">WHITE PAPER</span></button>

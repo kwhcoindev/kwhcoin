@@ -1,0 +1,187 @@
+@import "~scss/variables";
+
+.site-header {
+  background-color: #fff;
+  position: relative;
+  z-index: 888;
+  padding: 1rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  transition: .3s all ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  .social-links .social-btn {
+    text-align: center;
+    color: #fff;
+    position: relative;
+    font-size: 18px;
+    line-height: 2em;
+    color: $black;
+    padding: 0.3rem;
+    &:hover {
+      color: $green;
+    }
+	  i.fa {
+		  position: relative;
+		  z-index: 1;
+	  }
+  }
+  .navbar-brand {
+    margin-right: 10px;
+  }
+  &.navbar-stuck {
+    background-color: rgba(255, 255, 255, 1);
+	  #navbarResponsive {
+		  z-index: 1030;
+	  }
+  }
+  .main-menu {
+    color: $black;
+  }
+  .navbar-brand, .navbar-link {
+    padding: 0;
+  }
+  .nav-link {
+    display: initial;
+    transition: .3s all ease;
+  }
+  .nav-item:hover {
+    .nav-link.main-menu {
+      color: $green;
+    }
+  }
+}
+
+.menu-dropdown.dropdown  {
+  .dropdown-item {
+    color: $black;
+    padding: 0.4rem 1.2rem;
+    font-size: 1em;
+    &:hover, &:active {
+      background: #fff;
+      color: $green;
+    }
+  }
+}
+
+@media (max-width: 767.99px){
+  .site-header {
+    padding: 0.3rem 1rem;
+    .navbar-nav>li {
+      width: 100%;
+      a {
+        display: block;
+      }
+    }
+    .social-links {
+      padding-left: 1rem;
+      a.social-btn {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  }
+  .navbar-brand {
+    margin-right: 0;
+  }
+	.menu-dropdown.dropdown  {
+    .dropdown-menu {
+      border: 0;
+      border-top: 1px solid #ddd;
+      border-radius: 0;
+		  padding: 0;
+    }
+    .dropdown-item {
+      background-color: #f8f8f8;
+      padding: 0.4rem 1.2rem;
+      font-size: 1em;
+      &+.dropdown-item {
+        border-top: 0;
+      }
+    }
+	}
+  .menu-dropdown.dropdown .dropdown-item+.dropdown-item,
+  .social-links {
+		border-top: 1px solid #ddd;
+	}
+	.main-menu {
+		background-color: #fff;
+		padding: 0.6rem 1rem;
+		border-top: 1px solid #ddd;
+	}
+	.navbar-collapse .navbar-nav {
+		width: 100%;
+	}
+	.navbar-toggler {
+    z-index: 9999;
+    text-align: right;
+		transition: .3s all ease;
+    position: absolute;
+    top: 15px;
+    right: 0;
+    button {
+      background-color: #fff;
+      border-width: 0;
+      color: $green;
+      &:hover {
+        color: $darker-green;
+      }
+    }
+	}
+}
+
+@media (min-width: 768px){
+	.site-header {
+		position: fixed;
+	  top: 0;
+	  right: 0;
+	  left: 0;
+	  z-index: 1030;
+    .row {
+      width: 100%;
+    }
+    .navbar-nav>li {
+      width: auto;
+    }
+    #siteNavigation {
+      flex: 1;
+    }
+	}
+
+	.main-menu {
+		padding: 3rem 0.7rem;
+    font-size: 18px;
+	}
+
+	.menu-dropdown.dropdown .dropdown-menu {
+		transform: translateX(0%);
+	  position: absolute;
+	  visibility: hidden;
+	  display: block;
+	  margin: 0;
+	  border-radius: 7px;
+	  transition: 100ms linear;
+	  transition-property: opacity, visibility;
+	  opacity: 0;
+    left: -0.5rem;
+    margin-top: 5px;
+    .dropdown-menu {
+      border-radius: 0;
+    }
+    .dropdown-toggle:before,
+	  .dropdown-toggle:after {
+		  display: none;
+	  }
+	}
+
+	.menu-dropdown.dropdown:hover .dropdown-menu,
+	.menu-dropdown.dropdown.show .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(0%);
+	}
+}
+
+#coin_widget {
+  .cmw-coin-platform {
+    text-shadow: none;
+  }
+}

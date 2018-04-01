@@ -1,0 +1,67 @@
+@import '~scss/variables';
+
+.section701 {
+  .alert {
+    border-width: 0;
+    border-radius: 0;
+  }
+	.alert-danger {
+	  font-size: 14px;
+	  font-size: 0.875rem;
+	}
+
+	.alert-success {
+		background: $green;
+	}
+  a {
+    color: $yellow;
+    border-bottom: 1px dashed #fff;
+    i {
+      color: #fff;
+    }
+    &:hover {
+      border-bottom: 1px dashed rgba(255, 255, 255, 0);
+    }
+  }
+  form {
+    background: #fff;
+    color: $black;
+    text-shadow: none;
+    border-radius: $roundness;
+    box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.4);
+    padding: 10px;
+    input, textarea {
+      padding: 8px 0;
+      text-indent: 2%;
+      border: 1px solid #ABB0B2;
+      border-radius: 3px;
+    }
+  }
+}
+
+.section702 {
+  padding: 0;
+  .iframe {
+    display: block;
+    height: 350px;
+    pointer-events: none;
+    max-width: 100%;
+		width: 100%;
+	  margin: 0;
+	  line-height: 1;
+	  border: none;
+  }
+}
+
+@media (max-width: 767.99px) {
+  .section701 {
+    form {
+      margin-top: 1rem;
+    }
+  }
+  .section702 {
+    .iframe {
+      height: 250px;
+    }
+  }
+}

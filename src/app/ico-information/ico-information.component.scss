@@ -1,0 +1,85 @@
+@import '~scss/variables';
+
+#mc-embedded-subscribe-form {
+  background: #fff;
+  color: $black;
+  text-shadow: none;
+  border-radius: $roundness;
+  box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.4);
+}
+
+.section201 {
+  p a {
+    color: $yellow;
+    border-bottom: 1px dashed #fff;
+    i {
+      color: #fff;
+    }
+    &:hover {
+      border-bottom: 1px dashed rgba(255, 255, 255, 0);
+      color: #fff;
+    }
+  }
+}
+
+img.w-100 {
+  box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.4);
+  border-radius: $roundness;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+p.audit-report {
+  padding-left: 1.2rem;
+  font-size: 14px;
+}
+
+#mc_embed_signup  {
+  form {
+    padding: 1rem;
+  }
+  .mc-field-group {
+    width: 100%;
+  }
+  h2 {
+    font-weight: 500;
+    font-size: 1.4em;
+    padding: 0px;
+    margin: 15px 0px;
+  }
+}
+
+@media (max-width: 767.99px) {
+  #mc_embed_signup {
+    form {
+      padding: 10px;
+      font-size: 0.85em;
+    }
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.animation-grow {
+  transition-duration: .3s;
+  transition-property: transform;
+}
+
+.animation-grow:active,
+.animation-grow:focus,
+.animation-grow:hover {
+  transform: scale(1.1);
+}
+
+.image-shadow-box img {
+  max-width: 100%;
+  opacity: 1;
+  box-shadow: 0px 0px 10px 0px rgba(12,0,3,0.84);
+}
+
+@media (max-width: 767.99px) {
+  h6 {
+    margin-top: 1rem;
+  }
+}
