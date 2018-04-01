@@ -1,0 +1,45 @@
+@import '~scss/variables';
+
+.countdown-timer {
+	width: 115px;
+  height: 115px;
+  padding-top: 21px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: $roundness;
+	color: $yellow;
+  font-weight: 700;
+	text-transform: uppercase;
+
+  label {
+    font-family: 'Roboto Condensed', sans-serif;
+	  display: block;
+	  font-size: 14px;
+  }
+
+  .countdown-timer-digits {
+    line-height: 1;
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 767.99px) {
+  .countdown-timer-wrap {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: $roundness;
+  }
+  .countdown-timer {
+    width: auto;
+    height: auto;
+    padding: 1.2rem 0.8rem 0.8rem;
+    background: none;
+    .countdown-timer-digits {
+      font-size: 35px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .countdown-timer {
+    margin: 0 4px;
+  }
+}

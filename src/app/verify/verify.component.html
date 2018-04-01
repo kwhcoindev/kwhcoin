@@ -1,0 +1,41 @@
+<section class="content-section">
+	<div class="section601 content-animation">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 offset-sm-2 offset-md-2 offset-lg-3 col-sm-8 col-md-8 col-lg-6 border bg-light">
+					<form id="register" [formGroup]="inputForm" class="ajax-auth card bg-transparent border-0 rounded-0 p-0" action="verify" method="post" novalidate="novalidate">
+					    <div class="card-body mx-2">
+					        <div class="text-center">
+					            <h5 class="dark-grey-text">Create password</h5>
+					        </div>
+					        
+        					<p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i>Failed to save password.</p>
+					      	
+					        <div class="md-form form-group">
+					            <input type="text" id="email" class="w-100 d-block form-control" formControlName="email" placeholder="Your email" name="email">
+					        </div>						    
+
+						    <div formGroupName="passwordGroup">
+						        <div class="md-form form-group">
+						            <input type="password" id="signonpassword" class="w-100 d-block form-control" formControlName="password" placeholder="Password" name="signonpassword">
+						        </div>
+						    
+						        <div class="md-form form-group">
+						            <input type="password" id="password2" class="w-100 d-block form-control" formControlName="confirmPassword" placeholder="Confirm password" name="password2">
+						            <p *ngIf="inputForm.controls.passwordGroup.errors?.childrenNotEqual" class="small text-danger">Confirm password and Password must match</p>
+						        </div>
+						    </div>
+
+					        <div class="text-center mt-3 mb-3">
+					            <button class="submit_button btn" type="submit" value="SIGNUP">Submit</button>
+					            <button class="cancel_button btn btn-white" type="button" value="CANCEL">Cancel</button>
+					        </div>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<hr />

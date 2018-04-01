@@ -1,0 +1,21 @@
+@import '~scss/variables';
+
+h2 {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+h5 {
+  margin: 1.5rem 0 5px;
+  font-weight: 700;
+}
+
+h4 {
+  margin: 3rem 0;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+a {
+  color: $green;
+}

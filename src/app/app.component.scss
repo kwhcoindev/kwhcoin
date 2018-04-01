@@ -1,0 +1,28 @@
+@import "~scss/variables";
+
+#toTop {
+    display: none;
+    text-decoration: none;
+    position: fixed;
+    bottom: 20px;
+    right: -999em;
+    overflow: hidden;
+    width: 58px;
+    height: 58px;
+    z-index: 999;
+    text-align: center;
+    border-radius: 50%;
+    color: #ffffff;
+    background-color: $green;
+}
+
+@media (min-width: 544px){
+    #toTop {
+        right: 20px;
+    }
+}
+@media (min-width: 768px){
+    #toTop {
+        bottom: 80px;
+    }
+}

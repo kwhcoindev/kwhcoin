@@ -1,0 +1,92 @@
+<section class="content-section">
+	<div class="section601 content-animation">
+		<div class="container">
+			<div class="row">
+				<div class="d-none d-sm-block col-sm-5 col-md-5 text-center align-items-center justify-content-between border py-5 left-bg">
+					<a class="navbar-brand" href="/#/">
+				    	<img class="w-50" src="assets/images/kwh-coin-final-symbol-1-nfsc67km3jv7zaesp3nqrymiwl6p29ptko7zcp0ma8.png">
+				    </a>
+				    <h3 class="text-yellow mt-5 px-3">A blockchain-based cryptocurrency backed by units of clean, renewable energy.</h3>
+				</div>
+				<div class="col-12 col-sm-7 col-md-7 border border-md-left-0 bg-light">
+					<form id="register" [formGroup]="inputForm" class="ajax-auth card bg-transparent border-0 rounded-0 p-0" action="register" method="post" novalidate="novalidate">
+					    <div class="card-body mx-2">
+					        <div class="text-center">
+					            <h5 class="dark-grey-text">Sign up</h5>
+					        </div>
+					        
+        					<p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Login failed. Email/Password is invalid</p>
+					        <div class="md-form form-group">
+					            <!--label for="signonname">Your name</label-->
+					            <input type="text" id="signonname" class="w-100 d-block form-control" formControlName="name" placeholder="Your name" name="signonname">
+					        </div>
+					      
+					      	<div formGroupName="emailGroup">
+						        <div class="md-form form-group">
+						            <input type="text" id="email" class="w-100 d-block form-control" formControlName="email" placeholder="Your email" name="email">
+						            <p class="small f12 text-muted">Please enter valid email, this will be your login username</p>
+						        </div>
+						    
+						        <div class="md-form form-group">
+						            <input type="text" id="confirmEmail" class="w-100 d-block form-control" formControlName="confirmEmail" placeholder="Confirm email" name="confirmEmail">
+						            <p *ngIf="inputForm.controls.emailGroup.errors?.childrenNotEqual" class="small text-danger">Confirm email and Email must match</p>
+						        </div>
+						    </div>
+
+					        <!--div class="md-form form-group">
+					            <input type="password" id="signonpassword" class="w-100 d-block form-control" formControlName="password" placeholder="Password" name="signonpassword">
+					        </div>
+					    
+					        <div class="md-form form-group">
+					            <input type="password" id="password2" class="w-100 d-block form-control" formControlName="confirmPassword" placeholder="Confirm password" name="password2">
+					            <p *ngIf="inputForm.controls.passwordGroup.errors?.childrenNotEqual" class="small text-danger">Confirm password and Password must match</p>
+					        </div-->
+
+					        <div class="md-form form-group">
+					            <!--label for="street1">Street 1</label-->
+					            <input type="text" id="street1" class="w-100 d-block form-control" formControlName="street1" placeholder="Street1" name="street1">
+					        </div>
+					      
+					        <div class="md-form form-group">
+					            <!--label for="street2">Street 2</label-->
+					            <input type="text" id="street2" class="w-100 d-block form-control" formControlName="street2" placeholder="Street2" name="street2">
+					        </div>
+					      
+					        <div class="md-form form-group">
+					            <!--label for="city">City</label-->
+					            <input type="text" id="city" class="w-100 d-block form-control" formControlName="city" placeholder="City" name="city">
+					        </div>
+					      
+					        <div class="md-form form-group">
+					            <!--label for="state">State</label-->
+					            <input type="text" id="state" class="w-100 d-block form-control" formControlName="state" placeholder="State/Province" name="state">
+					        </div>
+					      
+					        <div class="md-form form-group">
+					            <!--label for="state">State</label-->
+					            <input type="text" id="county" class="w-100 d-block form-control" formControlName="county" placeholder="County/District" name="county">
+					        </div>
+
+					        <div class="md-form form-group">
+					            <!--label for="zip">Zip</label-->
+					            <input type="text" id="zip" class="w-100 d-block form-control" formControlName="zip" placeholder="Zip" name="zip">
+					        </div>
+					    
+					        <div class="md-form form-group">
+					            <!--label for="zip">Zip</label-->
+					            <input type="text" id="country" class="w-100 d-block form-control" formControlName="country" placeholder="Country" name="country">
+					        </div>
+					    
+					        <div class="text-center mt-3 mb-3">
+					            <button class="submit_button btn" type="submit" value="SIGNUP">Sign Up</button>
+					            <button class="cancel_button btn btn-white" type="button" value="CANCEL">Cancel</button>
+					        </div>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<hr />

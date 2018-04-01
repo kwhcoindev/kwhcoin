@@ -1,0 +1,15 @@
+<div class="text-center countdown-timer-wrap" *ngIf="diff>0">
+	<div class="countdown-timer countdown-days d-inline-block">
+		<span class="countdown-timer-digits" *ngFor="let d of days">{{d}}</span>
+		<label>DAYS</label>
+	</div><div class="countdown-timer countdown-hours d-inline-block">
+		<span class="countdown-timer-digits" *ngFor="let d of hours">{{d}}</span>
+		<label>HOURS</label>
+	</div><div class="countdown-timer countdown-minutes d-inline-block">
+		<span class="countdown-timer-digits" *ngFor="let d of minutes">{{d}}</span>
+		<label>MINUTES</label>
+	</div><div class="countdown-timer countdown-seconds d-inline-block">
+		<span class="countdown-timer-digits" *ngFor="let d of seconds">{{d}}</span>
+		<label>SECONDS</label>
+	</div>
+</div>

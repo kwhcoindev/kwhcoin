@@ -1,0 +1,154 @@
+@import '~scss/variables';
+
+.content-section {
+  padding-top: 0;
+}
+
+
+.home-logo {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin: 0 auto;
+  &:before,
+  &:after,
+  span {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255, 255, 119, 0.37), inset 0 0 10px rgba(255, 255, 119, 0.37);
+    animation: glow-grow 6s ease-out infinite;
+  }
+  &:after {
+    animation-delay: 2s;
+  }
+  span {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes glow-grow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.6);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.section1 {
+	background-color: #000000;
+  background-image: url(./~assets/images/41546701_l.jpg);
+  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+  padding-top: 3rem;
+  text-shadow: $text-shadow;
+  h1 {
+    line-height: 1;
+  }
+  .btn {
+    margin: 0.5rem 0;
+    width: 255px;
+  }
+  .btn.btn-primary1{
+    width: 400px;
+    max-width: 100%;
+    font-size: 30px;
+  }
+  h2 {
+    margin-top: 1.5rem;
+  }
+  h6 {
+    margin: 0;
+    line-height: 1.5;
+    a {
+      border-bottom: 1px dashed #fff;
+      transition: .3s all ease;
+      &:hover {
+        color: #fff;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0);
+      }
+    }
+  }
+}
+
+.section2 {
+  svg {
+    max-width: 200px;
+    stroke: $green;
+    stroke-width: 1px;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-left: -100px;
+  }
+}
+
+@media (max-width: 767.99px) {
+  .section1 {
+    h1 {
+      margin-bottom: 1rem;
+    }
+  }
+  .section2 {
+    svg {
+      display: none;
+    }
+    .btn {
+      margin: 0.5rem 0;
+    }
+  }
+  .section4 {
+    img {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .section1 {
+    padding-top: 10rem;
+    h1 {
+      font-size: 4rem;
+    }
+  }
+  .section2 {
+    .button-row {
+      margin: 1.2rem 0;
+    }
+  }
+}
+
+.section2 {
+  padding: 0;
+}
+
+.section3 {
+  .container-fluid {
+    padding: 1rem 0;
+  }
+  h3, h4 {
+    margin: 1.2rem 0;
+  }
+  h5 {
+    margin: 0.5rem 0;
+  }
+}
+
+#coin_widget {
+  margin: 2rem auto;
+  width: 310px;
+}
+
+#world_map_container{
+  min-height: 400px;
+}
