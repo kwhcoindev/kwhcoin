@@ -27,12 +27,14 @@
     background-image: linear-gradient(top, lighten($darker-green, 3%), darken($darker-green, 3%));
   }
   &.btn-white {
-    color: $black;
+    color: #666;
     text-shadow: none;
     background-color: #fff;
     background-image: linear-gradient(top, #fff, #f4f4f4);
+    border: 1px solid #ccc;
+    border-bottom-color: #ccc;
     &:hover {
-      color: $black;
+      color: #666;
       background-color: $grey;
       background-image: linear-gradient(top, #eee, $grey);
     }

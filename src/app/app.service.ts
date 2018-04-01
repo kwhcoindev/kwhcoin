@@ -73,4 +73,31 @@ export class AppService {
 
 	}
 
+	register(data: any){
+		return this.http.post(AppConstants.API2_URL + 'register', data)
+		.map((resp)=>{
+			return resp.json();
+		},()=>{
+			return {"status": 500};
+		})
+	}
+
+	login(data: any){
+		return this.http.post(AppConstants.API2_URL + 'login', data)
+		.map((resp)=>{
+			return resp.json();
+		},()=>{
+			return {"status": 500};
+		})
+	}
+
+	verify(data: any){
+		return this.http.post(AppConstants.API2_URL + 'verify', data)
+		.map((resp)=>{
+			return resp.json();
+		},()=>{
+			return {"status": 500};
+		})
+	}
+
 }

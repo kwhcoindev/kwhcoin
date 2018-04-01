@@ -36,6 +36,9 @@ import { WhitePaperComponent } from './white-paper/white-paper.component';
 import { IcoParticipationGuideComponent } from './ico-participation-guide/ico-participation-guide.component';
 import { KycForm2Component } from './kyc-form2/kyc-form2.component';
 import { EventsComponent } from './events/events.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { VerifyComponent } from './verify/verify.component';
 
 
 export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
@@ -77,6 +80,8 @@ const appRoutes: Routes = [
   { path: 'faq', component: FaqComponent},
   { path: 'events', component: EventsComponent},
   { path: 'know-your-customer', component: KnowYourCustomerComponent},
+  { path: 'signup', component: SignupComponent},
+  { path: 'verify', component: VerifyComponent},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent}
 ];
 
@@ -110,7 +115,10 @@ const appRoutes: Routes = [
     WhitePaperComponent,
     IcoParticipationGuideComponent,
     KycForm2Component,
-    EventsComponent
+    EventsComponent,
+    SigninComponent,
+    SignupComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,
