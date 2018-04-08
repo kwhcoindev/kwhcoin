@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Router, ActivatedRoute, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 
 import {map} from 'rxjs/operator/map';
 import {debounceTime} from 'rxjs/operator/debounceTime';
@@ -24,7 +24,9 @@ export class AppComponent {
   public navIsFixed: boolean = false;
   isKycForm: boolean = false;
 
-  constructor(protected renderer: Renderer2, protected router: Router) {
+  currentUrl: string = "";
+
+  constructor(protected renderer: Renderer2, protected router: Router, private activatedRoute: ActivatedRoute) {
 
     this.isKycForm = document.location.href.indexOf('kyc.html') != -1;
 
@@ -42,6 +44,8 @@ export class AppComponent {
         this.previousUrl = className;
         //jQuery('.dropdown-menu.show, .collapse.show').removeClass('show')
         //jQuery(window).scrollTop(0)
+
+        this.currentUrl = event.url;
       }
 
       if (event instanceof NavigationEnd) {

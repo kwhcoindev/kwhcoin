@@ -39,10 +39,22 @@
             <li class="nav-item">
               <a class="nav-link main-menu text-md-white js-scroll-trigger" href="/#/events">Events</a>
             </li>
-            <li class="nav-item dropdown" ngbDropdown placement="bottom-right" [open]="isOpenSignInUp===true" [class.show]="isOpenSignInUp===true">
-              <a class="nav-link main-menu text-md-white dropdown-toggle" ngbDropdownToggle (click)="toggleSignInUp()" href="javascript:;">Sign In/Sign Up</a>
-              <div class="dropdown-menu signinsignup-popup" ngbDropdownMenu [class.show]="isOpenSignInUp===true">
-                <app-signin (close)="closeSignInUp(user)"></app-signin>
+            <li class="nav-item dropdown" placement="bottom-right" [class.show]="isOpenSignInUp===true">
+              <a class="nav-link main-menu text-md-white dropdown-toggle" (click)="toggleSignInUp()" href="javascript:;">Sign In/Sign Up</a>
+              <div class="dropdown-menu signinsignup-popup" (click)="$event.stopPropagation()" [class.show]="isOpenSignInUp===true">
+                <ngb-tabset justify="justified">
+                  <ngb-tab title="Log In">
+                    <ng-template ngbTabContent>
+                      <app-signin (close)="closeSignInUp(user)"></app-signin>
+                    </ng-template>
+                  </ngb-tab>
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>Register</ng-template>
+                    <ng-template ngbTabContent>
+                      <app-signup (close)="closeSignInUp(user)"></app-signup>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
               </div>
             </li>
             <li class="nav-item">
@@ -83,4 +95,5 @@
       </ul>
     </div>
   </div>
+  <div class="modal-backdrop" [hidden]="!isOpenSignInUp"></div>
 </nav>

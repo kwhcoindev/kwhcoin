@@ -1,29 +1,31 @@
-<form id="login" [formGroup]="inputForm" class="ajax-auth card p-0" action="login" method="post" (click)="$event.stopPropagation()">
-    <div class="card-body mx-2">
-    	<button class="close float-right btnClose fa-lg" (click)="dismiss()">&times;</button>
-        <div class="text-center">
-            <h5 class="dark-grey-text">Sign in</h5>
-        </div>
-        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Login failed. Email/Password is invalid</p>
-        <div class="md-form form-group">
-            <label for="username">Email</label>
-            <input type="text" id="username" class="w-100 d-block form-control" name="username" formControlName="email">
-        </div>
-        <div class="md-form mb-1 form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" class="w-100 d-block form-control" name="password" formControlName="password">
-        </div>
-        
-        <!--p class="login-font-small blue-text d-flex justify-content-end"><a class="blue-text" href="https://mdbootstrap.com/my-account/lost-password/">Forgot Password?</a></p-->
+<section class="content-section py-0">
+	<div class="section601 py-0">
+		<form id="login" [formGroup]="inputForm" class="ajax-auth card border-0 p-0" action="login" method="post" (click)="$event.stopPropagation()">
+		    <div class="card-body mx-2">
+		    	<!--button class="close float-right btnClose fa-lg" (click)="dismiss()">&times;</button-->
+		        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Login failed. Email/Password is invalid</p>
+		        <div class="md-form form-group">
+		            <label for="username">Email</label>
+		            <input type="text" id="username" class="w-100 d-block form-control" name="username" formControlName="username">
+		        </div>
+		        <div class="md-form mb-1 form-group">
+		            <label for="password">Password</label>
+		            <input type="password" id="password" class="w-100 d-block form-control" name="password" formControlName="password">
+		        </div>
+		        
+		        <!--p class="login-font-small blue-text d-flex justify-content-end"><a class="blue-text" href="https://mdbootstrap.com/my-account/lost-password/">Forgot Password?</a></p-->
 
-        <div class="text-center mt-3 mb-3">
-            <button class="submit_button btn blue-gradient btn-block btn-rounded waves-effect waves-light" type="submit" (click)="login()">Sign in</button>
-        </div>
+		        <div class="text-center mt-3 mb-3 btn-group d-flex" role="group">
+		            <button class="submit_button btn w-100" type="submit" (click)="login()">Log In</button>
+		            <button class="submit_button btn btn-white w-100" type="button" (click)="dismiss()">Cancel</button>
+		        </div>
 
-        <hr>
-        <div class="text-right">
-            <p class="login-font-small grey-text">Not a member? <a href="/#/signup" class="blue-text ml-1" (click)="dismiss()" id="pop_signup"> Sign Up</a></p>
-        </div>
+		        <!--hr>
+		        <div class="text-right">
+		            <p class="login-font-small grey-text">Not a member? <a href="/#/signup" class="blue-text ml-1" (click)="dismiss()" id="pop_signup"> Sign Up</a></p>
+		        </div-->
 
-    </div>
-</form>
+		    </div>
+		</form>
+	</div>
+</section>

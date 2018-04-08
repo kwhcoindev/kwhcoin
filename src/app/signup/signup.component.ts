@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { AppService } from '../app.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 /**
@@ -25,68 +26,60 @@ export class CustomValidators {
 })
 export class SignupComponent implements OnInit {
 
-  //@Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() close: EventEmitter<any> = new EventEmitter();
   @Input() user: any = null;
   inputForm: FormGroup;
   error: string = null;
+  email: string = null;
+  loading: boolean = false;
 
-  constructor(private service: AppService, private fb: FormBuilder) { }
+  constructor(private service: AppService, private fb: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit() {
+  	this.email = null;
   	this.inputForm = this.fb.group({
-	  name: ['', Validators.required ],
-	  emailGroup: this.fb.group({
-            email: ['', [
-                Validators.required,
-                Validators.email
-            ]],
-            confirmEmail: ['', Validators.required]}, 
-        { validator: CustomValidators.childrenEqual}),
-	  //email: ['', [Validators.required, Validators.email] ],
-	  //confirmEmail: ['', [Validators.required, Validators.confirmEmail] ],
-	  //password: ['', Validators.required ],
-	  //confirmPassword: ['', Validators.required ],
-	  street1: ['', Validators.required ],
-	  street2: ['', null ],
-	  city: ['', null ],
-	  zip: ['', null ],
-	  state: ['', null ],
-	  county: ['', null ],
-	  country: ['', Validators.required ]
+        email: ['', [
+            Validators.required,
+            Validators.email
+        ]]
 	});
-
   }
 
-
-  typeHere(p){
-  	console.log(p);
-  }
-
-  register(){
-  console.log(this.inputForm)
+  register(content){
   	if(this.inputForm.invalid === true)
   		return;
 
   	this.user = null;
   	this.error = null;
+  	this.loading = true;
 
   	this.service.register(this.inputForm.value)
   	.subscribe((resp)=>{
-  		if(resp && resp.ok === true){
+  		this.loading = false;
+  		if(resp == 200){
   			this.user = resp;
   			this.dismiss();
+  			this.email = this.inputForm.value.email;
+  			this.inputForm.value.email = "";
+  			this.modalService.open(content, {size: 'lg'})
+  			.result.then((result) => {
+		    }, (reason) => {
+		    });
   		}
   		else {
   			this.error = resp.message||"Failed to register";
   		}
-  	}, ()=>{
-  		this.error = "Failed to register";
+  	}, (resp)=>{
+  		this.loading = false;
+  		resp = resp.json();
+  		console.log("error error ", resp);
+  		this.error = resp.message||"Failed to register";
   	});
 
   }
 
   dismiss(){
-  	//this.close.emit(this.user);
+  	this.close.emit(this.user);
   }
 
 }

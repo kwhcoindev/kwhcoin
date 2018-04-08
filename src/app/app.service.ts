@@ -75,29 +75,21 @@ export class AppService {
 
 	register(data: any){
 		return this.http.post(AppConstants.API2_URL + 'register', data)
-		.map((resp)=>{
-			return resp.json();
-		},()=>{
-			return {"status": 500};
-		})
+		.map((resp) => resp.json() );
 	}
 
 	login(data: any){
 		return this.http.post(AppConstants.API2_URL + 'login', data)
-		.map((resp)=>{
-			return resp.json();
-		},()=>{
-			return {"status": 500};
-		})
+		.map((resp) => resp.json() );
 	}
 
 	verify(data: any){
 		return this.http.post(AppConstants.API2_URL + 'verify', data)
-		.map((resp)=>{
-			return resp.json();
-		},()=>{
-			return {"status": 500};
-		})
+		.map((resp) => resp.json() );
 	}
 
+	getGeoCoding(strAddress: string){
+		return this.http.post('https://maps.googleapis.com/maps/api/geocode/json?address='+ encodeURIComponent(strAddress) +'&key='+ AppConstants.GoogleApiKey, {})
+		.map((resp)=>resp.json());
+	}
 }

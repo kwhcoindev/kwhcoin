@@ -292,6 +292,43 @@ h6,.h6 {
   font-size: 1.5rem;
 }
 
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #518D4B;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #518D4B transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 @media (max-width: 767.99px) {
   body, p, li {
     font-size: 16px;
@@ -380,6 +417,7 @@ h6,.h6 {
 .signinsignup-popup{
   min-width: 400px;
   padding: 0;
+  z-index: 1050;
 
   .card{
     border-radius: 0;
@@ -392,6 +430,7 @@ h6,.h6 {
     border-width: 0;
     border-color: #fff;
     box-shadow: none;
+    padding: 1rem 1rem;
   }
 
   .nav-tabs .nav-link.active,
@@ -428,7 +467,7 @@ h6,.h6 {
   }
 
   .signinsignup-popup {
-      margin-top: -40px;
+      /*margin-top: -40px;*/
   }
 
 }
@@ -468,3 +507,27 @@ a.slack-link {
     border-bottom: 1px dashed rgba(255, 255, 255, 0);
   }
 }
+
+/* start Password strength bar style */
+ul#strengthBar {
+  display:inline;
+  list-style:none;
+  margin-right:10px;
+  padding:0;
+  vertical-align:2px;
+}
+ 
+.point:last {
+  margin:0 !important;
+}
+ 
+.point {
+  background:#DDD;
+  border-radius:2px;
+  display:inline-block;
+  height:5px;
+  margin-right:1px;
+  width:15%;
+}
+ 
+/* end Password strength bar style */

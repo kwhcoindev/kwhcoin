@@ -19,7 +19,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
   	this.inputForm = this.fb.group({
-	  email: ['', [Validators.required, Validators.email] ],
+	  username: ['', [Validators.required, Validators.email] ],
 	  password: ['', Validators.required ]
 	});
 
@@ -35,15 +35,16 @@ export class SigninComponent implements OnInit {
 
   	this.service.login(this.inputForm.value)
   	.subscribe((resp)=>{
-  		if(resp && resp.ok === true){
+  		if(resp && resp.token){
   			this.user = resp;
   			this.dismiss();
   		}
   		else {
   			this.error = resp.message||"Failed to login";
   		}
-  	}, ()=>{
-  		this.error = "Failed to login";
+  	}, (resp)=>{
+  		resp = resp.json();
+  		this.error = resp.message||"Failed to login";
   	});
 
   }

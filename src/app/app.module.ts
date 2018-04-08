@@ -39,6 +39,9 @@ import { EventsComponent } from './events/events.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { VerifyComponent } from './verify/verify.component';
+import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
+import { SummaryComponent } from './dashboard/summary/summary.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
@@ -81,8 +84,9 @@ const appRoutes: Routes = [
   { path: 'events', component: EventsComponent},
   { path: 'know-your-customer', component: KnowYourCustomerComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'verify', component: VerifyComponent},
-  { path: 'ico-participation-guide', component: IcoParticipationGuideComponent}
+  { path: 'verify/:key', component: VerifyComponent},
+  { path: 'ico-participation-guide', component: IcoParticipationGuideComponent},
+  { path: 'dashboard/summary', component: DashboardComponent }
 ];
 
 
@@ -118,7 +122,10 @@ const appRoutes: Routes = [
     EventsComponent,
     SigninComponent,
     SignupComponent,
-    VerifyComponent
+    VerifyComponent,
+    SidebarComponent,
+    SummaryComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
