@@ -88,8 +88,18 @@ export class AppService {
 		.map((resp) => resp.json() );
 	}
 
+	balance(data: any){
+		return this.http.post(AppConstants.API2_URL + 'balance', data)
+		.map((resp) => resp.json() );
+	}
+
+	locationsNearMe(data: any){
+		return this.http.post(AppConstants.API2_URL + 'locations-near-me', data)
+		.map((resp) => resp.json() );
+	}
+
 	getGeoCoding(strAddress: string){
-		return this.http.post('https://maps.googleapis.com/maps/api/geocode/json?address='+ encodeURIComponent(strAddress) +'&key='+ AppConstants.GoogleApiKey, {})
+		return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ encodeURIComponent(strAddress) +'&key='+ AppConstants.GoogleApiKey)
 		.map((resp)=>resp.json());
 	}
 }

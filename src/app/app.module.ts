@@ -42,6 +42,8 @@ import { VerifyComponent } from './verify/verify.component';
 import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
 import { SummaryComponent } from './dashboard/summary/summary.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardHeaderComponent } from './dashboard/header/header.component';
+import { DashboardFooterComponent } from './dashboard/footer/footer.component';
 
 
 export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
@@ -125,6 +127,8 @@ const appRoutes: Routes = [
     VerifyComponent,
     SidebarComponent,
     SummaryComponent,
+    DashboardHeaderComponent,
+    DashboardFooterComponent,
     DashboardComponent
   ],
   imports: [
