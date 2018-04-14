@@ -66,11 +66,17 @@ export class EmitterService {
 
 @Injectable()
 export class AppService {
+	
+	user: any = null;
 
 	constructor(
 		private http: Http,
 		private jsonp: Jsonp) {
 
+	}
+
+	getUser(): any{
+		return this.user;
 	}
 
 	register(data: any){
@@ -80,7 +86,18 @@ export class AppService {
 
 	login(data: any){
 		return this.http.post(AppConstants.API2_URL + 'login', data)
-		.map((resp) => resp.json() );
+		.map((resp) => {
+			this.user = resp.json();
+			return this.user;
+		});
+	}
+
+	validateLogin(data: any){
+		return this.http.post(AppConstants.API2_URL + 'validateLogin', data)
+		.map((resp) => {
+			this.user = resp.json();
+			return this.user;
+		});
 	}
 
 	verify(data: any){
