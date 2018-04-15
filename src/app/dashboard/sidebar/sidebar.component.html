@@ -1,0 +1,21 @@
+<nav class="side-navbar h-100">
+  <div class="side-navbar-wrapper h-100">
+    <!-- Sidebar Header    -->
+    <div class="sidenav-header d-flex align-items-center justify-content-center">
+      <!-- User Info-->
+      <div class="sidenav-header-inner text-center mt-2">
+        <div class="d-inline-block rounded-circle bg-light text-secondary px-3 py-1"><i class="fa-4x fa fa-user"></i></div>
+        <h2 class="h5">{{user.name}}</h2><span>{{user.email}}</span>
+      </div>
+    </div>
+  
+    <hr class="bg-white" />
+    <ul class="list-group list-unstyled border-0 rounded-0">
+      <li class="list-group-item bg-transparent border-0 text-center text-yellow">
+        <strong>BALANCE (KWH)</strong>
+        <h3>{{wallet.balance|number:'1.2-8'}}</h3>
+      </li>
+    </ul>
+
+  </div>
+</nav>

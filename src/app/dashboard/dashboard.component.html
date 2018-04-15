@@ -1,0 +1,18 @@
+<dashboard-sidebar *ngIf="user" [user]="user" [wallet]="wallet"></dashboard-sidebar>
+<div class="right-content">
+	<div class="row">
+		<div class="col-12">
+			<dashboard-header *ngIf="user" [user]="user"></dashboard-header>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<dashboard-summary *ngIf="user" [user]="user"></dashboard-summary>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<dashboard-footer></dashboard-footer>
+		</div>
+	</div>
+</div>

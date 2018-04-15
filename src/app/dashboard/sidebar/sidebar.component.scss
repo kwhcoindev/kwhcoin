@@ -1,0 +1,18 @@
+.side-navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    height: 100%;
+    text-align: left;
+    background: url(/nasa-53884.50e0c0bd1e9163cb44de.jpg) no-repeat center transparent;
+    color: #fff;
+    overflow-y: auto;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.side-navbar-wrapper{
+    background-color: rgba(0,0,0,0.6);
+}
