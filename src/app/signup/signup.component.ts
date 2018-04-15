@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { AppService } from '../app.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 
 /**
@@ -33,7 +34,7 @@ export class SignupComponent implements OnInit {
   email: string = null;
   loading: boolean = false;
 
-  constructor(private service: AppService, private fb: FormBuilder, private modalService: NgbModal) { }
+  constructor(private service: AppService, private fb: FormBuilder, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
   	this.email = null;
@@ -46,7 +47,10 @@ export class SignupComponent implements OnInit {
   }
 
   register(content){
-  	if(this.inputForm.invalid === true)
+    	this.router.navigate(['verify/'+ (new Date()).getTime()]);
+    	this.dismiss();
+
+/*  	if(this.inputForm.invalid === true)
   		return;
 
   	this.user = null;
@@ -74,7 +78,7 @@ export class SignupComponent implements OnInit {
   		resp = resp.json();
   		console.log("error error ", resp);
   		this.error = resp.message||"Failed to register";
-  	});
+  	});*/
 
   }
 

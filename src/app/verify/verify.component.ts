@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { AppService } from '../app.service';
 import { CustomValidators } from '../signup/signup.component';
+import { Router } from '@angular/router';
 
 import * as zxcvbn from "zxcvbn";
 
@@ -23,7 +24,7 @@ export class VerifyComponent implements OnInit {
 	passwordStrength: number = 0;
 
 
-  	constructor(private service: AppService, private fb: FormBuilder) { }
+  	constructor(private service: AppService, private fb: FormBuilder, private router: Router) { }
 
 	ngOnInit() {
 
@@ -88,7 +89,11 @@ export class VerifyComponent implements OnInit {
 
 
 	verify(){
-	  	if(this.inputForm.invalid === true)
+
+	  	this.router.navigate(['dashboard/summary']);
+	  	this.dismiss();
+
+/*	  	if(this.inputForm.invalid === true)
 	  		return;
 
 	  	this.user = null;
@@ -127,7 +132,7 @@ export class VerifyComponent implements OnInit {
 	  		} else {
 	  			this.error = "Invalid address, please provide valid address";
 	  		}
-	  	})
+	  	})*/
 	}
 
  

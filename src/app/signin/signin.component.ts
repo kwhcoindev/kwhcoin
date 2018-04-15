@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class SigninComponent implements OnInit {
   inputForm: FormGroup;
   error: string = null;
 
-  constructor(private service: AppService, private fb: FormBuilder) { }
+  constructor(private service: AppService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
   	this.inputForm = this.fb.group({
@@ -26,8 +27,11 @@ export class SigninComponent implements OnInit {
   }
 
   login(){
-  console.log(this.inputForm)
-  	if(this.inputForm.invalid === true)
+
+  	this.router.navigate(['dashboard/summary']);
+  	this.dismiss();
+
+/*  	if(this.inputForm.invalid === true)
   		return;
 
   	this.user = null;
@@ -45,7 +49,7 @@ export class SigninComponent implements OnInit {
   	}, (resp)=>{
   		resp = resp.json();
   		this.error = resp.message||"Failed to login";
-  	});
+  	});*/
 
   }
 
