@@ -1,21 +1,68 @@
-<nav class="side-navbar h-100">
-  <div class="side-navbar-wrapper h-100">
-    <!-- Sidebar Header    -->
-    <div class="sidenav-header d-flex align-items-center justify-content-center">
-      <!-- User Info-->
-      <div class="sidenav-header-inner text-center mt-2">
-        <div class="d-inline-block rounded-circle bg-light text-secondary px-3 py-1"><i class="fa-4x fa fa-user"></i></div>
-        <h2 class="h5">{{user.name}}</h2><span>{{user.email}}</span>
-      </div>
-    </div>
-  
-    <hr class="bg-white" />
-    <ul class="list-group list-unstyled border-0 rounded-0">
-      <li class="list-group-item bg-transparent border-0 text-center text-yellow">
-        <strong>BALANCE (KWH)</strong>
-        <h3>{{wallet.balance|number:'1.2-8'}}</h3>
-      </li>
-    </ul>
+<nav class="side-navbar">
+  <div class="chat-wrapper h-100">
+    <div class="container-fluid  px-0">
+      
+      <ngb-tabset #chatTab="ngbTabset" class="chatTab" justify="fill">
+        <ngb-tab id="chat-tab-1" class="text-white">
+          <ng-template ngbTabTitle><strong><small>CHAT HISTORY</small></strong></ng-template>
+          <ng-template ngbTabContent>
+            <div class="contacts-panel f14 h-100">
+              <div id="search">
+                <label for=""><i class="fa fa-search text-secondary" aria-hidden="true"></i></label>
+                <input type="text" class="w-100" placeholder="Search contacts..." [(ngModel)]="search">
+              </div>
 
+              <div id="contacts" class="f14">
+                <ul class="list-group">
+                  <li *ngFor="let c of contacts; let i=index" class="list-group-item list-group-item-action" [class.active]="selectedContact===i" (click)="selectContact(i, chatTab)">
+                    <div class="wrap">
+                      <img src="assets/images/chat/{{i+1}}.png" class="mt-2" alt="">
+                      <div class="meta">
+                        <div class="name">{{c.name}}</div>
+                        <div class="preview">Last chat: {{c.lastChat}}</div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>            
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab *ngIf="showChat===true" id="chat-tab-2">
+          <ng-template ngbTabTitle><strong><small>{{contacts[selectedContact].name}} Conversation</small></strong></ng-template>
+          <ng-template ngbTabContent>
+              <div class="chat-history-wrap f14">
+                <div class="chat-history">
+                  <ul class="list-unstyled mb-0">
+                    <li *ngFor="let c of chats">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="message-data" [class.text-left]="c.me===false" [class.text-right]="c.me===true">
+                            <span class="message-data-name mr-2">{{c.name}}</span>
+                            <span class="message-data-time">{{c.time}}</span>
+                          </div>
+                          <div class="message" [class.my-message]="c.me===true" [class.other-message]="c.me===false" [class.float-right]="c.me===true">
+                            {{c.text}}
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="message-input">
+                  <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Write your message...">
+                  <span class="input-group-append">
+                    <button class="submit" class="input-group-text"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                  </span>
+                  </div>
+                </div>
+              </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+
+
+    </div>
   </div>
 </nav>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'dashboard-header',
@@ -8,9 +9,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DashboardHeaderComponent implements OnInit {
 
 	@Input() user: any = null;
-  	constructor() { }
+	@Input() wallet: any = null;
 
-  	ngOnInit() {
+	constructor(private service: AppService) { }
+
+ 	ngOnInit() {
+ 		this.wallet = {kwhBalance: 300000, ethBalance: 200};
   	}
 
 }

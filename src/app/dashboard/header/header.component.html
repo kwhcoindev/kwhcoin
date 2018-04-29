@@ -1,15 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <a class="navbar-brand header-footer-logo" href="/#/">
     <img src="assets/images/kwh-coin-final-symbol-1-nfsc67km3jv7zaesp3nqrymiwl6p29ptko7zcp0ma8.png"><span class="text-green lighter boldest">KWH</span><span class="text-orange boldest">Coin</span>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="ml-auto mr-auto text-white lh-1-2 order-3 order-sm-2">
+    <div class="f14">BALANCE</div>
+    <div class="d-inline-block mr-3"><strong>{{wallet.kwhBalance|number:'1.2-8'}} KWHCoin</strong></div>|
+    <div class="d-inline-block ml-3"><strong>{{wallet.ethBalance|number:'1.2-8'}} ETH</strong></div>
+  </div>
+  <button class="navbar-toggler order-2 order-sm-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse order-2 order-sm-3" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/#/">Sign Out</a>
+      <li class="nav-item" ngbDropdown>
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:;"><i class="fa fa-user"></i> {{user.name}}</a>
+        <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+          <a href="javascript:;" class="dropdown-item disabled"><small>{{user.email}}</small></a>
+          <a href="javascript:;" class="dropdown-item"><small>Sign Out</small></a>
+        </div>
       </li>
     </ul>
   </div>

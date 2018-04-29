@@ -21,4 +21,4 @@
 	<a href="javascript:;" id="toTop" (click)="scrollTop()" [ngStyle]="{'display': navIsFixed===true? 'block': 'none'}"><i class="fa fa-angle-up fa-2x mt-2"></i><span class="sr-only">Top</span></a>
 </div>
 
-<app-dashboard class="" *ngIf="currentUrl.indexOf('dashboard')!==-1"></app-dashboard>
+<app-dashboard class="h-100" *ngIf="currentUrl.indexOf('dashboard')!==-1"></app-dashboard>

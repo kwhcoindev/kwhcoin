@@ -22,7 +22,7 @@ export class SummaryComponent implements OnInit {
 
 	    let mapProp = {
 	      center: new google.maps.LatLng(40.7322535, -73.98741050000001),
-	      zoom: 5,
+	      zoom: 14,
 	      mapTypeId: google.maps.MapTypeId.ROADMAP,
 	      markers: [
 	      ]

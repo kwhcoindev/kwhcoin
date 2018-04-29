@@ -85,8 +85,9 @@ const appRoutes: Routes = [
   { path: 'faq', component: FaqComponent},
   { path: 'events', component: EventsComponent},
   { path: 'know-your-customer', component: KnowYourCustomerComponent},
+  { path: 'signin', component: SigninComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'verify/:key', component: VerifyComponent},
+  { path: 'update/:key', component: VerifyComponent},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent},
   { path: 'dashboard/summary', component: DashboardComponent }
 ];
