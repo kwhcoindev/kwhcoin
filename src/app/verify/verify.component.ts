@@ -80,7 +80,7 @@ export class VerifyComponent implements OnInit {
 	}
 
 	updatePasswordStrength(): void {
-		let results = zxcvbn(this.inputForm.controls.passwordGroup.value.password);
+		let results = zxcvbn(this.inputForm.controls.passwordGroup.value.pswd);
 		this.passwordStrength = results.score;
  		
 		let color = this.colors[this.passwordStrength];
@@ -121,20 +121,32 @@ export class VerifyComponent implements OnInit {
 	  	this.service.getGeoCoding( this.formatAddress(this.inputForm.value) )
 	  	.subscribe((resp)=>{
 
-			let data = this.inputForm.value;
+			let data = {
+				address1: this.inputForm.value.address1,
+				address2: this.inputForm.value.address2,
+				city: this.inputForm.value.city,
+				country: this.inputForm.value.country,
+				state: this.inputForm.value.state,
+				zipCode: this.inputForm.value.zipCode,
+				latitude: null,
+				longitude: null,
+				profileName: this.inputForm.value.profileName,
+				pswd: this.inputForm.value.passwordGroup.pswd,
+				rePswd: this.inputForm.value.passwordGroup.rePswd
+			};
 
 	  		if(resp.results && resp.results.length>0){
 	  			let address = resp.results[0];
 	  			resp.results.forEach( (o)=>{
 	  				if(o.geometry.location_type == 'ROOFTOP'){
 	  					address = o;
-	  					if( address.geometry && address.geometry.location ){
-				  			data.latitude = address.geometry.location.lat;
-				  			data.latitude = address.geometry.location.lng;
-				  		}
 	  					return false;
 	  				}
 	  			});
+				if( address && address.geometry && address.geometry.location ){
+		  			data.latitude = address.geometry.location.lat;
+		  			data.longitude = address.geometry.location.lng;
+		  		}
 
 			  	this.service.updateUserDetails(data)
 			  	.subscribe((resp)=>{

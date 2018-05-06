@@ -113,7 +113,7 @@ export class AppService {
 	}
 
 	updateUserDetails(data: any){
-		return this.http.post(AppConstants.API2_URL + 'updateUserDetails', data, httpOptions)
+		return this.http.post(AppConstants.API2_URL + '/auth/updateUserDetails', data, httpOptions)
 		.map((resp) => resp.json() );
 	}
 

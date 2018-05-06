@@ -25,14 +25,14 @@
 
 					      	<div formGroupName="passwordGroup">
 						        <div class="md-form form-group">
-						            <input type="password" id="signonpassword" class="w-100 d-block form-control" formControlName="password" placeholder="Password" name="signonpassword" (keyup)="updatePasswordStrength()">
+						            <input type="password" id="pswd" class="w-100 d-block form-control" formControlName="pswd" placeholder="Password" name="pswd" (keyup)="updatePasswordStrength()">
 						            <ul id="strengthBar">
 										<li *ngFor="let barColor of barColors;" class="point" [style.background-color]="barColor"></li>
 									</ul>
 						        </div>
 						    
 						        <div class="md-form form-group">
-						            <input type="password" id="password2" class="w-100 d-block form-control" formControlName="confirmPassword" placeholder="Confirm password" name="confirmPassword">
+						            <input type="password" id="rePswd" class="w-100 d-block form-control" formControlName="rePswd" placeholder="Confirm password" name="rePswd">
 						            <p *ngIf="inputForm.controls.passwordGroup.errors?.childrenNotEqual" class="small text-danger">Confirm password and Password must match</p>
 						        </div>
 						    </div>
