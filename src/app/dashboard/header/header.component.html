@@ -13,10 +13,10 @@
   <div class="collapse navbar-collapse order-2 order-sm-3" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item" ngbDropdown>
-        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:;"><i class="fa fa-user"></i> {{user.name}}</a>
-        <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-          <a href="javascript:;" class="dropdown-item disabled"><small>{{user.email}}</small></a>
-          <a href="javascript:;" class="dropdown-item"><small>Sign Out</small></a>
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:;"><i class="fa fa-user"></i> {{user.firstName +' '+ user.lastName}}</a>
+        <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu style="left: auto!important;right: 0!important ">
+          <a href="javascript:;" class="dropdown-item disabled"><small>{{user.emailId}}</small></a>
+          <a href="javascript:;" (click)="signout()" class="dropdown-item"><small>Sign Out</small></a>
         </div>
       </li>
     </ul>

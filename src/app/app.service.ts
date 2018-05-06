@@ -66,6 +66,7 @@ export class EmitterService {
 }
 
 const httpOptions: RequestOptionsArgs = {
+  withCredentials: true,
   headers: new Headers({
     'API-Key':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a'
   })
@@ -75,15 +76,23 @@ const httpOptions: RequestOptionsArgs = {
 export class AppService {
 	
 	user: any = null;
+	sessionStorage: any = sessionStorage || window.sessionStorage;
 
 	constructor(
 		private http: Http,
 		private jsonp: Jsonp) {
 
+		if( this.sessionStorage.getItem("user") )
+			this.user = JSON.parse(this.sessionStorage.getItem("user"));
 	}
 
 	getUser(): any{
 		return this.user;
+	}
+
+	logout(): any{
+		this.user = null;
+		this.sessionStorage.removeItem("user");
 	}
 
 	register(data: any){
@@ -93,9 +102,11 @@ export class AppService {
 
 	login(data: any){
 		return this.http.post(AppConstants.API2_URL + '/auth/login', data, httpOptions)
-		.map((resp) => {
-			this.user = resp.json();
-			return this.user;
+		.map((resp: any) => {
+			resp = resp.json();
+			this.user = resp.data;
+			this.sessionStorage.setItem("user", JSON.stringify(this.user));
+			return resp;
 		});
 	}
 

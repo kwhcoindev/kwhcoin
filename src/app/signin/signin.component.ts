@@ -24,6 +24,9 @@ export class SigninComponent implements OnInit {
 	  pswd: ['', null ]
 	});
 
+	this.user = this.service.getUser();
+	if(this.user && this.user.emailId)
+		this.router.navigate(['dashboard/summary']);
   }
 
   login(){
@@ -36,16 +39,15 @@ export class SigninComponent implements OnInit {
 
   	this.service.login(this.inputForm.value)
   	.subscribe((resp)=>{
-  		if(resp && resp.token){
-  			this.user = resp;
+  		if(resp.status == "SUCCESS" && resp.data && resp.data.emailId){
 		  	this.router.navigate(['dashboard/summary']);
   			this.dismiss();
   		}
   		else {
-  			this.error = resp.errorDesc||"Failed to login";
+  			this.error = resp.errorDesc||"Login failed. Email/Password is invalid";
   		}
   	}, ()=>{
-  		this.error = "Failed to login";
+  		this.error = "Oops! something went wrong, please contact support";
   	});
 
   }

@@ -10,19 +10,22 @@ import { AppService } from '../app.service';
 })
 export class DashboardComponent implements OnInit {
 
-	user: any = {id: 1, name: "Your Name", email: "dummy@kwhcoin.com"};
+	user: any = null; //{id: 1, name: "Your Name", email: "dummy@kwhcoin.com"};
 	wallet: any = {balance: 0};
 
   	constructor(private service: AppService, private router: Router) { }
 
   	ngOnInit() {
-	  	this.service.validateLogin({})
+  		this.user = this.service.getUser();
+	  	/*this.service.validateLogin({})
 	  	.subscribe((resp)=>{
 	  		this.user = resp;
 
 	  		if(!this.user||!this.user.id)
 	  			this.router.navigate(['']);
-	  	});  
+	  	});*/  
+  		if(!this.user||!this.user.emailId)
+  			this.router.navigate(['signin']);
 	}
 
 }
