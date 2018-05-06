@@ -17,6 +17,7 @@ export class VerifyComponent implements OnInit {
 	//@Output() close: EventEmitter<any> = new EventEmitter();
 	@Input() user: any = null;
 	inputForm: FormGroup;
+	data: any = null;
 	error: string = null;
 	showForm: boolean = false;
 	processing: boolean = true;
@@ -38,7 +39,33 @@ export class VerifyComponent implements OnInit {
 		    	this.processing = false;
 		    	//if(resp.status == "SUCCESS"){
 			    	//else redirect to update user after storing the user data in common service
+
 			    	this.showForm = true;
+			    	this.data = resp.data||{};
+
+					this.updateBarColors("");
+
+					this.inputForm = this.fb.group({
+					  //firstName: ['', Validators.required ],
+					  //lastName: ['', Validators.required ],
+					  emailId: [{value: this.data.emailId, disabled: true}, Validators.required],
+					  profileName: ['', Validators.required ],
+					  passwordGroup: this.fb.group({
+					        pswd: ['', [
+					            Validators.required
+					        ]],
+					        rePswd: ['', Validators.required]}, 
+					    { validator: CustomValidators.childrenEqual}),
+					  address1: ['', Validators.required ],
+					  address2: ['', null ],
+					  city: ['', null ],
+					  zipCode: ['', null ],
+					  state: ['', null ],
+					  country: ['', Validators.required ],
+					  latitude: ['', null],
+					  longitude: ['', null]
+					});
+
 		    	//} else {
 			    	//If false show message from service
 			    //	this.error = resp.errorDesc;
@@ -47,28 +74,6 @@ export class VerifyComponent implements OnInit {
 		    	this.processing = false;
 		    	this.error = "Oops! something went wrong, please try after sometime.";
 		    });
-
-		this.updateBarColors("");
-
-		this.inputForm = this.fb.group({
-		  //firstName: ['', Validators.required ],
-		  //lastName: ['', Validators.required ],
-		  profileName: ['', Validators.required ],
-		  passwordGroup: this.fb.group({
-		        pswd: ['', [
-		            Validators.required
-		        ]],
-		        rePswd: ['', Validators.required]}, 
-		    { validator: CustomValidators.childrenEqual}),
-		  address1: ['', Validators.required ],
-		  address2: ['', null ],
-		  city: ['', null ],
-		  zipCode: ['', null ],
-		  state: ['', null ],
-		  country: ['', Validators.required ],
-		  latitude: ['', null],
-		  longitude: ['', null]
-		});
 
 	}
 

@@ -19,6 +19,9 @@
 					        
         					<p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Failed to update profile. Please try again later or contact contact@KWHCoin.com</p>
 					        <div class="md-form form-group">
+					            <input type="text" id="emailId" class="w-100 d-block form-control" formControlName="emailId" placeholder="Email Id" name="emailId">
+					        </div>
+					        <div class="md-form form-group">
 					            <!--label for="profileName">Your name</label-->
 					            <input type="text" id="profileName" class="w-100 d-block form-control" formControlName="profileName" placeholder="Preferred name" name="profileName">
 					        </div>
