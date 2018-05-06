@@ -37,7 +37,7 @@ export class VerifyComponent implements OnInit {
 		    .subscribe(resp => {
 		    	console.log(resp);
 		    	this.processing = false;
-		    	//if(resp.status == "SUCCESS"){
+		    	if(resp.status == "SUCCESS"){
 			    	//else redirect to update user after storing the user data in common service
 
 			    	this.showForm = true;
@@ -48,7 +48,6 @@ export class VerifyComponent implements OnInit {
 					this.inputForm = this.fb.group({
 					  //firstName: ['', Validators.required ],
 					  //lastName: ['', Validators.required ],
-					  emailId: [{value: this.data.emailId, disabled: true}, Validators.required],
 					  profileName: ['', Validators.required ],
 					  passwordGroup: this.fb.group({
 					        pswd: ['', [
@@ -66,10 +65,10 @@ export class VerifyComponent implements OnInit {
 					  longitude: ['', null]
 					});
 
-		    	//} else {
+		    	} else {
 			    	//If false show message from service
-			    //	this.error = resp.errorDesc;
-		    	//}
+			    	this.error = resp.errorDesc;
+		    	}
 		    }, ()=>{
 		    	this.processing = false;
 		    	this.error = "Oops! something went wrong, please try after sometime.";
@@ -127,6 +126,11 @@ export class VerifyComponent implements OnInit {
 	  	.subscribe((resp)=>{
 
 			let data = {
+				emailId: this.data.emailId,
+				firstName: this.data.firstName,
+				lastName: this.data.lastName,
+				gaSecret: this.data.gaSecret,
+				kycStatus: this.data.kycStatus,
 				address1: this.inputForm.value.address1,
 				address2: this.inputForm.value.address2,
 				city: this.inputForm.value.city,
