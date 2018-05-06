@@ -31,15 +31,18 @@ export class SignupComponent implements OnInit {
   @Input() user: any = null;
   inputForm: FormGroup;
   error: string = null;
-  email: string = null;
+  success: boolean = false;
+  emailId: string = null;
   loading: boolean = false;
 
   constructor(private service: AppService, private fb: FormBuilder, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
-  	this.email = null;
+  	this.emailId = null;
   	this.inputForm = this.fb.group({
-        email: ['', [
+  		firstName: ['', Validators.required],
+  		lastName: ['', Validators.required],
+        emailId: ['', [
             Validators.required,
             Validators.email
         ]]
@@ -47,39 +50,47 @@ export class SignupComponent implements OnInit {
   }
 
   register(content){
-    	this.router.navigate(['verify/'+ (new Date()).getTime()]);
-    	this.dismiss();
+    	//this.router.navigate(['verify/'+ (new Date()).getTime()]);
+    	//this.dismiss();
 
-/*  	if(this.inputForm.invalid === true)
+  	if(this.inputForm.invalid === true)
   		return;
 
   	this.user = null;
   	this.error = null;
+  	this.success = false;
   	this.loading = true;
 
   	this.service.register(this.inputForm.value)
-  	.subscribe((resp)=>{
+  	.subscribe((resp:any)=>{
   		this.loading = false;
-  		if(resp == 200){
-  			this.user = resp;
+  		if(resp.status == "SUCCESS"){
+  			//this.router.navigate(['verifyUser', { queryParams: {'vid': 'd35897ad-60e5-42eb-a4a8-7d86ed902634'} }]);
+  			this.success = true;
   			this.dismiss();
-  			this.email = this.inputForm.value.email;
-  			this.inputForm.value.email = "";
-  			this.modalService.open(content, {size: 'lg'})
-  			.result.then((result) => {
-		    }, (reason) => {
-		    });
+  			this.showMessage(content);
   		}
   		else {
-  			this.error = resp.message||"Failed to register";
+  			this.error = resp.errorDesc||"Failed to register, kindly try after sometime";
+  			this.showMessage(content);
   		}
   	}, (resp)=>{
   		this.loading = false;
-  		resp = resp.json();
-  		console.log("error error ", resp);
-  		this.error = resp.message||"Failed to register";
-  	});*/
+  		this.error = "Failed to register, kindly try after sometime";
+  		this.showMessage(content);
+  	});
 
+  }
+
+  showMessage(content){
+	this.emailId = this.inputForm.value.emailId;
+	this.inputForm.value.emailId = "";
+	this.inputForm.value.firstName = "";
+	this.inputForm.value.lastName = "";
+	this.modalService.open(content, {size: 'lg'})
+		.result.then((result) => {
+	}, (reason) => {
+	});  
   }
 
   dismiss(){

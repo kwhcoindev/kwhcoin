@@ -1,8 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Jsonp, Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Jsonp, Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import { AppConstants } from './app.constants';
+import { HttpHeaders } from '@angular/common/http';
 
 import * as moment from 'moment';
 
@@ -64,6 +65,12 @@ export class EmitterService {
     }
 }
 
+const httpOptions: RequestOptionsArgs = {
+  headers: new Headers({
+    'API-Key':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a'
+  })
+};
+
 @Injectable()
 export class AppService {
 	
@@ -80,28 +87,33 @@ export class AppService {
 	}
 
 	register(data: any){
-		return this.http.post(AppConstants.API2_URL + 'register', data)
+		return this.http.post(AppConstants.API2_URL + '/auth/register', data, httpOptions)
 		.map((resp) => resp.json() );
 	}
 
 	login(data: any){
-		return this.http.post(AppConstants.API2_URL + 'login', data)
+		return this.http.post(AppConstants.API2_URL + '/auth/login', data, httpOptions)
 		.map((resp) => {
 			this.user = resp.json();
 			return this.user;
 		});
+	}
+
+	verifyUser(key: string): Observable<any>{
+		return this.http.post(AppConstants.API2_URL + '/auth/verifyUser?vid='+ key, {}, httpOptions)
+		.map((resp) => resp.json());
 	}
 
 	validateLogin(data: any){
-		return this.http.post(AppConstants.API2_URL + 'validateLogin', data)
+		return this.http.post(AppConstants.API2_URL + 'validateLogin', data, httpOptions)
 		.map((resp) => {
 			this.user = resp.json();
 			return this.user;
 		});
 	}
 
-	verify(data: any){
-		return this.http.post(AppConstants.API2_URL + 'verify', data)
+	updateUserDetails(data: any){
+		return this.http.post(AppConstants.API2_URL + 'updateUserDetails', data, httpOptions)
 		.map((resp) => resp.json() );
 	}
 

@@ -45,6 +45,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './dashboard/header/header.component';
 import { DashboardFooterComponent } from './dashboard/footer/footer.component';
 
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+
+
+@Injectable()
+export class ReqInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const changedReq = req.clone({headers: req.headers.set('API-Key', 'bcb66df33fbeec02931c0f99d84a3502b1146f3a')});
+    return next.handle(changedReq);
+  }
+}
 
 export class NgbDateMomentParserFormatter extends NgbDateParserFormatter {
     private momentFormat: string = "MM/DD/YYYY";
@@ -87,7 +100,7 @@ const appRoutes: Routes = [
   { path: 'know-your-customer', component: KnowYourCustomerComponent},
   { path: 'signin', component: SigninComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'update/:key', component: VerifyComponent},
+  { path: 'verifyUser', component: VerifyComponent},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent},
   { path: 'dashboard/summary', component: DashboardComponent }
 ];
@@ -149,7 +162,12 @@ const appRoutes: Routes = [
               AppConstants,
               PercentPipe,
               EmitterService,
-              {provide: NgbDateParserFormatter, useClass: NgbDateMomentParserFormatter }
+              {provide: NgbDateParserFormatter, useClass: NgbDateMomentParserFormatter },
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: ReqInterceptor,
+                multi: true,
+              }
 
   ],
   bootstrap: [AppComponent]

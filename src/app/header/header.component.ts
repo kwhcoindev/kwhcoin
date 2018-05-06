@@ -9,6 +9,7 @@ export class HeaderComponent implements OnInit, OnChanges {
 
 	@Input() navIsFixed : boolean = false;
   user: any = null;
+  signInUrl: string = (document.location.hostname.indexOf('localhost')!= -1? "/#/signin" : "https://app.kwhcoin.com/#/signin" );
 
   isOpenSignInUp: boolean = false;
 

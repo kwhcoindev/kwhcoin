@@ -1,31 +1,45 @@
-<section class="content-section py-0">
-	<div class="section601 py-0">
-		<form id="login" [formGroup]="inputForm" class="ajax-auth card border-0 p-0" action="login" method="post" (click)="$event.stopPropagation()">
-		    <div class="card-body mx-2">
-		    	<!--button class="close float-right btnClose fa-lg" (click)="dismiss()">&times;</button-->
-		        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Login failed. Email/Password is invalid</p>
-		        <div class="md-form form-group">
-		            <label for="username">Email</label>
-		            <input type="text" id="username" class="w-100 d-block form-control" name="username" formControlName="username">
-		        </div>
-		        <div class="md-form mb-1 form-group">
-		            <label for="password">Password</label>
-		            <input type="password" id="password" class="w-100 d-block form-control" name="password" formControlName="password">
-		        </div>
-		        
-		        <!--p class="login-font-small blue-text d-flex justify-content-end"><a class="blue-text" href="https://mdbootstrap.com/my-account/lost-password/">Forgot Password?</a></p-->
+<section class="content-section bg-light content-animation">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 offset-lg-4 col-lg-4 offset-md-3 col-md-6 py-5">				
+				<div class="card text-secondary mb-4">
+					<div class="card-body">
+						<h2 class="h5 pb-3 card-title">
+							Sign in
+						</h2>
+						<form id="login" [formGroup]="inputForm" class="ajax-auth card border-0 p-0" action="login" method="post" (click)="$event.stopPropagation()">
+					    	<!--button class="close float-right btnClose fa-lg" (click)="dismiss()">&times;</button-->
+					        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Login failed. Email/Password is invalid</p>
+					        <div class="md-form form-group">
+					            <label for="emailId">Email</label>
+					            <input type="text" id="emailId" class="w-100 d-block form-control" name="emailId" formControlName="emailId">
+					        </div>
+					        <div class="md-form mb-1 form-group">
+					            <label for="pswd">Password</label>
+					            <input type="password" id="pswd" class="w-100 d-block form-control" name="pswd" formControlName="pswd">
+					        </div>
+					        
+					        <!--p class="login-font-small blue-text d-flex justify-content-end"><a class="blue-text" href="https://mdbootstrap.com/my-account/lost-password/">Forgot Password?</a></p-->
 
-		        <div class="text-center mt-3 mb-3 btn-group d-flex" role="group">
-		            <button class="submit_button btn w-100" type="submit" (click)="login()">Log In</button>
-		            <button class="submit_button btn btn-white w-100" type="button" (click)="dismiss()">Cancel</button>
-		        </div>
+					        <div class="text-center mt-3 mb-3 btn-group d-flex" role="group">
+					            <button class="submit_button btn w-100" type="submit" (click)="login()">Log In</button>
+					            <!--button class="submit_button btn btn-white w-100" type="button" (click)="dismiss()">Cancel</button-->
+					        </div>
 
-		        <!--hr>
-		        <div class="text-right">
-		            <p class="login-font-small grey-text">Not a member? <a href="/#/signup" class="blue-text ml-1" (click)="dismiss()" id="pop_signup"> Sign Up</a></p>
-		        </div-->
-
-		    </div>
-		</form>
+					        <!--hr>
+					        <div class="text-right">
+					            <p class="login-font-small grey-text">Not a member? <a href="/#/signup" class="blue-text ml-1" (click)="dismiss()" id="pop_signup"> Sign Up</a></p>
+					        </div-->
+						</form>
+					</div>
+				</div>
+				
+				<hr class="mb-1" />
+				<div class="text-center">
+					<p class="small text-primary mb-2">New to KWH?</p>
+					<a routerLink="/signup" class="btn btn-white btn-sm fw300 text-success d-block">Create your KWH Account</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>

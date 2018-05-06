@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { AppService } from '../app.service';
 import { CustomValidators } from '../signup/signup.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import * as zxcvbn from "zxcvbn";
 
@@ -18,32 +18,53 @@ export class VerifyComponent implements OnInit {
 	@Input() user: any = null;
 	inputForm: FormGroup;
 	error: string = null;
+	showForm: boolean = false;
+	processing: boolean = true;
 
 	barColors: Array<string> = [];
 	colors: Array<string> = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
 	passwordStrength: number = 0;
 
 
-  	constructor(private service: AppService, private fb: FormBuilder, private router: Router) { }
+  	constructor(private service: AppService, private fb: FormBuilder, 
+  		private router: Router, private route: ActivatedRoute) { }
 
 	ngOnInit() {
+
+		this.route.queryParamMap
+		    .switchMap((params: ParamMap) => this.service.verifyUser(params.get('vid')))
+		    .subscribe(resp => {
+		    	console.log(resp);
+		    	this.processing = false;
+		    	//if(resp.status == "SUCCESS"){
+			    	//else redirect to update user after storing the user data in common service
+			    	this.showForm = true;
+		    	//} else {
+			    	//If false show message from service
+			    //	this.error = resp.errorDesc;
+		    	//}
+		    }, ()=>{
+		    	this.processing = false;
+		    	this.error = "Oops! something went wrong, please try after sometime.";
+		    });
 
 		this.updateBarColors("");
 
 		this.inputForm = this.fb.group({
-		  name: ['', Validators.required ],
+		  //firstName: ['', Validators.required ],
+		  //lastName: ['', Validators.required ],
+		  profileName: ['', Validators.required ],
 		  passwordGroup: this.fb.group({
-		        password: ['', [
+		        pswd: ['', [
 		            Validators.required
 		        ]],
-		        confirmPassword: ['', Validators.required]}, 
+		        rePswd: ['', Validators.required]}, 
 		    { validator: CustomValidators.childrenEqual}),
-		  street1: ['', Validators.required ],
-		  street2: ['', null ],
+		  address1: ['', Validators.required ],
+		  address2: ['', null ],
 		  city: ['', null ],
-		  zip: ['', null ],
+		  zipCode: ['', null ],
 		  state: ['', null ],
-		  county: ['', null ],
 		  country: ['', Validators.required ],
 		  latitude: ['', null],
 		  longitude: ['', null]
@@ -90,14 +111,12 @@ export class VerifyComponent implements OnInit {
 
 	verify(){
 
-	  	this.router.navigate(['dashboard/summary']);
-	  	this.dismiss();
-
-/*	  	if(this.inputForm.invalid === true)
+	  	if(this.inputForm.invalid === true)
 	  		return;
 
 	  	this.user = null;
 	  	this.error = null;
+	  	this.processing = false;
 
 	  	this.service.getGeoCoding( this.formatAddress(this.inputForm.value) )
 	  	.subscribe((resp)=>{
@@ -117,22 +136,25 @@ export class VerifyComponent implements OnInit {
 	  				}
 	  			});
 
-			  	this.service.verify(data)
+			  	this.service.updateUserDetails(data)
 			  	.subscribe((resp)=>{
-			  		if(resp && resp.ok === true){
-			  			this.user = resp;
+			  		this.processing = false;
+			  		if(resp && resp.status === "SUCCESS"){
+					  	this.router.navigate(['signin']);
+			  			//this.user = resp;
 			  			this.dismiss();
 			  		}
 			  		else {
-			  			this.error = resp.message||"Failed to update profile";
+			  			this.error = resp.errorDesc||"Failed to update profile";
 			  		}
 			  	}, ()=>{
+			  		this.processing = false;
 			  		this.error = "Failed to update profile";
 			  	});  			
 	  		} else {
 	  			this.error = "Invalid address, please provide valid address";
 	  		}
-	  	})*/
+	  	})
 	}
 
  

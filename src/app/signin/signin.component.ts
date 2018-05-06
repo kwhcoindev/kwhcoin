@@ -20,18 +20,15 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
   	this.inputForm = this.fb.group({
-	  username: ['', [Validators.required, Validators.email] ],
-	  password: ['', Validators.required ]
+	  emailId: ['', [Validators.required, Validators.email] ],
+	  pswd: ['', null ]
 	});
 
   }
 
   login(){
 
-  	this.router.navigate(['dashboard/summary']);
-  	this.dismiss();
-
-/*  	if(this.inputForm.invalid === true)
+  	if(this.inputForm.invalid === true)
   		return;
 
   	this.user = null;
@@ -41,15 +38,15 @@ export class SigninComponent implements OnInit {
   	.subscribe((resp)=>{
   		if(resp && resp.token){
   			this.user = resp;
+		  	this.router.navigate(['dashboard/summary']);
   			this.dismiss();
   		}
   		else {
-  			this.error = resp.message||"Failed to login";
+  			this.error = resp.errorDesc||"Failed to login";
   		}
-  	}, (resp)=>{
-  		resp = resp.json();
-  		this.error = resp.message||"Failed to login";
-  	});*/
+  	}, ()=>{
+  		this.error = "Failed to login";
+  	});
 
   }
 
