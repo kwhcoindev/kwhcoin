@@ -68,15 +68,21 @@ export class EmitterService {
 const httpOptions: RequestOptionsArgs = {
   withCredentials: true,
   headers: new Headers({
-    'API-Key':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a'
-  })
+    //'API-Key':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a',
+    'Authorization':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a'
+			  })
 };
+
 
 @Injectable()
 export class AppService {
 	
 	user: any = null;
 	sessionStorage: any = sessionStorage || window.sessionStorage;
+	loginHttpOptions: RequestOptionsArgs = {
+	  withCredentials: true,
+	  headers: null
+	};
 
 	constructor(
 		private http: Http,
@@ -93,6 +99,7 @@ export class AppService {
 	logout(): any{
 		this.user = null;
 		this.sessionStorage.removeItem("user");
+		this.loginHttpOptions.headers = null;
 	}
 
 	register(data: any){
@@ -106,6 +113,11 @@ export class AppService {
 			resp = resp.json();
 			this.user = resp.data;
 			this.sessionStorage.setItem("user", JSON.stringify(this.user));
+			this.loginHttpOptions.headers = new Headers({
+			    'OWASP_CSRFTOKEN':  this.user.csrfToken,
+			    'Authorization':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a',
+			    'X-Requested-With': 'XMLHttpRequest'
+			  });
 			return resp;
 		});
 	}
@@ -128,10 +140,35 @@ export class AppService {
 		.map((resp) => resp.json() );
 	}
 
-	balance(data: any){
-		return this.http.post(AppConstants.API2_URL + 'balance', data)
+	sendResetPassword(data: any){
+		return this.http.post(AppConstants.API2_URL + '/auth/sendResetPasswordVerificationEmail', data, httpOptions)
+		.map((resp: any) => resp.json());
+	}
+
+	verifyResetPassword(key: string): Observable<any>{
+		return this.http.post(AppConstants.API2_URL + '/auth/verifyResetPassword?vid='+ key, {}, httpOptions)
+		.map((resp) => resp.json());
+	}
+
+	resetPassword(data: any){
+		return this.http.post(AppConstants.API2_URL + '/auth/resetPassword', data, httpOptions)
 		.map((resp) => resp.json() );
 	}
+
+	getERC20Balance(){
+		return this.http.post(AppConstants.API2_URL + '/block/getERC20Balance', {}, this.loginHttpOptions)
+		.map((resp) => resp.json() );
+	}
+
+	getEthBalance(){
+		return this.http.post(AppConstants.API2_URL + '/block/getEthBalance', {}, this.loginHttpOptions)
+		.map((resp) => resp.json() );
+	}
+
+	/*balance(data: any){
+		return this.http.post(AppConstants.API2_URL + 'balance', data)
+		.map((resp) => resp.json() );
+	}*/
 
 	locationsNearMe(data: any){
 		return this.http.post(AppConstants.API2_URL + 'locations-near-me', data)

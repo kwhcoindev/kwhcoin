@@ -19,13 +19,18 @@
 					            <input type="password" id="pswd" class="w-100 d-block form-control" name="pswd" formControlName="pswd">
 					        </div>
 					        
-					        <!--p class="login-font-small blue-text d-flex justify-content-end"><a class="blue-text" href="https://mdbootstrap.com/my-account/lost-password/">Forgot Password?</a></p-->
-
 					        <div class="text-center mt-3 mb-3 btn-group d-flex" role="group">
-					            <button class="submit_button btn w-100" type="submit" (click)="login()">Log In</button>
+					            <button class="submit_button btn w-100" type="submit" (click)="login()">Sign In</button>
 					            <!--button class="submit_button btn btn-white w-100" type="button" (click)="dismiss()">Cancel</button-->
 					        </div>
 
+					        <div class="small"><a class="" routerLink="/reset-password">Forgot Password?</a></div>
+
+							<hr class="mb-4" />
+							<div class="text-center">
+								<p class="small text-primary mb-2">New to KWH?</p>
+								<a routerLink="/signup" class="btn btn-white btn-sm fw300 text-success d-block">Create your KWH Account</a>
+							</div>
 					        <!--hr>
 					        <div class="text-right">
 					            <p class="login-font-small grey-text">Not a member? <a href="/#/signup" class="blue-text ml-1" (click)="dismiss()" id="pop_signup"> Sign Up</a></p>
@@ -34,11 +39,6 @@
 					</div>
 				</div>
 				
-				<hr class="mb-1" />
-				<div class="text-center">
-					<p class="small text-primary mb-2">New to KWH?</p>
-					<a routerLink="/signup" class="btn btn-white btn-sm fw300 text-success d-block">Create your KWH Account</a>
-				</div>
 			</div>
 		</div>
 	</div>

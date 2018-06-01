@@ -49,6 +49,8 @@ import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { VerifyResetPasswordComponent } from './verify-reset-password/verify-reset-password.component';
 
 
 @Injectable()
@@ -100,9 +102,11 @@ const appRoutes: Routes = [
   { path: 'know-your-customer', component: KnowYourCustomerComponent},
   { path: 'signin', component: SigninComponent},
   { path: 'signup', component: SignupComponent},
-  { path: 'verifyUser', component: VerifyComponent},
+  { path: 'verify-user', component: VerifyComponent},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent},
-  { path: 'dashboard/summary', component: DashboardComponent }
+  { path: 'dashboard/summary', component: DashboardComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'verify-reset-password', component: VerifyResetPasswordComponent }
 ];
 
 
@@ -143,7 +147,9 @@ const appRoutes: Routes = [
     SummaryComponent,
     DashboardHeaderComponent,
     DashboardFooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    ResetPasswordComponent,
+    VerifyResetPasswordComponent
   ],
   imports: [
     BrowserModule,

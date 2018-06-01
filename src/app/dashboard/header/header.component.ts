@@ -15,7 +15,7 @@ export class DashboardHeaderComponent implements OnInit {
 	constructor(private service: AppService, private router: Router) { }
 
  	ngOnInit() {
- 		this.wallet = {kwhBalance: 300000, ethBalance: 200};
+ 		//this.wallet = {kwhBalance: 300000, ethBalance: 200};
   	}
 
   	signout(){

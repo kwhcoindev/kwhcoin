@@ -10,8 +10,8 @@ import { AppService } from '../app.service';
 })
 export class DashboardComponent implements OnInit {
 
-	user: any = null; //{id: 1, name: "Your Name", email: "dummy@kwhcoin.com"};
-	wallet: any = {balance: 0};
+	user: any = null;
+	wallet: any = {erc20Balance: 0, ethBalance: 0};
 
   	constructor(private service: AppService, private router: Router) { }
 
@@ -26,6 +26,20 @@ export class DashboardComponent implements OnInit {
 	  	});*/  
   		if(!this.user||!this.user.emailId)
   			this.router.navigate(['signin']);
+  		else {
+  			this.getBalance();
+  		}
 	}
 
+	getBalance(){
+		this.service.getERC20Balance()
+		.subscribe((resp)=>{
+			this.wallet.erc20Balance = resp.data||{};
+		})
+
+		this.service.getEthBalance()
+		.subscribe((resp)=>{
+			this.wallet.ethBalance = resp.data||{};
+		})
+	}
 }
