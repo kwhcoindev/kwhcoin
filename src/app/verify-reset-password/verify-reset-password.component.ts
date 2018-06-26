@@ -107,7 +107,7 @@ export class VerifyResetPasswordComponent implements OnInit {
 		};
 
 	  	this.service.resetPassword(data)
-	  	.subscribe((resp)=>{
+	  	.subscribe((resp:any)=>{
 	  		this.processing = false;
 	  		if(resp && resp.status === "SUCCESS"){
 	  			this.status = resp.status;

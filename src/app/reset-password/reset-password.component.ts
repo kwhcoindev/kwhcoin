@@ -38,7 +38,7 @@ export class ResetPasswordComponent implements OnInit {
   	this.error = null;
 
   	this.service.sendResetPassword(this.inputForm.value)
-  	.subscribe((resp)=>{
+  	.subscribe((resp:any)=>{
   	console.log(resp);
   		if(resp.status == "SUCCESS"){
   			this.status = resp.status;

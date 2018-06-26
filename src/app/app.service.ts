@@ -1,9 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Jsonp, Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import { AppConstants } from './app.constants';
-import { HttpHeaders } from '@angular/common/http';
 
 import * as moment from 'moment';
 
@@ -65,12 +64,8 @@ export class EmitterService {
     }
 }
 
-const httpOptions: RequestOptionsArgs = {
-  withCredentials: true,
-  headers: new Headers({
-    //'API-Key':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a',
-    'Authorization':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a'
-			  })
+const httpOptions = {
+  withCredentials: true
 };
 
 
@@ -79,17 +74,14 @@ export class AppService {
 	
 	user: any = null;
 	sessionStorage: any = sessionStorage || window.sessionStorage;
-	loginHttpOptions: RequestOptionsArgs = {
-	  withCredentials: true,
-	  headers: null
-	};
 
 	constructor(
-		private http: Http,
-		private jsonp: Jsonp) {
+		private http: HttpClient) {
 
-		if( this.sessionStorage.getItem("user") )
+		if( this.sessionStorage.getItem("user") ){
 			this.user = JSON.parse(this.sessionStorage.getItem("user"));
+			AppConstants.Token.set(this.user.csrfToken);
+		}
 	}
 
 	getUser(): any{
@@ -98,71 +90,62 @@ export class AppService {
 
 	logout(): any{
 		this.user = null;
+		AppConstants.Token.set(null);
 		this.sessionStorage.removeItem("user");
-		this.loginHttpOptions.headers = null;
 	}
 
 	register(data: any){
-		return this.http.post(AppConstants.API2_URL + '/auth/register', data, httpOptions)
-		.map((resp) => resp.json() );
+		return this.http.post(AppConstants.API2_URL + 'auth/register', data, httpOptions)
 	}
 
 	login(data: any){
-		return this.http.post(AppConstants.API2_URL + '/auth/login', data, httpOptions)
-		.map((resp: any) => {
-			resp = resp.json();
+		return this.http.post(AppConstants.API2_URL + 'auth/login', data, httpOptions)
+		.map((resp:any) => {
 			this.user = resp.data;
 			this.sessionStorage.setItem("user", JSON.stringify(this.user));
-			this.loginHttpOptions.headers = new Headers({
-			    'OWASP_CSRFTOKEN':  this.user.csrfToken,
-			    'Authorization':  'bcb66df33fbeec02931c0f99d84a3502b1146f3a',
-			    'X-Requested-With': 'XMLHttpRequest'
-			  });
+			AppConstants.Token.set(this.user.csrfToken);
 			return resp;
 		});
 	}
 
 	verifyUser(key: string): Observable<any>{
-		return this.http.post(AppConstants.API2_URL + '/auth/verifyUser?vid='+ key, {}, httpOptions)
-		.map((resp) => resp.json());
+		return this.http.post(AppConstants.API2_URL + 'auth/verifyUser?vid='+ key, {}, httpOptions)
 	}
 
 	validateLogin(data: any){
 		return this.http.post(AppConstants.API2_URL + 'validateLogin', data, httpOptions)
-		.map((resp) => {
-			this.user = resp.json();
+		.map((resp:any) => {
+			this.user = resp;
 			return this.user;
 		});
 	}
 
 	updateUserDetails(data: any){
-		return this.http.post(AppConstants.API2_URL + '/auth/updateUserDetails', data, httpOptions)
-		.map((resp) => resp.json() );
+		return this.http.post(AppConstants.API2_URL + 'auth/updateUserDetails', data, httpOptions)
 	}
 
 	sendResetPassword(data: any){
-		return this.http.post(AppConstants.API2_URL + '/auth/sendResetPasswordVerificationEmail', data, httpOptions)
-		.map((resp: any) => resp.json());
+		return this.http.post(AppConstants.API2_URL + 'auth/sendResetPasswordVerificationEmail', data, httpOptions)
 	}
 
 	verifyResetPassword(key: string): Observable<any>{
-		return this.http.post(AppConstants.API2_URL + '/auth/verifyResetPassword?vid='+ key, {}, httpOptions)
-		.map((resp) => resp.json());
+		return this.http.post(AppConstants.API2_URL + 'auth/verifyResetPassword?vid='+ key, {}, httpOptions)
 	}
 
 	resetPassword(data: any){
-		return this.http.post(AppConstants.API2_URL + '/auth/resetPassword', data, httpOptions)
-		.map((resp) => resp.json() );
+		return this.http.post(AppConstants.API2_URL + 'auth/resetPassword', data, httpOptions)
 	}
 
 	getERC20Balance(){
-		return this.http.post(AppConstants.API2_URL + '/block/getERC20Balance', {}, this.loginHttpOptions)
-		.map((resp) => resp.json() );
+		return this.http.post(AppConstants.API2_URL + 'rest/block/getERC20Balance', {}, httpOptions)
 	}
 
 	getEthBalance(){
-		return this.http.post(AppConstants.API2_URL + '/block/getEthBalance', {}, this.loginHttpOptions)
-		.map((resp) => resp.json() );
+		return this.http.post(AppConstants.API2_URL + 'rest/block/getEthBalance', {}, httpOptions)
+	}
+
+	getUsers(){
+		return this.http.post(AppConstants.API2_URL + 'rest/user/getUsers', {}, httpOptions)
 	}
 
 	/*balance(data: any){
@@ -172,11 +155,9 @@ export class AppService {
 
 	locationsNearMe(data: any){
 		return this.http.post(AppConstants.API2_URL + 'locations-near-me', data)
-		.map((resp) => resp.json() );
 	}
 
 	getGeoCoding(strAddress: string){
 		return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ encodeURIComponent(strAddress) +'&key='+ AppConstants.GoogleApiKey)
-		.map((resp)=>resp.json());
 	}
 }

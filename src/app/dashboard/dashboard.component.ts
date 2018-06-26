@@ -17,13 +17,7 @@ export class DashboardComponent implements OnInit {
 
   	ngOnInit() {
   		this.user = this.service.getUser();
-	  	/*this.service.validateLogin({})
-	  	.subscribe((resp)=>{
-	  		this.user = resp;
 
-	  		if(!this.user||!this.user.id)
-	  			this.router.navigate(['']);
-	  	});*/  
   		if(!this.user||!this.user.emailId)
   			this.router.navigate(['signin']);
   		else {
@@ -33,13 +27,13 @@ export class DashboardComponent implements OnInit {
 
 	getBalance(){
 		this.service.getERC20Balance()
-		.subscribe((resp)=>{
-			this.wallet.erc20Balance = resp.data||{};
+		.subscribe((resp:any)=>{
+			this.wallet.erc20Balance = resp.data||0;
 		})
 
 		this.service.getEthBalance()
-		.subscribe((resp)=>{
-			this.wallet.ethBalance = resp.data||{};
+		.subscribe((resp:any)=>{
+			this.wallet.ethBalance = resp.data||0;
 		})
 	}
 }

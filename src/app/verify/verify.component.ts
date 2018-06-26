@@ -123,7 +123,7 @@ export class VerifyComponent implements OnInit {
 	  	this.processing = false;
 
 	  	this.service.getGeoCoding( this.formatAddress(this.inputForm.value) )
-	  	.subscribe((resp)=>{
+	  	.subscribe((resp:any)=>{
 
 			let data = {
 				emailId: this.data.emailId,
@@ -158,7 +158,7 @@ export class VerifyComponent implements OnInit {
 		  		}
 
 			  	this.service.updateUserDetails(data)
-			  	.subscribe((resp)=>{
+			  	.subscribe((resp:any)=>{
 			  		this.processing = false;
 			  		if(resp && resp.status === "SUCCESS"){
 					  	this.router.navigate(['signin']);
@@ -188,7 +188,7 @@ export class VerifyComponent implements OnInit {
 	  	this.error = null;
 
 	  	this.service.register(this.inputForm.value)
-	  	.subscribe((resp)=>{
+	  	.subscribe((resp:any)=>{
 	  		if(resp && resp.ok === true){
 	  			this.user = resp;
 	  			this.dismiss();

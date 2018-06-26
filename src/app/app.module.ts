@@ -54,10 +54,26 @@ import { VerifyResetPasswordComponent } from './verify-reset-password/verify-res
 
 
 @Injectable()
-export class ReqInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const changedReq = req.clone({headers: req.headers.set('API-Key', 'bcb66df33fbeec02931c0f99d84a3502b1146f3a')});
-    return next.handle(changedReq);
+export class TokenInterceptor implements HttpInterceptor {
+  constructor() {}
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    request = request.clone({
+      setHeaders: {
+        'Authorization': AppConstants.Authorization,
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    });
+
+    if( AppConstants.Token ){
+      request = request.clone({
+        setHeaders: {
+          'OWASP_CSRFTOKEN': `${AppConstants.Token.get()}`
+        }
+      });
+    }
+    
+    return next.handle(request);
   }
 }
 
@@ -156,7 +172,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    JsonpModule,
+    //JsonpModule,
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
@@ -171,8 +187,8 @@ const appRoutes: Routes = [
               {provide: NgbDateParserFormatter, useClass: NgbDateMomentParserFormatter },
               {
                 provide: HTTP_INTERCEPTORS,
-                useClass: ReqInterceptor,
-                multi: true,
+                useClass: TokenInterceptor,
+                multi: true
               }
 
   ],
