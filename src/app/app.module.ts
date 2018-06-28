@@ -68,11 +68,11 @@ export class TokenInterceptor implements HttpInterceptor {
     if( AppConstants.Token ){
       request = request.clone({
         setHeaders: {
-          'OWASP_CSRFTOKEN': `${AppConstants.Token.get()}`
+          'OWASP_CSRFTOKEN': '${AppConstants.Token.get()}'
         }
       });
     }
-    
+
     return next.handle(request);
   }
 }

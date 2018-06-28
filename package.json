@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node setenv.js && ng serve",
+    "prebuild": "node setenv.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -42,6 +43,7 @@
     "@types/jasmine": "2.5.45",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.0.1",
+    "ejs": "^2.6.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",

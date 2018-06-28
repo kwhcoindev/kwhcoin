@@ -1,0 +1,8 @@
+export const environment = {
+  production: true,
+  APP_DOMAIN: '<%= ENV_APP_DOMAIN %>',
+  APP_API_URL: '<%= ENV_APP_API_URL %>',
+  APP_API2_URL: '<%= ENV_APP_API2_URL %>',
+  APP_GOOGLE_API_KEY: '<%= ENV_APP_GOOGLE_API_KEY %>',
+  APP_API_KEY: '<%= ENV_APP_API_KEY %>'
+};

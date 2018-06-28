@@ -1,12 +1,12 @@
 <dashboard-header *ngIf="user" [user]="user" [wallet]="wallet"></dashboard-header>
 <div class="container-fluid dashboard-section h-100">
 	<div class="row h-100">
-		<div class="col-12 col-md-7 col-lg-8 h-100">
+		<div class="col-12 h-100">
 			<dashboard-summary *ngIf="user" [user]="user"></dashboard-summary>
 		</div>
-		<div class="col-12 col-md-5 col-lg-4 h-100 px-0">
+		<!--div class="col-12 col-md-5 col-lg-4 h-100 px-0">
 			<dashboard-sidebar *ngIf="user" [user]="user" [wallet]="wallet"></dashboard-sidebar>
-		</div>
+		</div-->
 	</div>
 </div>
 <dashboard-footer></dashboard-footer>
