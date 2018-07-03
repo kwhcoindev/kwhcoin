@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node setenv.js && ng serve",
-    "prebuild": "node setenv.js",
-    "build": "ng build",
+    "start": "node ./setenv.js && ng serve",
+    "prebuild": "node ./setenv.js",
+    "build": "node ./setenv.js && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
