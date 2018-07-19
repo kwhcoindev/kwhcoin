@@ -160,4 +160,18 @@ export class AppService {
 	getGeoCoding(strAddress: string){
 		return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ encodeURIComponent(strAddress) +'&key='+ AppConstants.GoogleApiKey)
 	}
+
+	getDepositAddress() {
+		return this.http.post(AppConstants.API2_URL + 'rest/user/getUserAddresses', {}, httpOptions);
+	}
+
+	transfer(data: any) {
+		let url = "";
+		if(data.addressType === 'ERC20'){
+			url = 'rest/block/transferERC20';
+		} else if(data.addressType === 'Ether'){
+			url = 'rest/block/transferEther';
+		}
+		return this.http.post(AppConstants.API2_URL + url, data, httpOptions);
+	}
 }

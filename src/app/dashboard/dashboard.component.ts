@@ -28,12 +28,22 @@ export class DashboardComponent implements OnInit {
 	getBalance(){
 		this.service.getERC20Balance()
 		.subscribe((resp:any)=>{
-			this.wallet.erc20Balance = resp.data||0;
+			if(resp.errorDesc == 'Invalid token, please login.'){
+				this.service.logout();
+				this.router.navigate(['signin']);
+			} else {
+				this.wallet.erc20Balance = resp.data||0;
+			}
 		})
 
 		this.service.getEthBalance()
 		.subscribe((resp:any)=>{
-			this.wallet.ethBalance = resp.data||0;
+			if(resp.errorDesc == 'Invalid token, please login.'){
+				this.service.logout();
+				this.router.navigate(['signin']);
+			} else {
+				this.wallet.ethBalance = resp.data||0;
+			}
 		})
 	}
 }

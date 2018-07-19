@@ -51,6 +51,8 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/com
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyResetPasswordComponent } from './verify-reset-password/verify-reset-password.component';
+import { WithdrawComponent } from './dashboard/withdraw/withdraw.component';
+import { DepositComponent } from './dashboard/deposit/deposit.component';
 
 
 @Injectable()
@@ -65,10 +67,10 @@ export class TokenInterceptor implements HttpInterceptor {
       }
     });
 
-    if( AppConstants.Token ){
+    if( AppConstants.Token && AppConstants.Token.get() ){
       request = request.clone({
         setHeaders: {
-          'OWASP_CSRFTOKEN': '${AppConstants.Token.get()}'
+          'OWASP_CSRFTOKEN': AppConstants.Token.get()
         }
       });
     }
@@ -165,7 +167,9 @@ const appRoutes: Routes = [
     DashboardFooterComponent,
     DashboardComponent,
     ResetPasswordComponent,
-    VerifyResetPasswordComponent
+    VerifyResetPasswordComponent,
+    WithdrawComponent,
+    DepositComponent
   ],
   imports: [
     BrowserModule,

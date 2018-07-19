@@ -1,0 +1,9 @@
+<div class="text-center" *ngIf="loading===true">
+	<img src="assets/images/loading-icon.gif" alt="Loading..." style="height:80px" />
+</div>
+<ul class="list-group-flush ml-0 pl-0">
+	<li class="list-group-item" *ngFor="let addr of depositList">
+		<p class="text-warning mb-1"><strong>Your {{(addr.fromAddrType=='ERC20'? 'KWH Coin':addr.fromAddrType)}} deposit address</strong></p>
+		<div class="small">{{addr.fromAddrPublicKey}}</div>
+	</li>
+</ul>
