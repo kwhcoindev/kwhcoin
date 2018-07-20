@@ -1,4 +1,7 @@
-<div class="px-3 py-3">
+<div class="text-center py-5" *ngIf="loading===true">
+	<img src="assets/images/loading-icon.gif" alt="Loading..." style="height:120px" />
+</div>
+<div class="px-3 py-3" *ngIf="!loading">
 	<form id="transferCrypto" [formGroup]="inputForm" class="" action="" (click)="$event.stopPropagation()" novalidate autocomplete="off">
         <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> {{error}}</p>
         <div class="md-form form-group">

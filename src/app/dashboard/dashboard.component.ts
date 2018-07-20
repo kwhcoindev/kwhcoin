@@ -11,6 +11,7 @@ import { AppService } from '../app.service';
 export class DashboardComponent implements OnInit {
 
 	user: any = null;
+	users: Array<any> = null;
 	wallet: any = {erc20Balance: 0, ethBalance: 0};
 
   	constructor(private service: AppService, private router: Router) { }
@@ -21,6 +22,14 @@ export class DashboardComponent implements OnInit {
   		if(!this.user||!this.user.emailId)
   			this.router.navigate(['signin']);
   		else {
+
+			this.service.getUsers()
+			.subscribe((resp:any)=>{
+				
+				this.users = resp.data||[];
+
+			});
+
   			this.getBalance();
   		}
 	}

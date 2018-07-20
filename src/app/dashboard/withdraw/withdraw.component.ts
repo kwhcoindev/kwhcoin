@@ -12,6 +12,7 @@ export class WithdrawComponent implements OnInit {
 
   inputForm: FormGroup;
   error: string = null;
+  loading: boolean = false;
 
   constructor(private service: AppService, private fb: FormBuilder) { }
 
@@ -30,17 +31,19 @@ export class WithdrawComponent implements OnInit {
   		return;
 
   	this.error = null;
+  	this.loading = true;
 
   	this.service.transfer(this.inputForm.value)
   	.subscribe((resp:any)=>{
+		this.loading = false;  			
   		if(resp.status == "SUCCESS"){
-  			
   			this.done();
   		}
   		else {
   			this.error = resp.errorDesc||"Failed to submit the transfer, please try again later";
   		}
   	}, ()=>{
+		this.loading = false;  	
   		this.error = "Oops! something went wrong, please contact support";
   	});
   }

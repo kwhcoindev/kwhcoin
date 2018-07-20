@@ -9,46 +9,35 @@ import { AppService } from '../../app.service';
 export class SidebarComponent implements OnInit {
 
 	@Input() user: any = {};
-	@Input() wallet: any = null;
+	@Input() users: Array<any> = null;
 
 	search: string = "";
-	showChat: boolean = false;
-	selectedContact: number = -1;
+//	showChat: boolean = false;
+//	selectedContact: number = -1;
 
-	contacts: Array<any> = [{
-		name: 'Louis Litt',
-		email: 'louis@abc.com',
-		id: 1,
-		lastChat: 'Yesterday'
-	},
-	{
-		name: 'Harvey Specter',
-		email: 'harvey_spec@gmail.com',
-		id: 2,
-		lastChat: 'Yesterday'
-	},
-	{
-		name: 'Rachel Zane',
-		email: 'rachel.zane@yahoo.com',
-		id: 3,
-		lastChat: '2 days ago'
-	},
-	{
-		name: 'Donna Paulsen',
-		email: 'donna2016@idea.us',
-		id: 4,
-		lastChat: 'Yesterday'
-	}];
+	contacts: Array<any> = [];
 
-	chats: Array<any> = [];
+//	chats: Array<any> = [];
 
 	constructor(private service: AppService) { }
 
  	ngOnInit() {
- 		this.wallet = {balance: 300000};
+ 		this.filter();
   	}
 
-  	selectContact(idx: any, chatTabs: any) {
+  	filter(){
+ 		this.contacts = this.users.filter((o)=>{
+ 			let term = this.search.toLowerCase();
+ 			if(term === "")
+ 				return true;
+ 			else if( ((o.firstName||'') + (o.lastName||'')).toLowerCase().indexOf(term) != -1 )
+ 				return true;
+ 			else
+ 				return false;
+ 		});  	
+  	}
+
+/*  	selectContact(idx: any, chatTabs: any) {
   		let contact = this.contacts[idx];
   		this.selectedContact=idx;
   		this.showChat = true;
@@ -78,5 +67,5 @@ export class SidebarComponent implements OnInit {
 		}];
 
   		setTimeout(()=>{ chatTabs.select('chat-tab-2'); }, 20);
-  	}
+  	}*/
 }

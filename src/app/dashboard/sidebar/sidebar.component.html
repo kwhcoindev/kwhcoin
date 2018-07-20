@@ -4,12 +4,12 @@
       
       <ngb-tabset #chatTab="ngbTabset" class="chatTab" justify="fill">
         <ngb-tab id="chat-tab-1" class="text-white">
-          <ng-template ngbTabTitle><strong><small>CHAT HISTORY</small></strong></ng-template>
+          <ng-template ngbTabTitle><strong><small>MEMBERS</small></strong></ng-template>
           <ng-template ngbTabContent>
             <div class="contacts-panel f14 h-100">
               <div id="search">
                 <label for=""><i class="fa fa-search text-secondary" aria-hidden="true"></i></label>
-                <input type="text" class="w-100" placeholder="Search contacts..." [(ngModel)]="search">
+                <input type="text" class="w-100" placeholder="Search member..." [(ngModel)]="search">
               </div>
 
               <div id="contacts" class="f14">

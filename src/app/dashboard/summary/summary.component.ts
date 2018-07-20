@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ViewChild } from '@angular/core';
+import { ViewChild, TemplateRef } from '@angular/core';
 import { } from '@types/googlemaps';
 import { AppService } from '../../app.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'dashboard-summary',
@@ -11,21 +14,54 @@ import { AppService } from '../../app.service';
 export class SummaryComponent implements OnInit {
 
 	@Input() user: any = null;
-	@Input() wallet: any = null;
+	@Input() users: Array<any> = null;
 
 	@ViewChild('gmap') gmapElement: any;
   	map: google.maps.Map;
 
-	constructor(private service: AppService) { }
+  	@ViewChild('emailContent')
+    private emailContentRef : TemplateRef<any>;
+
+    markers: Array<any> = [];
+    contact: any = null;
+
+	emailForm: FormGroup;
+	error: string = null;
+	loading: boolean = false;
+
+
+	constructor(private service: AppService, private modalService: NgbModal, private fb: FormBuilder) { }
 
 	ngOnInit() {
 
-		this.service.getUsers()
-		.subscribe((resp:any)=>{
-			
-			this.renderGoogleMap(resp.data||[]);
+		this.renderGoogleMap(this.users);
 
-		});
+	  	this.emailForm = this.fb.group({
+	  		userId: [''],
+		  	subject: ['', [Validators.required, Validators.maxLength(200)] ],
+		  	message: ['', [Validators.required, Validators.maxLength(4000)] ]
+		  });
+
+	}
+
+	openSendEmail(idx: number){
+		this.contact = this.markers[idx];
+		console.log(this.contact);
+	    this.modalService.open(this.emailContentRef, {size: 'lg'}).result
+	    .then((result) => {
+	    }, (reason) => {
+	    });
+	}
+
+	sendEmail() {
+		if(this.emailForm.invalid){
+			return;
+		}
+
+		let data = this.emailForm.value;
+		data.userId = this.contact.uid;
+
+		console.log(data);
 	}
 
 	renderGoogleMap(list: Array<any>){
@@ -40,10 +76,10 @@ export class SummaryComponent implements OnInit {
 	    this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
 
 	    // Multiple markers location, latitude, and longitude
-	    let markers = [];
+	    this.markers = [];
 	    list.forEach((o)=>{
 	    	if(o.longitude && o.latitude)
-	    		markers.push([ o, +o.latitude, +o.longitude ])
+	    		this.markers.push([ o, +o.latitude, +o.longitude ])
 	    });
 
 	    /*[
@@ -54,7 +90,7 @@ export class SummaryComponent implements OnInit {
 
 		let infoWindow = new google.maps.InfoWindow(), marker, i;
 
-	    markers.forEach((m: Array<any>)=>{
+	    this.markers.forEach((m: Array<any>, idx)=>{
 			let position = new google.maps.LatLng(m[1], m[2]);
         	//bounds.extend(position);
 
@@ -71,8 +107,9 @@ export class SummaryComponent implements OnInit {
 	                infoWindow.setContent('<div id="content">'+
 					            '<div id="siteNotice">'+
 					            '</div>'+
-					            '<div><strong id="firstHeading" class="firstHeading">'+ (m[0].firstName||'') + ' ' + (m[0].lastName||'') +'</strong></div>'+
-					            '</div>');
+					            '<div><strong id="firstHeading" class="firstHeading">'+ (m[0].firstName||'') + ' ' + (m[0].lastName||'') +'</strong></div>'
+					            +'<a href="javascript:;" (click)="openSendEmail('+ idx +')">Contact member</a>'
+					            +'</div>');
 	                infoWindow.open(this.map, marker);
 	            }
 	        })(marker, i));
