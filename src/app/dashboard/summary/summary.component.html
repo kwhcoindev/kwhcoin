@@ -1,30 +1,43 @@
-<ng-template #emailContent>
-	<form id="emailForm" [formGroup]="emailForm" class="" action="" (click)="$event.stopPropagation()" novalidate autocomplete="off">
-        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> {{error}}</p>
-        <div class="md-form form-group">
-            <label for="addressType">To</label>
-        	<p>{{toName}}</p>
-        </div>
-        <div class="md-form mb-1 form-group">
-            <label for="toAddress">Subject</label>
-            <input type="text" id="subject" class="w-100 d-block form-control" name="subject" formControlName="subject"  max-length="42" maxlength="42">
-            <div class="text-danger small" *ngIf="inputForm.controls.subject.invalid && (inputForm.controls.subject.dirty || inputForm.controls.subject.touched)">
-            	<div *ngIf="inputForm.controls.subject.errors.required">Subject is required</div>
-            </div>
-        </div>
-        <div class="md-form mb-1 form-group">
-            <label for="message">Message</label>
-            <textarea id="message" class="w-100 d-block form-control" name="message" formControlName="message" max-length="100" maxlength="100"></textarea>
-            <div class="text-danger small" *ngIf="inputForm.controls.message.invalid && (inputForm.controls.message.dirty || inputForm.controls.message.touched)">
-            	<div *ngIf="inputForm.controls.message.errors.required">Message is required</div>
-            	<div *ngIf="inputForm.controls.message.errors.maxlength">Maximum 4000 characters</div>
-            </div>
-        </div>
-        <div class="text-right mt-3 mb-3" role="group">
-            <button class="submit_button btn" type="button" (click)="sendEmail()">Send</button>
-            <!--button class="submit_button btn btn-white w-100" type="button" (click)="dismiss()">Cancel</button-->
-        </div>
-	</form>	
+<ng-template #emailContent let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<div class="modal-title text-primary">
+			<strong>Send Message</strong>
+		</div>
+	      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+	        <span aria-hidden="true">&times;</span>
+	      </button>		
+	</div>
+	<div class="modal-body">
+		<div class="text-center py-5" *ngIf="loading===true">
+			<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+		</div>
+		<form id="emailForm" *ngIf="!loading" [formGroup]="emailForm" class="" action="" (click)="$event.stopPropagation()" novalidate autocomplete="off">
+	        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> {{error}}</p>
+	        <div class="md-form form-group">
+	            <label for="addressType">To: </label>
+	        	<strong>{{contact.firstName}} {{contact.lastName}}</strong>
+	        </div>
+	        <div class="md-form mb-1 form-group">
+	            <label for="toAddress">Subject:</label>
+	            <input type="text" id="subject" class="w-100 d-block form-control" name="subject" formControlName="subject"  max-length="42" maxlength="42">
+	            <div class="text-danger small" *ngIf="emailForm.controls.subject.invalid && (emailForm.controls.subject.dirty || emailForm.controls.subject.touched)">
+	            	<div *ngIf="emailForm.controls.subject.errors.required">Subject is required</div>
+	            </div>
+	        </div>
+	        <div class="md-form mb-1 form-group">
+	            <label for="message">Message:</label>
+	            <textarea id="message" class="w-100 d-block form-control" rows="5" name="message" formControlName="message" max-length="100" maxlength="100"></textarea>
+	            <div class="text-danger small" *ngIf="emailForm.controls.message.invalid && (emailForm.controls.message.dirty || emailForm.controls.message.touched)">
+	            	<div *ngIf="emailForm.controls.message.errors.required">Message is required</div>
+	            	<div *ngIf="emailForm.controls.message.errors.maxlength">Maximum 4000 characters</div>
+	            </div>
+	        </div>
+	        <div class="text-right mt-3 mb-3" role="group">
+	            <button class="submit_button btn" type="button" (click)="sendEmail(d)">Send</button>
+	            <button class="submit_button btn btn-white" type="button" (click)="d()">Cancel</button>
+	        </div>
+		</form>
+	</div>
 </ng-template>
 <section class="dashboard-summary">
 	<div #gmap class="h-100" style="width:100%;"></div>

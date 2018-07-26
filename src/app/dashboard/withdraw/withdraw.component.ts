@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../../app.service';
 
@@ -9,6 +9,8 @@ import { AppService } from '../../app.service';
   styleUrls: ['./withdraw.component.scss']
 })
 export class WithdrawComponent implements OnInit {
+
+  @Output() done: EventEmitter<any> = new EventEmitter();
 
   inputForm: FormGroup;
   error: string = null;
@@ -37,7 +39,7 @@ export class WithdrawComponent implements OnInit {
   	.subscribe((resp:any)=>{
 		this.loading = false;  			
   		if(resp.status == "SUCCESS"){
-  			this.done();
+  			this.done.emit();
   		}
   		else {
   			this.error = resp.errorDesc||"Failed to submit the transfer, please try again later";
@@ -48,9 +50,8 @@ export class WithdrawComponent implements OnInit {
   	});
   }
 
-
-  done(){
-  	console.log("done");
+  close(){
+      this.done.emit();
   }
 
 }

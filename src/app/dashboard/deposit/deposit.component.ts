@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AppService } from '../../app.service';
 
 @Component({
@@ -8,8 +8,11 @@ import { AppService } from '../../app.service';
 })
 export class DepositComponent implements OnInit {
 
+  @Output() done: EventEmitter<any> = new EventEmitter();
+
   depositList: Array<any> = [];
   loading: boolean = true;
+  error: string = null;
 
   constructor(private service: AppService) { }
 
@@ -18,7 +21,14 @@ export class DepositComponent implements OnInit {
   	.subscribe((resp:any)=>{
   		this.depositList = resp.data||[];
       this.loading = false;
-  	})
+  	},()=>{
+        this.loading = false;
+        this.error = "Oops! something went wrong, please try again later.";
+    })
+  }
+
+  close(){
+      this.done.emit();
   }
 
 }

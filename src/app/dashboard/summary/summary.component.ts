@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ViewChild, TemplateRef } from '@angular/core';
 import { } from '@types/googlemaps';
 import { AppService } from '../../app.service';
@@ -26,6 +26,7 @@ export class SummaryComponent implements OnInit {
     contact: any = null;
 
 	emailForm: FormGroup;
+	success: string;
 	error: string = null;
 	loading: boolean = false;
 
@@ -44,16 +45,28 @@ export class SummaryComponent implements OnInit {
 
 	}
 
+	@HostListener('click', ['$event'])
+	onClickEvent(ev:any) {
+	    // do something meaningful with it
+	    let cls = ev.target.className||"";
+	    if( cls.indexOf('open-send-email') != -1 ){
+	    	let idx = +ev.target.getAttribute('data-index');
+	    	//console.log("Found element" + idx);
+	    	this.openSendEmail(idx);
+	    }
+	}
+
 	openSendEmail(idx: number){
-		this.contact = this.markers[idx];
-		console.log(this.contact);
+		this.contact = this.markers[idx][0];
+		this.loading = false;
+		//console.log(this.contact);
 	    this.modalService.open(this.emailContentRef, {size: 'lg'}).result
 	    .then((result) => {
 	    }, (reason) => {
 	    });
 	}
 
-	sendEmail() {
+	sendEmail(d) {
 		if(this.emailForm.invalid){
 			return;
 		}
@@ -61,7 +74,20 @@ export class SummaryComponent implements OnInit {
 		let data = this.emailForm.value;
 		data.userId = this.contact.uid;
 
-		console.log(data);
+		this.loading = true;
+		this.service.sendEmail(data)
+	  	.subscribe((resp:any)=>{
+	  		this.loading = false;
+	  		if(resp.status == "SUCCESS"){
+	  			d();
+	  		}
+	  		else {
+	  			this.error = resp.errorDesc||"Oops! something went wrong while sending email.";
+	  		}
+	  	}, ()=>{
+	  		this.loading = false;
+	  		this.error = "Oops! something went wrong, please contact support";
+	  	});
 	}
 
 	renderGoogleMap(list: Array<any>){
@@ -108,16 +134,18 @@ export class SummaryComponent implements OnInit {
 					            '<div id="siteNotice">'+
 					            '</div>'+
 					            '<div><strong id="firstHeading" class="firstHeading">'+ (m[0].firstName||'') + ' ' + (m[0].lastName||'') +'</strong></div>'
-					            +'<a href="javascript:;" (click)="openSendEmail('+ idx +')">Contact member</a>'
+					            +'<br /><a href="javascript:;" class="open-send-email" data-index="'+ idx +'"><i class="fa fa-envelope-o mr-1"></i>Send email</a>'
 					            +'</div>');
 	                infoWindow.open(this.map, marker);
+	                console.log(infoWindow);
 	            }
 	        })(marker, i));
 
 	        // Center the map to fit all markers on the screen
 	        //this.map.fitBounds(bounds);
 
-	    })
+	    });
+	    //console.log(this.markers);
 
 	}
 

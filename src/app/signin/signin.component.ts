@@ -15,6 +15,7 @@ export class SigninComponent implements OnInit {
   @Input() user: any = null;
   inputForm: FormGroup;
   error: string = null;
+  loading: boolean = false;
 
   constructor(private service: AppService, private fb: FormBuilder, private router: Router) { }
 
@@ -36,9 +37,11 @@ export class SigninComponent implements OnInit {
 
   	this.user = null;
   	this.error = null;
+    this.loading = true;
 
   	this.service.login(this.inputForm.value)
   	.subscribe((resp)=>{
+        this.loading = false;
   		if(resp.status == "SUCCESS" && resp.data && resp.data.emailId){
 		  	this.router.navigate(['dashboard/summary']);
   			this.dismiss();
@@ -47,6 +50,7 @@ export class SigninComponent implements OnInit {
   			this.error = resp.errorDesc||"Login failed. Email/Password is invalid";
   		}
   	}, ()=>{
+        this.loading = false;
   		this.error = "Oops! something went wrong, please contact support";
   	});
 

@@ -1,9 +1,15 @@
 <div class="text-center py-5" *ngIf="loading===true">
 	<img src="assets/images/loading-icon.gif" alt="Loading..." style="height:120px" />
 </div>
-<ul class="list-group-flush ml-0 pl-0" *ngIf="!loading">
-	<li class="list-group-item" *ngFor="let addr of depositList">
-		<p class="text-warning mb-1"><strong>Your {{(addr.fromAddrType=='ERC20'? 'KWH Coin':addr.fromAddrType)}} deposit address</strong></p>
-		<div class="small">{{addr.fromAddrPublicKey}}</div>
-	</li>
-</ul>
+<div *ngIf="!loading">
+	<p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> {{error}}</p>
+	<ul class="list-group-flush ml-0 pl-0" *ngIf="!loading" style="height: 238px;overflow: auto;overflow-x: hidden;">
+		<li class="list-group-item" *ngFor="let addr of depositList">
+			<p class="text-warning mb-1"><strong>Your {{(addr.fromAddrType=='ERC20'? 'KWH Coin':addr.fromAddrType)}} deposit address</strong></p>
+			<div class="small">{{addr.fromAddrPublicKey}}</div>
+		</li>
+	</ul>
+	<div class="text-right px-3 py-3" role="group">
+    	<button class="submit_button btn btn-white" type="button" (click)="close()">Cancel</button>
+	</div>
+</div>

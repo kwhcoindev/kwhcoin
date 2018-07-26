@@ -174,4 +174,8 @@ export class AppService {
 		}
 		return this.http.post(AppConstants.API2_URL + url, data, httpOptions);
 	}
+
+	sendEmail(data: any){
+		return this.http.post(AppConstants.API2_URL + 'rest/user/sendEmail', data, httpOptions);
+	}
 }

@@ -7,7 +7,10 @@
 						<h2 class="h5 pb-3 card-title">
 							Sign in
 						</h2>
-						<form id="login" [formGroup]="inputForm" class="ajax-auth card border-0 p-0" action="login" method="post" (click)="$event.stopPropagation()">
+						<div class="text-center py-5" *ngIf="loading===true">
+							<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+						</div>
+						<form id="login" *ngIf="!loading" [formGroup]="inputForm" class="ajax-auth card border-0 p-0" action="login" method="post" (click)="$event.stopPropagation()">
 					    	<!--button class="close float-right btnClose fa-lg" (click)="dismiss()">&times;</button-->
 					        <p class="status text-danger" *ngIf="error!==null"><i class="fa fa-warning"></i> Login failed. Email/Password is invalid</p>
 					        <div class="md-form form-group">

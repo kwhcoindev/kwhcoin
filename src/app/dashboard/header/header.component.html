@@ -1,6 +1,6 @@
   <ng-template #withdrawDeposit let-c="close" let-d="dismiss">
       <!--h4 class="modal-title">Withdraw/Depotite</h4-->
-    <div class="modal-body px-0 py-0" style="min-height:410px">
+    <div class="modal-body px-0 py-0" style="min-height:390px">
       <button type="button" class="close mt-2 mr-2" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -8,13 +8,13 @@
         <ngb-tab>
           <ng-template ngbTabTitle style="border-radius:0">Withdraw</ng-template>
           <ng-template ngbTabContent>
-            <app-withdraw (onDone)="d()"></app-withdraw>
+            <app-withdraw (done)="d()"></app-withdraw>
           </ng-template>
         </ngb-tab>
         <ngb-tab>
           <ng-template ngbTabTitle class="border-0">Deposit</ng-template>
           <ng-template ngbTabContent>
-            <app-deposit (onDone)="d()"></app-deposit>
+            <app-deposit (done)="d()"></app-deposit>
           </ng-template>
         </ngb-tab>
       </ngb-tabset>

@@ -18,8 +18,8 @@
                     <div class="wrap">
                       <img src="assets/images/chat/{{i+1}}.png" class="mt-2" alt="">
                       <div class="meta">
-                        <div class="name">{{c.name}}</div>
-                        <div class="preview">Last chat: {{c.lastChat}}</div>
+                        <div class="name">{{c.firstName}} {{c.lastName}}</div>
+                        <div class="preview"><a href="javascript:;" (click)="sendMessage(c)">{{c.emailId}}</a></div>
                       </div>
                     </div>
                   </li>
