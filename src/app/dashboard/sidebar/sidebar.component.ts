@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
 	@Input() users: Array<any> = null;
 
 	search: string = "";
-//	showChat: boolean = false;
+	showChat: boolean = false;
 //	selectedContact: number = -1;
 
 	contacts: Array<any> = [];
