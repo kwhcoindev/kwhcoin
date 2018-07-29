@@ -21,6 +21,7 @@ export class VerifyComponent implements OnInit {
 	error: string = null;
 	showForm: boolean = false;
 	processing: boolean = true;
+	success: boolean = false;
 
 	barColors: Array<string> = [];
 	colors: Array<string> = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
@@ -43,18 +44,18 @@ export class VerifyComponent implements OnInit {
 			    	this.showForm = true;
 			    	this.data = resp.data||{};
 
-					this.updateBarColors("");
+					//this.updateBarColors("");
 
 					this.inputForm = this.fb.group({
 					  //firstName: ['', Validators.required ],
 					  //lastName: ['', Validators.required ],
 					  profileName: ['', Validators.required ],
-					  passwordGroup: this.fb.group({
+					  /*passwordGroup: this.fb.group({
 					        pswd: ['', [
 					            Validators.required
 					        ]],
 					        rePswd: ['', Validators.required]}, 
-					    { validator: CustomValidators.childrenEqual}),
+					    { validator: CustomValidators.childrenEqual}),*/
 					  address1: ['', Validators.required ],
 					  address2: ['', null ],
 					  city: ['', null ],
@@ -76,7 +77,7 @@ export class VerifyComponent implements OnInit {
 
 	}
 
-	updateBarColors(color): void {
+/*	updateBarColors(color): void {
 		this.barColors = [];
 		for (let i = 0; i < 5; i++) {
 			this.barColors.push((i <= this.passwordStrength) ? color : '');
@@ -90,14 +91,15 @@ export class VerifyComponent implements OnInit {
 		let color = this.colors[this.passwordStrength];
 		this.updateBarColors(color);
 	}
+*/
 
 	formatAddress(formData: any): string{
 		let address = "";
 
-		if(formData.street1)
-			address += formData.street1;
-		if(formData.street2)
-			address += ' ' + formData.street2;
+		if(formData.address1)
+			address += formData.address1;
+		if(formData.address2)
+			address += ' ' + formData.address2;
 		if(formData.city)
 			address += ', ' + formData.city;
 		if(formData.county)
@@ -139,9 +141,10 @@ export class VerifyComponent implements OnInit {
 				zipCode: this.inputForm.value.zipCode,
 				latitude: null,
 				longitude: null,
-				profileName: this.inputForm.value.profileName,
-				pswd: this.inputForm.value.passwordGroup.pswd,
-				rePswd: this.inputForm.value.passwordGroup.rePswd
+				profileName: this.inputForm.value.profileName
+				//,
+				//pswd: this.inputForm.value.passwordGroup.pswd,
+				//rePswd: this.inputForm.value.passwordGroup.rePswd
 			};
 
 	  		if(resp.results && resp.results.length>0){
@@ -161,9 +164,7 @@ export class VerifyComponent implements OnInit {
 			  	.subscribe((resp:any)=>{
 			  		this.processing = false;
 			  		if(resp && resp.status === "SUCCESS"){
-					  	this.router.navigate(['signin']);
-			  			//this.user = resp;
-			  			this.dismiss();
+			  			this.success = true;
 			  		}
 			  		else {
 			  			this.error = resp.errorDesc||"Failed to update profile";
@@ -203,6 +204,7 @@ export class VerifyComponent implements OnInit {
 	}
 
 	dismiss(){
+	  	this.router.navigate(['signin']);
 	  	//this.close.emit(this.user);
 	}
 

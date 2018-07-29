@@ -4,12 +4,20 @@
 			<div class="text-center py-5" *ngIf="processing===true">
 				<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
 			</div>			
+			<div class="row" *ngIf="success && !processing">
+				<div class="col-12 alert text-center">
+					<div class="my-2 text-success fa-lg"><i class="fa fa-lg fa-check-circle"></i> Thank you! your information is saved, please login to continue to dashboard</div>
+					<div class="pt-5">
+						<button type="button" class="btn btn-success" (click)="dismiss()">Login</button>
+					</div>
+				</div>
+			</div>
 			<div class="row" *ngIf="error && !processing">
 				<div class="col-12 alert alert-danger">
 					<p class="mb-0"><i class="fa fa-lg fa-warning"></i> {{error}}</p>
 				</div>
 			</div>
-			<div class="row" *ngIf="showForm===true && !processing">
+			<div class="row" *ngIf="showForm===true && !processing && !success">
 				<div class="col-12 offset-md-2 col-md-8 border bg-light">
 					<form id="register" [formGroup]="inputForm" class="ajax-auth card bg-transparent border-0 rounded-0 p-0" action="register" method="post" novalidate="novalidate">
 					    <div class="card-body mx-2">
@@ -26,7 +34,7 @@
 					            <input type="text" id="profileName" class="w-100 d-block form-control" formControlName="profileName" placeholder="Preferred name" name="profileName">
 					        </div>
 
-					      	<div formGroupName="passwordGroup">
+					      	<!--div formGroupName="passwordGroup">
 						        <div class="md-form form-group">
 						            <input type="password" id="pswd" class="w-100 d-block form-control" formControlName="pswd" placeholder="Password" name="pswd" (keyup)="updatePasswordStrength()">
 						            <ul id="strengthBar">
@@ -38,7 +46,7 @@
 						            <input type="password" id="rePswd" class="w-100 d-block form-control" formControlName="rePswd" placeholder="Confirm password" name="rePswd">
 						            <p *ngIf="inputForm.controls.passwordGroup.errors?.childrenNotEqual" class="small text-danger">Confirm password and Password must match</p>
 						        </div>
-						    </div>
+						    </div-->
 
 						    <hr />
 						    <label class="mt-4 mb-3">Address</label>

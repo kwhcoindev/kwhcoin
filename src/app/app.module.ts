@@ -60,22 +60,30 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    request = request.clone({
-      setHeaders: {
-        'Authorization': AppConstants.Authorization,
-        'X-Requested-With': 'XMLHttpRequest'
-      }
-    });
+    //console.log(request);
+    if(request.url.indexOf('maps.googleapis.com') !== -1 ){
+      
+      return next.handle(request);
 
-    if( AppConstants.Token && AppConstants.Token.get() ){
+    } else {
       request = request.clone({
         setHeaders: {
-          'OWASP_CSRFTOKEN': AppConstants.Token.get()
+          'Authorization': AppConstants.Authorization,
+          'X-Requested-With': 'XMLHttpRequest'
         }
       });
+
+      if( AppConstants.Token && AppConstants.Token.get() ){
+        request = request.clone({
+          setHeaders: {
+            'OWASP_CSRFTOKEN': AppConstants.Token.get()
+          }
+        });
+      }
+
+      return next.handle(request);
     }
 
-    return next.handle(request);
   }
 }
 

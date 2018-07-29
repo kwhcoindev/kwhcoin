@@ -4,6 +4,7 @@ import { AppService } from '../app.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
+import * as zxcvbn from "zxcvbn";
 
 /**
  * Custom validator functions for reactive form validation
@@ -35,6 +36,10 @@ export class SignupComponent implements OnInit {
   emailId: string = null;
   loading: boolean = false;
 
+  barColors: Array<string> = [];
+  colors: Array<string> = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
+  passwordStrength: number = 0;  
+
   constructor(private service: AppService, private fb: FormBuilder, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
@@ -42,11 +47,35 @@ export class SignupComponent implements OnInit {
   	this.inputForm = this.fb.group({
   		firstName: ['', Validators.required],
   		lastName: ['', Validators.required],
+      passwordGroup: this.fb.group({
+            pswd: ['', [
+                Validators.required
+            ]],
+            rePswd: ['', Validators.required]}, 
+        { validator: CustomValidators.childrenEqual}),      
         emailId: ['', [
             Validators.required,
             Validators.email
         ]]
-	});
+	   });
+
+     this.updateBarColors("");
+  }
+
+
+  updateBarColors(color): void {
+    this.barColors = [];
+    for (let i = 0; i < 5; i++) {
+      this.barColors.push((i <= this.passwordStrength) ? color : '');
+    }
+  }
+
+  updatePasswordStrength(): void {
+    let results = zxcvbn(this.inputForm.controls.passwordGroup.value.pswd);
+    this.passwordStrength = results.score;
+    
+    let color = this.colors[this.passwordStrength];
+    this.updateBarColors(color);
   }
 
   register(content){
@@ -61,11 +90,18 @@ export class SignupComponent implements OnInit {
   	this.success = false;
   	this.loading = true;
 
-  	this.service.register(this.inputForm.value)
+    let data = {
+      firstName: this.inputForm.value.firstName,
+      lastName: this.inputForm.value.lastName,
+      emailId: this.inputForm.value.emailId,
+      pswd: this.inputForm.value.passwordGroup.pswd,
+      rePswd: this.inputForm.value.passwordGroup.rePswd
+    };
+
+  	this.service.register(data)
   	.subscribe((resp:any)=>{
   		this.loading = false;
   		if(resp.status == "SUCCESS"){
-  			//this.router.navigate(['verifyUser', { queryParams: {'vid': 'd35897ad-60e5-42eb-a4a8-7d86ed902634'} }]);
   			this.success = true;
   			this.dismiss();
   			this.showMessage(content);
