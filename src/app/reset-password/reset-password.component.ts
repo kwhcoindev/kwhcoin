@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 
+import { DashboardService } from '../dashboard/dashboard.service';
+
 
 @Component({
   selector: 'app-reset-password',
@@ -18,7 +20,7 @@ export class ResetPasswordComponent implements OnInit {
   status: string = null;
   loading: boolean = false;
 
-  constructor(private service: AppService, private fb: FormBuilder, private router: Router) { }
+  constructor(private service: AppService, private dashService: DashboardService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
   	this.inputForm = this.fb.group({
@@ -44,6 +46,8 @@ export class ResetPasswordComponent implements OnInit {
       this.loading = false;
   		if(resp.status == "SUCCESS"){
   			this.status = resp.status;
+        this.dashService.clear();
+        this.service.logout();
   		}
   		else {
   			this.error = resp.errorDesc||"Failed to send reset password email, please try after sometime";

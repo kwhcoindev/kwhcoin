@@ -4,6 +4,7 @@ import { } from '@types/googlemaps';
 import { AppService } from '../../app.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { DashboardService } from '../dashboard.service';
 
@@ -33,12 +34,16 @@ export class SummaryComponent implements OnInit {
 	loading: boolean = false;
 
 
-	constructor(private service: AppService, private dashService: DashboardService, private modalService: NgbModal, private fb: FormBuilder) { }
+	constructor(private service: AppService, private dashService: DashboardService, 
+				private modalService: NgbModal, private fb: FormBuilder, private router: Router) { }
 
 	ngOnInit() {
 
 		this.users = this.dashService.getUsers();
 		this.user = this.dashService.getUser();
+		if(this.user == null || !this.user){
+			this.router.navigate(['signin']);
+		}
 		
 		this.renderGoogleMap(this.users);
 

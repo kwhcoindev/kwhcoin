@@ -27,4 +27,9 @@ export class DashboardService {
 		this.users = users;
 	}
 
+	clear(){
+		this.user = null;
+		this.users = null;
+	}
+
 }

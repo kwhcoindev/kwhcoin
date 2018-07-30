@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms'
 import { AppService } from '../../app.service';
 import { CustomValidators } from '../../signup/signup.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { DashboardService } from '../dashboard.service';
 
 import * as zxcvbn from "zxcvbn";
 
@@ -27,9 +28,15 @@ export class UserDetailsComponent implements OnInit {
 
 
   	constructor(private service: AppService, private fb: FormBuilder, 
-  		private router: Router, private route: ActivatedRoute) { }
+  		private router: Router, private route: ActivatedRoute,
+  		private dashService: DashboardService) { }
 
 	ngOnInit() {
+
+		this.user = this.dashService.getUser();
+		if(this.user == null || !this.user){
+			this.router.navigate(['signin']);
+		}
 
 		this.service.getUserDetails()
 		    .subscribe((resp: any) => {
@@ -176,7 +183,11 @@ export class UserDetailsComponent implements OnInit {
 	}
 
  	dismiss(){
-	  	this.router.navigate(['signin']);
+	  	//this.router.navigate(['signin']);
 	  	//this.close.emit(this.user);
+	}
+
+	changePassword(){
+		this.router.navigate(['dashboard/change-password']);
 	}
 }

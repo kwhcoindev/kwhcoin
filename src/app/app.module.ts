@@ -55,6 +55,7 @@ import { VerifyResetPasswordComponent } from './verify-reset-password/verify-res
 import { WithdrawComponent } from './dashboard/withdraw/withdraw.component';
 import { DepositComponent } from './dashboard/deposit/deposit.component';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
+import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 
 
 @Injectable()
@@ -135,7 +136,8 @@ const appRoutes: Routes = [
   { path: 'dashboard/summary', component: SummaryComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'verify-reset-password', component: VerifyResetPasswordComponent },
-  { path: 'dashboard/my-profile', component: UserDetailsComponent }
+  { path: 'dashboard/my-profile', component: UserDetailsComponent },
+  { path: 'dashboard/change-password', component: ResetPasswordComponent }
 ];
 
 
@@ -181,7 +183,8 @@ const appRoutes: Routes = [
     VerifyResetPasswordComponent,
     WithdrawComponent,
     DepositComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
