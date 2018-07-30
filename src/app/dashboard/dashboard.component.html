@@ -2,7 +2,8 @@
 <div class="container-fluid dashboard-section h-100">
 	<div class="row h-100">
 		<div class="col-12 h-100">
-			<dashboard-summary *ngIf="user && users" [user]="user" [users]="users"></dashboard-summary>
+			<!--dashboard-summary *ngIf="user && users" [user]="user" [users]="users"></dashboard-summary-->
+			<router-outlet *ngIf="user && users"></router-outlet>
 		</div>
 		<!--div class="col-12 col-md-4 col-lg-3 h-100 px-0">
 			<dashboard-sidebar *ngIf="user && users" [user]="user" [users]="users"></dashboard-sidebar>

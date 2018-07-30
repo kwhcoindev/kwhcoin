@@ -16,6 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   inputForm: FormGroup;
   error: string = null;
   status: string = null;
+  loading: boolean = false;
 
   constructor(private service: AppService, private fb: FormBuilder, private router: Router) { }
 
@@ -36,10 +37,11 @@ export class ResetPasswordComponent implements OnInit {
 
   	//this.user = null;
   	this.error = null;
+    this.loading = true;
 
   	this.service.sendResetPassword(this.inputForm.value)
   	.subscribe((resp:any)=>{
-  	console.log(resp);
+      this.loading = false;
   		if(resp.status == "SUCCESS"){
   			this.status = resp.status;
   		}
@@ -47,6 +49,7 @@ export class ResetPasswordComponent implements OnInit {
   			this.error = resp.errorDesc||"Failed to send reset password email, please try after sometime";
   		}
   	}, ()=>{
+      this.loading = false;
   		this.error = "Oops! something went wrong, please contact support";
   	});
 

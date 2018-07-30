@@ -25,6 +25,10 @@ export class DashboardHeaderComponent implements OnInit {
 		  this.router.navigate(['signin']);  		
   	}
 
+    showProfile(){
+      this.router.navigate(['dashboard/my-profile']);
+    }
+
   openDepositWithdraw(content) {
     this.modalService.open(content, {size: 'lg'}).result
     .then((result) => {

@@ -1,31 +1,29 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn } from '@angular/forms';
-import { AppService } from '../app.service';
-import { CustomValidators } from '../signup/signup.component';
+import { AppService } from '../../app.service';
+import { CustomValidators } from '../../signup/signup.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import * as zxcvbn from "zxcvbn";
 
-
 @Component({
-  selector: 'app-verify',
-  templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.scss']
+  selector: 'app-user-details',
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.scss']
 })
-export class VerifyComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
 
 	//@Output() close: EventEmitter<any> = new EventEmitter();
 	@Input() user: any = null;
 	inputForm: FormGroup;
 	data: any = null;
 	error: string = null;
-	showForm: boolean = false;
 	processing: boolean = true;
 	success: boolean = false;
 
-	barColors: Array<string> = [];
-	colors: Array<string> = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
-	passwordStrength: number = 0;
+//	barColors: Array<string> = [];
+//	colors: Array<string> = ['#F00', '#F90', '#FF0', '#9F0', '#0F0'];
+//	passwordStrength: number = 0;
 
 
   	constructor(private service: AppService, private fb: FormBuilder, 
@@ -33,37 +31,34 @@ export class VerifyComponent implements OnInit {
 
 	ngOnInit() {
 
-		this.route.queryParamMap
-		    .switchMap((params: ParamMap) => this.service.verifyUser(params.get('vid')))
-		    .subscribe(resp => {
+		this.service.getUserDetails()
+		    .subscribe((resp: any) => {
 		    	console.log(resp);
 		    	this.processing = false;
 		    	if(resp.status == "SUCCESS"){
-			    	//else redirect to update user after storing the user data in common service
 
-			    	this.showForm = true;
 			    	this.data = resp.data||{};
 
 					//this.updateBarColors("");
 
 					this.inputForm = this.fb.group({
-					  //firstName: ['', Validators.required ],
-					  //lastName: ['', Validators.required ],
-					  profileName: ['', Validators.required ],
+					  firstName: [this.data.firstName, Validators.required ],
+					  lastName: [this.data.lastName, Validators.required ],
+					  profileName: [this.data.profileName, Validators.required ],
 					  /*passwordGroup: this.fb.group({
 					        pswd: ['', [
 					            Validators.required
 					        ]],
 					        rePswd: ['', Validators.required]}, 
 					    { validator: CustomValidators.childrenEqual}),*/
-					  address1: ['', Validators.required ],
-					  address2: ['', null ],
-					  city: ['', null ],
-					  zipCode: ['', null ],
-					  state: ['', null ],
-					  country: ['', Validators.required ],
-					  latitude: ['', null],
-					  longitude: ['', null]
+					  address1: [this.data.address1, Validators.required ],
+					  address2: [this.data.address2, null ],
+					  city: [this.data.city, null ],
+					  zipCode: [this.data.zipCode, null ],
+					  state: [this.data.state, null ],
+					  country: [this.data.country, Validators.required ],
+					  latitude: [this.data.latitude, null],
+					  longitude: [this.data.longitude, null]
 					});
 
 		    	} else {
@@ -180,33 +175,8 @@ export class VerifyComponent implements OnInit {
 	  	})
 	}
 
- 
-	register(){
-		console.log(this.inputForm)
-	  	if(this.inputForm.invalid === true)
-	  		return;
-
-	  	this.user = null;
-	  	this.error = null;
-
-	  	this.service.register(this.inputForm.value)
-	  	.subscribe((resp:any)=>{
-	  		if(resp && resp.ok === true){
-	  			this.user = resp;
-	  			this.dismiss();
-	  		}
-	  		else {
-	  			this.error = resp.message||"Failed to register";
-	  		}
-	  	}, ()=>{
-	  		this.error = "Failed to register";
-	  	});
-
-	}
-
-	dismiss(){
+ 	dismiss(){
 	  	this.router.navigate(['signin']);
 	  	//this.close.emit(this.user);
 	}
-
 }

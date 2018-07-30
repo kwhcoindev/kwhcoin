@@ -5,6 +5,8 @@ import { AppService } from '../../app.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { DashboardService } from '../dashboard.service';
+
 
 @Component({
   selector: 'dashboard-summary',
@@ -13,8 +15,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SummaryComponent implements OnInit {
 
-	@Input() user: any = null;
-	@Input() users: Array<any> = null;
+	user: any = null;
+	users: Array<any> = null;
 
 	@ViewChild('gmap') gmapElement: any;
   	map: google.maps.Map;
@@ -31,10 +33,13 @@ export class SummaryComponent implements OnInit {
 	loading: boolean = false;
 
 
-	constructor(private service: AppService, private modalService: NgbModal, private fb: FormBuilder) { }
+	constructor(private service: AppService, private dashService: DashboardService, private modalService: NgbModal, private fb: FormBuilder) { }
 
 	ngOnInit() {
 
+		this.users = this.dashService.getUsers();
+		this.user = this.dashService.getUser();
+		
 		this.renderGoogleMap(this.users);
 
 	  	this.emailForm = this.fb.group({

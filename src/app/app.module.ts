@@ -44,6 +44,7 @@ import { SummaryComponent } from './dashboard/summary/summary.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardHeaderComponent } from './dashboard/header/header.component';
 import { DashboardFooterComponent } from './dashboard/footer/footer.component';
+import { DashboardService } from './dashboard/dashboard.service';
 
 import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
@@ -53,6 +54,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { VerifyResetPasswordComponent } from './verify-reset-password/verify-reset-password.component';
 import { WithdrawComponent } from './dashboard/withdraw/withdraw.component';
 import { DepositComponent } from './dashboard/deposit/deposit.component';
+import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
 
 
 @Injectable()
@@ -130,9 +132,10 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'verify-user', component: VerifyComponent},
   { path: 'ico-participation-guide', component: IcoParticipationGuideComponent},
-  { path: 'dashboard/summary', component: DashboardComponent },
+  { path: 'dashboard/summary', component: SummaryComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'verify-reset-password', component: VerifyResetPasswordComponent }
+  { path: 'verify-reset-password', component: VerifyResetPasswordComponent },
+  { path: 'dashboard/my-profile', component: UserDetailsComponent }
 ];
 
 
@@ -177,7 +180,8 @@ const appRoutes: Routes = [
     ResetPasswordComponent,
     VerifyResetPasswordComponent,
     WithdrawComponent,
-    DepositComponent
+    DepositComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -193,6 +197,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot()
   ],
   providers: [AppService,
+              DashboardService,
               AppConstants,
               PercentPipe,
               EmitterService,

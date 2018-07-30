@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppService } from '../app.service';
+import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ export class DashboardComponent implements OnInit {
 	users: Array<any> = null;
 	wallet: any = {erc20Balance: 0, ethBalance: 0};
 
-  	constructor(private service: AppService, private router: Router) { }
+  	constructor(private service: AppService, private dashService: DashboardService, private router: Router) { }
 
   	ngOnInit() {
   		this.user = this.service.getUser();
@@ -23,10 +24,13 @@ export class DashboardComponent implements OnInit {
   			this.router.navigate(['signin']);
   		else {
 
+	  		this.dashService.setUser( this.user );
+
 			this.service.getUsers()
 			.subscribe((resp:any)=>{
 				
 				this.users = resp.data||[];
+		  		this.dashService.setUsers( this.users );
 
 			});
 

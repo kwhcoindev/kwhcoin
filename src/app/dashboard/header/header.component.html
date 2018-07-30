@@ -24,7 +24,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand header-footer-logo pt-0" href="/#/">
+  <a class="navbar-brand header-footer-logo pt-0" href="/#/dashboard/summary">
     <img src="assets/images/kwh-coin-final-symbol-1-nfsc67km3jv7zaesp3nqrymiwl6p29ptko7zcp0ma8.png"><span class="text-green lighter boldest">KWH</span><span class="text-orange boldest">Coin</span>
   </a>
   <div class="ml-auto mr-auto text-white order-3 order-sm-2 navbar-nav">
@@ -46,6 +46,7 @@
         <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:;"><i class="fa fa-user"></i> {{user.firstName +' '+ user.lastName}}</a>
         <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu style="">
           <a href="javascript:;" class="dropdown-item disabled"><small>{{user.emailId}}</small></a>
+          <a href="javascript:;" (click)="showProfile()" class="dropdown-item"><small>Profile</small></a>
           <a href="javascript:;" (click)="signout()" class="dropdown-item"><small>Sign Out</small></a>
         </div>
       </li>

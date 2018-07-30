@@ -33,6 +33,7 @@ export class SignupComponent implements OnInit {
   inputForm: FormGroup;
   error: string = null;
   success: boolean = false;
+  submitted: boolean = false;
   emailId: string = null;
   loading: boolean = false;
 
@@ -78,7 +79,7 @@ export class SignupComponent implements OnInit {
     this.updateBarColors(color);
   }
 
-  register(content){
+  register(){
     	//this.router.navigate(['verify/'+ (new Date()).getTime()]);
     	//this.dismiss();
 
@@ -103,34 +104,55 @@ export class SignupComponent implements OnInit {
   		this.loading = false;
   		if(resp.status == "SUCCESS"){
   			this.success = true;
+        this.submitted = true;
   			this.dismiss();
-  			this.showMessage(content);
+  			this.showMessage();
   		}
   		else {
   			this.error = resp.errorDesc||"Failed to register, kindly try after sometime";
-  			this.showMessage(content);
+  			this.showMessage();
   		}
   	}, (resp)=>{
   		this.loading = false;
   		this.error = "Failed to register, kindly try after sometime";
-  		this.showMessage(content);
+  		this.showMessage();
   	});
-
   }
 
-  showMessage(content){
-	this.emailId = this.inputForm.value.emailId;
-	this.inputForm.value.emailId = "";
-	this.inputForm.value.firstName = "";
-	this.inputForm.value.lastName = "";
-	this.modalService.open(content, {size: 'lg'})
-		.result.then((result) => {
-	}, (reason) => {
-	});  
+  reSendRegistrationEmail(){
+    this.user = null;
+    this.error = null;
+    this.success = false;
+    this.loading = true;
+
+    this.service.reSendRegistrationEmail(this.emailId)
+    .subscribe((resp:any)=>{
+      this.loading = false;
+      if(resp.status == "SUCCESS"){
+        this.success = true;
+        this.dismiss();
+        this.showMessage();
+      }
+      else {
+        this.error = resp.errorDesc||"Failed to send register email, kindly try after sometime";
+        this.showMessage();
+      }
+    }, (resp)=>{
+      this.loading = false;
+      this.error = "Failed to send register email, kindly try after sometime";
+      this.showMessage();
+    });
+  }
+
+  showMessage(){
+  	this.emailId = this.inputForm.value.emailId;
+  	this.inputForm.value.emailId = "";
+  	this.inputForm.value.firstName = "";
+  	this.inputForm.value.lastName = "";
   }
 
   dismiss(){
-  	this.close.emit(this.user);
+  	//this.close.emit(this.user);
   }
 
 }

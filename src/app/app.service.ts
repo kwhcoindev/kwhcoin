@@ -98,6 +98,10 @@ export class AppService {
 		return this.http.post(AppConstants.API2_URL + 'auth/register', data, httpOptions)
 	}
 
+	reSendRegistrationEmail(emailId: string){
+		return this.http.post(AppConstants.API2_URL + 'auth/reSendRegistrationEmail?emailId='+ encodeURIComponent(emailId), {}, httpOptions);
+	}
+
 	login(data: any){
 		return this.http.post(AppConstants.API2_URL + 'auth/login', data, httpOptions)
 		.map((resp:any) => {
@@ -146,6 +150,10 @@ export class AppService {
 
 	getUsers(){
 		return this.http.post(AppConstants.API2_URL + 'rest/user/getUsers', {}, httpOptions)
+	}
+
+	getUserDetails(){
+		return this.http.post(AppConstants.API2_URL + 'rest/user/getUserDetails', {}, httpOptions)
 	}
 
 	/*balance(data: any){
