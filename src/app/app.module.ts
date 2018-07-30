@@ -55,7 +55,6 @@ import { VerifyResetPasswordComponent } from './verify-reset-password/verify-res
 import { WithdrawComponent } from './dashboard/withdraw/withdraw.component';
 import { DepositComponent } from './dashboard/deposit/deposit.component';
 import { UserDetailsComponent } from './dashboard/user-details/user-details.component';
-import { ChangePasswordComponent } from './dashboard/change-password/change-password.component';
 
 
 @Injectable()
@@ -183,8 +182,7 @@ const appRoutes: Routes = [
     VerifyResetPasswordComponent,
     WithdrawComponent,
     DepositComponent,
-    UserDetailsComponent,
-    ChangePasswordComponent
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
